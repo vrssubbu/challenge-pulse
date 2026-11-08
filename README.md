@@ -1,6 +1,6 @@
 # Challenge Pulse
 
-A dependency-free Discord observation dashboard for TAMU Datathon. It combines official metadata for eight challenges with traceable, partial channel observations. The dashboard derives counts, categories, dates and coverage from the bundled message and snapshot records. Repeated sightings are deduplicated by message ID. Any unread channel remains missing, not zero.
+A dependency-free dashboard of observed challenge discussions at TAMU Datathon. It combines official metadata for eight challenges with traceable, partial observations of their Discord channels. The dashboard derives counts, categories, dates and coverage from the bundled message and snapshot records. Repeated sightings are deduplicated by message ID. Any unread channel remains missing, not zero.
 
 ## Dataset package
 
