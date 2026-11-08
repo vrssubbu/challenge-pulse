@@ -1,7 +1,8 @@
-import {CHALLENGE_IDS,CATEGORY_LABELS,safeUrl,parseImport,mergeMessages,summarize,csv,equalChanceTopThree} from './model.js?v=4';
-import {LENSES,THEMES,labelForCategory,themeSummaries,sampledDisplaySpan,participationSummary,displayTimeBuckets,filterMessages,buildCoverage} from './pulse-model.js?v=4';
-import {renderPulseStories} from './stories.js?v=4';
-import {refreshMotion,syncMotion} from './motion.js?v=4';
+import {CHALLENGE_IDS,CATEGORY_LABELS,safeUrl,parseImport,mergeMessages,summarize,csv,equalChanceTopThree} from './model.js?v=5';
+import {LENSES,THEMES,labelForCategory,themeSummaries,sampledDisplaySpan,participationSummary,displayTimeBuckets,filterMessages,buildCoverage} from './pulse-model.js?v=5';
+import {renderPulseStories} from './stories.js?v=5';
+import {refreshMotion,syncMotion} from './motion.js?v=5';
+import {mountSignalReel} from './reel.js?v=5';
 
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -12,6 +13,7 @@ const symbols=['♠','▥','✦','♦','♣','↗','♥','◈'];
 let catalog=CHALLENGE_IDS.map((id,i)=>({id,name:names[i]}));
 let messages=[],observationData={metadata:{},records:[]},messageData={metadata:{}},localMessages=[];
 let toastTimer,activeLens='all',activeHour='',activeTheme=null;
+let signalReel=null;
 const storageKey='challenge-pulse-discord-v1';
 const motionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
 let motionPreferencePaused=false;
@@ -23,6 +25,7 @@ function toast(text){$('toast').textContent=text;$('toast').hidden=false;clearTi
 function applyMotion(){
   document.documentElement.classList.toggle('motion-paused',motionPaused);
   syncMotion();
+  signalReel?.syncMotion();
   $('motion-toggle').setAttribute('aria-pressed',String(motionPaused));
   $('motion-toggle').disabled=motionQuery.matches;
   $('motion-toggle').innerHTML=motionQuery.matches?'Reduced motion on':motionPaused?'<span aria-hidden="true">▷</span> Play motion':'<span aria-hidden="true">Ⅱ</span> Pause motion';
@@ -107,6 +110,11 @@ function renderOverview(){
   document.querySelectorAll('[data-theme]').forEach(b=>b.addEventListener('click',()=>openExplorer({challenge:selected,theme:b.dataset.theme})));
   renderConstellation();
   renderPulseStories(rows,{onExplore:openExplorer,challengeName,selected});
+  if(signalReel)signalReel.update({catalog,records:messages,selected});
+  else signalReel=mountSignalReel({catalog,records:messages,selected,onSelect:id=>{
+    $('challenge-filter').value=id;
+    renderOverview();
+  }});
   refreshMotion();
 }
 
