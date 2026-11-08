@@ -2,11 +2,11 @@
 
 Every metric belongs to a stated channel and coverage window. Use null for unavailable values. A measured zero requires a complete observation of the defined unit and window in which no qualifying event occurred.
 
-The current dataset is a Rev's Casino viewport sample of 10 unique visible message items and five distinct display labels. It is not sufficient for an event-wide activity comparison. All metrics for the seven unobserved channels are unavailable. See [the acquisition method](DISCORD_METHODOLOGY.md).
+The current dataset is a Rev's Casino viewport sample of 10 unique visible message items and five distinct display labels, observed on two occasions. Repeated snapshots do not add messages. Reaction counts are available for two messages only. It is not sufficient for an event-wide activity comparison. All activity metrics for the seven unread channels are unavailable. See [the acquisition method](DISCORD_METHODOLOGY.md).
 
 ## Current snapshot fields
 
-The files `discord-observations.json` and `discord-message-coding.json` each contain `schema_version`, `metadata`, and `records`. The latter also contains `coding_scheme`. Exact capture times were not recorded: `captured_at` remains null, while metadata preserves the explicitly approximate observation-session range. Never replace that range with a fabricated precise timestamp.
+The files `discord-observations.json` and `discord-message-coding.json` each contain `schema_version`, `metadata`, `snapshots`, and `records`. The latter also contains `coding_scheme`. Exact capture times were not recorded: `captured_at` remains null. Metadata records collection dates, which must not be converted into fabricated precise timestamps.
 
 | Field | Meaning |
 | --- | --- |
@@ -15,7 +15,7 @@ The files `discord-observations.json` and `discord-message-coding.json` each con
 | `source_url` | Observed channel reference retained for provenance; null for channels not read. |
 | `source_type` | `discord_ui_observation`; never relabel as survey or physical-world observation. |
 | `captured_at` | Exact acquisition timestamp if recorded; currently null. |
-| `metadata.observation_session_approximate_utc` | Explicitly approximate observation-session range; not a precise capture timestamp. |
+| `metadata.collection_dates_local` | November 7 and 8, 2026, in America/Chicago: dates of reading, separate from rendered message timestamps. |
 | `coverage_status` | Current values are `not_read` or `partial`. A future complete status requires a defined and verified scope. |
 | `coverage_note` | What material was actually inspected and what remains missing. |
 | `displayed_date`, `first_displayed_time`, `last_displayed_time` | Date and first/last times rendered among the inspected messages. They do not establish complete coverage between them. |
@@ -28,6 +28,11 @@ The files `discord-observations.json` and `discord-message-coding.json` each con
 | `category_counts` | Counts using the six exclusive categories below. |
 | `participant_count`, `team_count`, `entrant_count` | All null; these populations have not been measured. |
 | `messages_per_hour` | Null because the viewport does not cover a complete interval. |
+| `snapshot_ids`, `snapshot_count` | IDs/count of observation sessions for this channel. Two sessions of the same ten messages are not twenty unique messages. |
+| `reaction_counted_messages` | Two for Rev's Casino; null for unread channels. The denominator is ten observed messages, leaving eight without a reaction reading. |
+| `reaction_count_sum_observed` | Sum of the latest inspected emoji counts on the two messages: 16. This is neither unique reactors nor a complete sample/channel reaction total. |
+
+Each `snapshots` entry has a stable `snapshot_id`, `label`, `challenge_id`, `observed_on_local`, `observation_timezone`, nullable `captured_at`, a deduplicated `message_ids` list, and `observed_messages`. `displayed_start`/`displayed_end` contain rendered message date/time bounds, with `timezone: null` and `timezone_verified: false`. These bounds do not establish uninterrupted observation. `channel_start_seen`, `channel_end_seen`, and `threads_inspected` are false in both current snapshots. `coverage_status` remains `partial`; `coverage_note` describes the precise limits.
 
 Future comparable acquisition should add explicit analytical window boundaries, sampling method, thread scope, and gap notes. These are not present as established facts in the initial viewport sample.
 
@@ -47,6 +52,14 @@ Future comparable acquisition should add explicit analytical window boundaries, 
 | `identity_unit` | Explicit reminder that display labels are not verified accounts, people, or teams. |
 | `collector`, `collection_method` | Assistant UI observation, not user fieldwork. |
 | `coding_method`, `human_reviewed` | Single-assistant qualitative classification; `human_reviewed` is false. |
+| `snapshot_ids` | Packaged observation sessions in which this message was read. The authoritative snapshots list also references the message ID. |
+| `author_role`, `role_evidence` | All current authors are `unknown`, with null evidence. A future `organizer` value requires explicit observed role evidence. |
+| `reaction_count_observed` | Latest sum of inspected emoji-reaction counts for the message: 15 or 1 on the two inspected messages, null on the other eight. Not unique reactors. |
+| `reaction_types_observed` | Number of emoji types contributing to the latest inspected sum: 2 or 1. |
+| `reaction_observed_on_local`, `reaction_observed_timezone` | Date/timezone of the reaction reading: November 8, 2026, America/Chicago. This does not verify the timezone of Discord's rendered message times. |
+| `reaction_capture_time` | Null because no exact reaction capture timestamp was recorded. |
+| `reaction_snapshot_id` | `revs-reread-20261108` for the two reaction readings; null otherwise. Do not attribute these readings to the initial snapshot. |
+| `reaction_observation_note` | Explicit explanation of the inspected count and its unit. |
 
 For future collection, reliable author keys, verified roles, normalized timestamps, explicit-content flags, and resolution evidence may be added when supported. They have not been measured in the current dataset and must not be inferred from the six categories.
 
@@ -68,7 +81,7 @@ For future collection, reliable author keys, verified roles, normalized timestam
 | No reply observed in covered material | Coded requests without an observed linked reply in the available material. | Right-censored and possibly incomplete. Never label simply “unanswered” or “unresolved.” |
 | First observed linked-reply latency | Reply timestamp minus request timestamp for the earliest linked reply observed. | Requires compatible verified timestamps. Show valid pair count and whether complete intervening history was covered. |
 | Explicitly observed resolutions | Requests with linked, explicit resolution evidence. | Missing resolution evidence is unknown, not a negative outcome. |
-| Reactions observed | Reaction counts visible on a message at capture time. | Optional snapshot measure only; reactions may overlap across authors and messages and can change. Not votes or people counts. |
+| Reactions observed | Sum of inspected emoji reaction counts on a message at the stated reading date. | Current values are 15 and 1 for two messages; other values are unknown. Reactions may overlap across authors, emoji, and messages and can change. Not votes, unique people, or a growth/velocity measure. |
 
 ## Comparison rules
 

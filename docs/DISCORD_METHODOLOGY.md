@@ -4,9 +4,11 @@ Challenge Pulse describes visible challenge discussion. Its dataset is derived f
 
 ## What has actually been observed
 
-The initial pass observed one Rev's Casino viewport containing 10 message items and five distinct display labels. The visible timestamps ran from 22:47 to 23:22 on November 7, 2026. The timezone behind Discord's rendered timestamps has not been independently verified. This is a viewport sample, not an exhaustive export of that interval or the full channel. It contains no verified team membership, entrant count, or submission outcomes.
+The initial pass observed one Rev's Casino viewport containing 10 message items and five distinct display labels. The same ten-message sample was read again on November 8, 2026. The two snapshots are repeated sightings of the same messages, not 20 unique messages or two independent samples. The visible message timestamps ran from 22:47 to 23:22 on November 7, 2026. The timezone behind Discord's rendered timestamps has not been independently verified. This is a viewport sample, not an exhaustive export of that interval or the full channel. It contains no verified team membership, entrant count, or submission outcomes.
 
-The other seven challenge channels have not been observed in this pass. Their metrics remain null or “not observed.” Do not treat missing channels as quiet, compute their activity as zero, or rank all eight channels from this one viewport.
+During the November 8 reread, reaction counts were inspected on two messages. The 23:22 leaderboard request displayed 12 heavy-plus-sign reactions and three custom-image reactions: 15 reaction events across two emoji types, not 15 unique reactors. The 22:57 collaboration message displayed one custom-image reaction. Reaction counts for the other eight messages remain unknown. The sum of 16 applies only to those two inspected messages; it is not the total reactions on the ten-message sample or channel. No exact capture time was recorded, so no growth or velocity calculation is made.
+
+The other seven challenge channels have not been observed in this pass. Navigation attempts were blocked by the UI tool before their message contents could be read. Their sidebar links are known, but their activity metrics remain null or “not observed.” Do not treat missing channels as quiet, compute their activity as zero, or rank all eight channels from this one viewport.
 
 ## Acquisition protocol for a comparable dataset
 
@@ -18,7 +20,11 @@ The other seven challenge channels have not been observed in this pass. Their me
 6. **Code content from the text actually read.** Apply the codebook below. Use neutral factual paraphrases and avoid unnecessary raw quotes. Images or attachments that were not inspected remain unclassified; do not infer their contents from reactions.
 7. **Audit a subset.** A second reviewer can independently code a small set and resolve disagreements. Record the number checked and disagreements actually found; do not claim inter-rater reliability without a real check.
 
-Messages arriving after the snapshot are outside its coverage. Deletions and edits may change the live channel; retain the capture time and describe the dataset as a snapshot.
+Messages arriving after the snapshot are outside its coverage. Deletions, edits, and reactions may change the live channel; retain the capture date/time actually available and describe the dataset as a snapshot. Do not manufacture a precise timestamp from a date-only observation.
+
+The packaged files carry an authoritative `snapshots` list with observed message IDs. Message rows retain every known `snapshot_ids` association and are deduplicated by `message_id`. A message can appear in both snapshots but is counted once in the combined sample. Reaction readings identify their own `reaction_snapshot_id`; the latest reaction reading must not be presented as if it was already measured in an earlier snapshot. Imported snapshot identifiers alone do not prove membership in a packaged observation session.
+
+On import, matching message IDs must agree on their core text coding, source, displayed time, and alias. Duplicate records can add snapshot references or fill previously unknown reaction data without increasing the unique-message count. A reaction reading on a later observation date in the same observation timezone replaces the complete older reaction bundle, including its count, types, date, snapshot reference, and note. Earlier readings do not overwrite newer ones. Different known counts on the same date, or observations with incompatible timezones, require review because exact ordering is not established. The app reports these enrichments as updated records rather than new messages. This merge rule does not calculate growth or velocity.
 
 ## Message coding rules
 
@@ -43,7 +49,7 @@ For difficulty, record the concrete topic when available, such as setup, rules, 
 
 Use stable pseudonymous author keys only when an underlying author identity is available through the authorized source. Distinct display labels are a weaker observation: labels can change, collide, or represent the same person. The current sample supports a count of distinct displayed labels, not a verified count of unique people.
 
-Classify a message as organizer, staff, or bot only when the relevant role or account type is verified. Otherwise use `unknown`. Present all-message activity separately from any participant-only subset. Do not silently discard unknown-role messages or count them as participants.
+Classify a message as organizer, staff, or bot only when the relevant role or account type is verified. Otherwise use `unknown`. All ten current message authors remain `unknown`; an organizer's name quoted in a reply is not evidence that the reply's author is an organizer. The current validator permits `organizer` only with an explicit `role_evidence` field and otherwise defaults to unknown. Present all-message activity separately from any participant-only subset. Do not silently discard unknown-role messages or count them as participants.
 
 No conversion from authors to teams is valid without an explicit, current, verifiable team mapping. Do not estimate team counts by dividing authors by two, treating each speaker as a team, or applying the user's anecdote about two people per team to the event.
 

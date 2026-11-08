@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {parseImport,validateMessage,mergeMessages,csv} from '../dist/model.js';
 const load = async name => JSON.parse(await readFile(new URL(`../dist/data/${name}.json`,import.meta.url),'utf8'));
 
 test('packaged observations reconcile with coded evidence and preserve missing channels',async()=>{
@@ -31,4 +32,90 @@ test('packaged observations reconcile with coded evidence and preserve missing c
     assert.equal(summary.entrant_count,null);
     if(summary.coverage_status!=='complete') assert.equal(summary.messages_per_hour,null);
   }
+});
+
+test('snapshot memberships preserve repeated sightings without inventing additional messages',async()=>{
+  const coding=await load('discord-message-coding');
+  const coverage=await load('discord-observations');
+  const ids=new Set(coding.records.map(r=>r.message_id));
+  assert.deepEqual(coding.snapshots,coverage.snapshots);
+  assert.equal(new Set(coding.snapshots.map(s=>s.snapshot_id)).size,coding.snapshots.length);
+  for(const snapshot of coding.snapshots){
+    assert.equal(snapshot.observed_messages,snapshot.message_ids.length);
+    assert.equal(new Set(snapshot.message_ids).size,snapshot.message_ids.length);
+    assert.equal(snapshot.coverage_status,'partial');
+    assert.equal(snapshot.captured_at,null);
+    assert.equal(snapshot.timezone_verified,false);
+    for(const id of snapshot.message_ids){
+      assert.ok(ids.has(id));
+      const row=coding.records.find(r=>r.message_id===id);
+      assert.equal(row.challenge_id,snapshot.challenge_id);
+      assert.ok(row.snapshot_ids.includes(snapshot.snapshot_id));
+    }
+  }
+  const merged=mergeMessages(parseImport(coding),parseImport(coding));
+  assert.equal(merged.records.length,coding.records.length);
+  assert.equal(merged.added,0);
+  for(const row of coding.records){
+    assert.equal(row.author_role,'unknown');
+    assert.equal(row.role_evidence,null);
+    for(const id of row.snapshot_ids)assert.ok(coding.snapshots.some(s=>s.snapshot_id===id&&s.message_ids.includes(row.message_id)));
+  }
+});
+
+test('reaction observations retain partial coverage, dates, source snapshots and nulls',async()=>{
+  const coding=await load('discord-message-coding');
+  const rows=parseImport(coding),counted=rows.filter(r=>r.reaction_count_observed!==null);
+  assert.equal(counted.length,2);
+  assert.equal(counted.reduce((n,r)=>n+r.reaction_count_observed,0),16);
+  const request=rows.find(r=>r.message_id==='1568858133911175270');
+  assert.equal(request.reaction_count_observed,15);
+  assert.equal(request.reaction_types_observed,2);
+  assert.equal(request.reaction_observed_on_local,'2026-11-08');
+  assert.equal(request.reaction_observed_timezone,'America/Chicago');
+  assert.equal(request.reaction_capture_time,null);
+  assert.equal(request.reaction_snapshot_id,'revs-reread-20261108');
+  assert.match(request.reaction_observation_note,/not 15 unique reactors/);
+  assert.equal(rows.filter(r=>r.reaction_count_observed===null).length,8);
+  assert.throws(()=>validateMessage({...request,reaction_count_observed:-1}),/nonnegative/);
+  assert.throws(()=>validateMessage({...request,reaction_types_observed:16}),/must not exceed/);
+  assert.throws(()=>validateMessage({...request,reaction_snapshot_id:'not-an-observed-snapshot'}),/listed snapshot/);
+  assert.throws(()=>validateMessage({...request,author_role:'organizer',role_evidence:null}),/explicit observed role evidence/);
+  assert.throws(()=>validateMessage({...request,is_observed:false}),/cannot be imported/);
+  assert.match(csv(rows),/reaction_snapshot_id/);
+});
+
+test('duplicate-message reaction updates keep their complete provenance and reject ambiguous ordering',async()=>{
+  const coding=await load('discord-message-coding');
+  const source=validateMessage(coding.records.find(r=>r.message_id==='1568858133911175270'));
+  const old=validateMessage({...source,reaction_count_observed:null,reaction_types_observed:null,reaction_observed_on_local:null,reaction_observed_timezone:null,reaction_capture_time:null,reaction_snapshot_id:null,reaction_observation_note:null,snapshot_ids:['revs-initial-001']});
+  const enriched=mergeMessages([old],[source]);
+  assert.equal(enriched.added,0);assert.equal(enriched.updated,1);assert.equal(enriched.skipped,0);
+  assert.equal(enriched.records[0].reaction_count_observed,15);
+  assert.equal(enriched.records[0].reaction_snapshot_id,'revs-reread-20261108');
+  assert.equal(enriched.records[0].reaction_observation_note,source.reaction_observation_note);
+  assert.deepEqual(enriched.records[0].snapshot_ids,['revs-initial-001','revs-reread-20261108']);
+  const later=validateMessage({...source,snapshot_ids:[...source.snapshot_ids,'test-later-snapshot'],reaction_count_observed:18,reaction_observed_on_local:'2026-11-09',reaction_snapshot_id:'test-later-snapshot',reaction_observation_note:'Test fixture: later dated reading.'});
+  const advanced=mergeMessages([source],[later]);
+  assert.equal(advanced.updated,1);assert.equal(advanced.records[0].reaction_count_observed,18);
+  assert.equal(advanced.records[0].reaction_observed_on_local,'2026-11-09');
+  assert.equal(advanced.records[0].reaction_snapshot_id,'test-later-snapshot');
+  assert.equal(advanced.records[0].reaction_observation_note,'Test fixture: later dated reading.');
+  const older=mergeMessages(advanced.records,[source]);
+  assert.equal(older.records[0].reaction_count_observed,18);
+  assert.equal(older.records[0].reaction_snapshot_id,'test-later-snapshot');
+  assert.throws(()=>mergeMessages([source],[validateMessage({...source,reaction_count_observed:16})]),/same observation date/);
+  assert.throws(()=>mergeMessages([source],[validateMessage({...source,reaction_observed_timezone:'UTC'})]),/different observation timezones/);
+  assert.equal(source.reaction_count_observed,15,'Failed or later merges must not mutate original input records');
+});
+
+test('organizer-update coding requires explicit organizer role evidence',async()=>{
+  const coding=await load('discord-message-coding');
+  const source=coding.records[0];
+  assert.throws(()=>validateMessage({...source,category:'organizer_update',author_role:'unknown',role_evidence:null}),/organizer_update category requires/);
+  assert.throws(()=>validateMessage({...source,category:'organizer_update',author_role:'organizer',role_evidence:null}),/explicit observed role evidence/);
+  const coded=validateMessage({...source,category:'organizer_update',author_role:'organizer',role_evidence:'Test fixture: explicit organizer role shown in source.'});
+  assert.equal(coded.category,'organizer_update');
+  assert.equal(coded.author_role,'organizer');
+  assert.match(coded.role_evidence,/Test fixture/);
 });

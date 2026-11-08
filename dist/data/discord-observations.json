@@ -10,7 +10,7 @@
     "display_timezone_verified": false,
     "collector": "assistant",
     "collection_method": "Authorized assistant UI reading; not user in-person observation or a field survey",
-    "sampling": "Ten messages on a latest visible screen; nonrandom, partial coverage. Not a full channel history or a complete time interval.",
+    "sampling": "Ten unique messages from one bounded visible Rev’s Casino sample, read on two occasions. Repeated sightings do not add messages. No full channel history, complete time interval or other challenge content was acquired.",
     "provenance": "Message IDs, visible dates/times, display-label aliases and paraphrases supplied by the main assistant after reading the Discord interface. Original usernames and verbatim message text are omitted.",
     "population": "Visible sampled messages only",
     "identity_note": "A–E distinguish five visible display labels within this sample. They are not verified accounts, unique people or teams.",
@@ -22,7 +22,15 @@
       "No total participant, team, entrant or valid-submission counts",
       "No inferred mental health, difficulty ratings, prize motivation or personal winning probability",
       "Categories are single-assistant interpretations, not validated survey responses"
-    ]
+    ],
+    "collection_dates_local": [
+      "2026-11-07",
+      "2026-11-08"
+    ],
+    "latest_observation_date_local": "2026-11-08",
+    "snapshot_count": 2,
+    "reaction_note": "Latest observed reaction counts cover only two of ten sampled messages. Counts across emoji are reaction events, not unique reactors. Exact capture times are unavailable, so no reaction growth or velocity is estimated.",
+    "navigation_attempt_note": "Attempts to navigate to other challenge message contents were blocked by the UI tool. Sidebar channel links are known, but the seven other channels remain unread."
   },
   "records": [
     {
@@ -32,7 +40,7 @@
       "source_url": "https://discord.com/channels/755441182951211028/1567712707728375929",
       "source_url_verification": "Channel message interface read",
       "coverage_status": "partial",
-      "coverage_note": "Ten messages from one latest visible screen; nonrandom partial sample, not the whole displayed time interval.",
+      "coverage_note": "Ten unique messages from one bounded visible Rev’s Casino sample, read on two occasions. Repeated sightings do not add messages. No full channel history, complete time interval or other challenge content was acquired.",
       "captured_at": null,
       "displayed_date": "2026-11-07",
       "first_displayed_time": "22:47",
@@ -62,7 +70,15 @@
       "participant_count": null,
       "team_count": null,
       "entrant_count": null,
-      "messages_per_hour": null
+      "messages_per_hour": null,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "snapshot_count": 2,
+      "reaction_counted_messages": 2,
+      "reaction_count_sum_observed": 16,
+      "reaction_coverage_note": "Reaction counts were read for two of ten sampled messages on November 8. The sum 16 counts emoji reactions across these two messages, not unique reactors or a complete sample reaction total."
     },
     {
       "challenge_id": "dashboard-royale",
@@ -88,7 +104,12 @@
       "participant_count": null,
       "team_count": null,
       "entrant_count": null,
-      "messages_per_hour": null
+      "messages_per_hour": null,
+      "snapshot_ids": [],
+      "snapshot_count": 0,
+      "reaction_counted_messages": null,
+      "reaction_count_sum_observed": null,
+      "reaction_coverage_note": null
     },
     {
       "challenge_id": "build-a-dataset",
@@ -114,7 +135,12 @@
       "participant_count": null,
       "team_count": null,
       "entrant_count": null,
-      "messages_per_hour": null
+      "messages_per_hour": null,
+      "snapshot_ids": [],
+      "snapshot_count": 0,
+      "reaction_counted_messages": null,
+      "reaction_count_sum_observed": null,
+      "reaction_coverage_note": null
     },
     {
       "challenge_id": "house-edge",
@@ -140,7 +166,12 @@
       "participant_count": null,
       "team_count": null,
       "entrant_count": null,
-      "messages_per_hour": null
+      "messages_per_hour": null,
+      "snapshot_ids": [],
+      "snapshot_count": 0,
+      "reaction_counted_messages": null,
+      "reaction_count_sum_observed": null,
+      "reaction_coverage_note": null
     },
     {
       "challenge_id": "heads-up",
@@ -166,7 +197,12 @@
       "participant_count": null,
       "team_count": null,
       "entrant_count": null,
-      "messages_per_hour": null
+      "messages_per_hour": null,
+      "snapshot_ids": [],
+      "snapshot_count": 0,
+      "reaction_counted_messages": null,
+      "reaction_count_sum_observed": null,
+      "reaction_coverage_note": null
     },
     {
       "challenge_id": "hitachi",
@@ -192,7 +228,12 @@
       "participant_count": null,
       "team_count": null,
       "entrant_count": null,
-      "messages_per_hour": null
+      "messages_per_hour": null,
+      "snapshot_ids": [],
+      "snapshot_count": 0,
+      "reaction_counted_messages": null,
+      "reaction_count_sum_observed": null,
+      "reaction_coverage_note": null
     },
     {
       "challenge_id": "heb",
@@ -218,7 +259,12 @@
       "participant_count": null,
       "team_count": null,
       "entrant_count": null,
-      "messages_per_hour": null
+      "messages_per_hour": null,
+      "snapshot_ids": [],
+      "snapshot_count": 0,
+      "reaction_counted_messages": null,
+      "reaction_count_sum_observed": null,
+      "reaction_coverage_note": null
     },
     {
       "challenge_id": "databricks",
@@ -244,7 +290,88 @@
       "participant_count": null,
       "team_count": null,
       "entrant_count": null,
-      "messages_per_hour": null
+      "messages_per_hour": null,
+      "snapshot_ids": [],
+      "snapshot_count": 0,
+      "reaction_counted_messages": null,
+      "reaction_count_sum_observed": null,
+      "reaction_coverage_note": null
+    }
+  ],
+  "snapshots": [
+    {
+      "challenge_id": "revs-casino",
+      "captured_at": null,
+      "coverage_status": "partial",
+      "collection_method": "discord_loaded_accessibility_tree",
+      "message_ids": [
+        "1568849443195723827",
+        "1568849455917170861",
+        "1568849475039141971",
+        "1568849498506006660",
+        "1568849589912608809",
+        "1568851951876051077",
+        "1568854568819757108",
+        "1568857244618199172",
+        "1568857372397408398",
+        "1568858133911175270"
+      ],
+      "observed_messages": 10,
+      "displayed_start": {
+        "date": "2026-11-07",
+        "time": "22:47"
+      },
+      "displayed_end": {
+        "date": "2026-11-07",
+        "time": "23:22"
+      },
+      "timezone": null,
+      "timezone_verified": false,
+      "channel_start_seen": false,
+      "channel_end_seen": false,
+      "threads_inspected": false,
+      "snapshot_id": "revs-initial-001",
+      "label": "Initial Rev sample · Nov 7",
+      "observed_on_local": "2026-11-07",
+      "observation_timezone": "America/Chicago",
+      "coverage_note": "Ten distinct messages from a bounded visible channel sample. Neither full channel history nor continuous time coverage was established. Exact capture time was not recorded."
+    },
+    {
+      "challenge_id": "revs-casino",
+      "captured_at": null,
+      "coverage_status": "partial",
+      "collection_method": "discord_loaded_accessibility_tree",
+      "message_ids": [
+        "1568849443195723827",
+        "1568849455917170861",
+        "1568849475039141971",
+        "1568849498506006660",
+        "1568849589912608809",
+        "1568851951876051077",
+        "1568854568819757108",
+        "1568857244618199172",
+        "1568857372397408398",
+        "1568858133911175270"
+      ],
+      "observed_messages": 10,
+      "displayed_start": {
+        "date": "2026-11-07",
+        "time": "22:47"
+      },
+      "displayed_end": {
+        "date": "2026-11-07",
+        "time": "23:22"
+      },
+      "timezone": null,
+      "timezone_verified": false,
+      "channel_start_seen": false,
+      "channel_end_seen": false,
+      "threads_inspected": false,
+      "snapshot_id": "revs-reread-20261108",
+      "label": "Rev sample reread · Nov 8",
+      "observed_on_local": "2026-11-08",
+      "observation_timezone": "America/Chicago",
+      "coverage_note": "The same ten-message visible sample was read again. Two message reaction counts were inspected. Navigation to the other challenge contents was blocked by the UI tool; no additional channel messages were acquired. Exact capture time was not recorded."
     }
   ]
 }

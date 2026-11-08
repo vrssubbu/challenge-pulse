@@ -10,7 +10,7 @@
     "display_timezone_verified": false,
     "collector": "assistant",
     "collection_method": "Authorized assistant UI reading; not user in-person observation or a field survey",
-    "sampling": "Ten messages on a latest visible screen; nonrandom, partial coverage. Not a full channel history or a complete time interval.",
+    "sampling": "Ten unique messages from one bounded visible Rev’s Casino sample, read on two occasions. Repeated sightings do not add messages. No full channel history, complete time interval or other challenge content was acquired.",
     "provenance": "Message IDs, visible dates/times, display-label aliases and paraphrases supplied by the main assistant after reading the Discord interface. Original usernames and verbatim message text are omitted.",
     "population": "Visible sampled messages only",
     "identity_note": "A–E distinguish five visible display labels within this sample. They are not verified accounts, unique people or teams.",
@@ -22,7 +22,15 @@
       "No total participant, team, entrant or valid-submission counts",
       "No inferred mental health, difficulty ratings, prize motivation or personal winning probability",
       "Categories are single-assistant interpretations, not validated survey responses"
-    ]
+    ],
+    "collection_dates_local": [
+      "2026-11-07",
+      "2026-11-08"
+    ],
+    "latest_observation_date_local": "2026-11-08",
+    "snapshot_count": 2,
+    "reaction_note": "Latest observed reaction counts cover only two of ten sampled messages. Counts across emoji are reaction events, not unique reactors. Exact capture times are unavailable, so no reaction growth or velocity is estimated.",
+    "navigation_attempt_note": "Attempts to navigate to other challenge message contents were blocked by the UI tool. Sidebar channel links are known, but the seven other channels remain unread."
   },
   "coding_scheme": {
     "unit": "One observed Discord message",
@@ -57,7 +65,20 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": null,
+      "reaction_types_observed": null,
+      "reaction_observed_on_local": null,
+      "reaction_observed_timezone": null,
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": null,
+      "reaction_observation_note": null
     },
     {
       "message_id": "1568849455917170861",
@@ -77,7 +98,20 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": null,
+      "reaction_types_observed": null,
+      "reaction_observed_on_local": null,
+      "reaction_observed_timezone": null,
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": null,
+      "reaction_observation_note": null
     },
     {
       "message_id": "1568849475039141971",
@@ -97,7 +131,20 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": null,
+      "reaction_types_observed": null,
+      "reaction_observed_on_local": null,
+      "reaction_observed_timezone": null,
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": null,
+      "reaction_observation_note": null
     },
     {
       "message_id": "1568849498506006660",
@@ -117,7 +164,20 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": null,
+      "reaction_types_observed": null,
+      "reaction_observed_on_local": null,
+      "reaction_observed_timezone": null,
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": null,
+      "reaction_observation_note": null
     },
     {
       "message_id": "1568849589912608809",
@@ -137,7 +197,20 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": null,
+      "reaction_types_observed": null,
+      "reaction_observed_on_local": null,
+      "reaction_observed_timezone": null,
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": null,
+      "reaction_observation_note": null
     },
     {
       "message_id": "1568851951876051077",
@@ -157,7 +230,20 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": 1,
+      "reaction_types_observed": 1,
+      "reaction_observed_on_local": "2026-11-08",
+      "reaction_observed_timezone": "America/Chicago",
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": "revs-reread-20261108",
+      "reaction_observation_note": "One custom-image reaction was displayed. This is a reaction count, not a verified person or team count."
     },
     {
       "message_id": "1568854568819757108",
@@ -177,7 +263,20 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": null,
+      "reaction_types_observed": null,
+      "reaction_observed_on_local": null,
+      "reaction_observed_timezone": null,
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": null,
+      "reaction_observation_note": null
     },
     {
       "message_id": "1568857244618199172",
@@ -197,7 +296,20 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": null,
+      "reaction_types_observed": null,
+      "reaction_observed_on_local": null,
+      "reaction_observed_timezone": null,
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": null,
+      "reaction_observation_note": null
     },
     {
       "message_id": "1568857372397408398",
@@ -217,7 +329,20 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": null,
+      "reaction_types_observed": null,
+      "reaction_observed_on_local": null,
+      "reaction_observed_timezone": null,
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": null,
+      "reaction_observation_note": null
     },
     {
       "message_id": "1568858133911175270",
@@ -237,7 +362,96 @@
       "collector": "assistant",
       "collection_method": "Assistant reading of the authorized Discord user interface",
       "coding_method": "Single-assistant qualitative coding of visible message content",
-      "human_reviewed": false
+      "human_reviewed": false,
+      "snapshot_ids": [
+        "revs-initial-001",
+        "revs-reread-20261108"
+      ],
+      "author_role": "unknown",
+      "role_evidence": null,
+      "reaction_count_observed": 15,
+      "reaction_types_observed": 2,
+      "reaction_observed_on_local": "2026-11-08",
+      "reaction_observed_timezone": "America/Chicago",
+      "reaction_capture_time": null,
+      "reaction_snapshot_id": "revs-reread-20261108",
+      "reaction_observation_note": "12 heavy-plus-sign reactions plus 3 custom-image reactions were displayed. Their sum is 15 reaction events, not 15 unique reactors."
+    }
+  ],
+  "snapshots": [
+    {
+      "challenge_id": "revs-casino",
+      "captured_at": null,
+      "coverage_status": "partial",
+      "collection_method": "discord_loaded_accessibility_tree",
+      "message_ids": [
+        "1568849443195723827",
+        "1568849455917170861",
+        "1568849475039141971",
+        "1568849498506006660",
+        "1568849589912608809",
+        "1568851951876051077",
+        "1568854568819757108",
+        "1568857244618199172",
+        "1568857372397408398",
+        "1568858133911175270"
+      ],
+      "observed_messages": 10,
+      "displayed_start": {
+        "date": "2026-11-07",
+        "time": "22:47"
+      },
+      "displayed_end": {
+        "date": "2026-11-07",
+        "time": "23:22"
+      },
+      "timezone": null,
+      "timezone_verified": false,
+      "channel_start_seen": false,
+      "channel_end_seen": false,
+      "threads_inspected": false,
+      "snapshot_id": "revs-initial-001",
+      "label": "Initial Rev sample · Nov 7",
+      "observed_on_local": "2026-11-07",
+      "observation_timezone": "America/Chicago",
+      "coverage_note": "Ten distinct messages from a bounded visible channel sample. Neither full channel history nor continuous time coverage was established. Exact capture time was not recorded."
+    },
+    {
+      "challenge_id": "revs-casino",
+      "captured_at": null,
+      "coverage_status": "partial",
+      "collection_method": "discord_loaded_accessibility_tree",
+      "message_ids": [
+        "1568849443195723827",
+        "1568849455917170861",
+        "1568849475039141971",
+        "1568849498506006660",
+        "1568849589912608809",
+        "1568851951876051077",
+        "1568854568819757108",
+        "1568857244618199172",
+        "1568857372397408398",
+        "1568858133911175270"
+      ],
+      "observed_messages": 10,
+      "displayed_start": {
+        "date": "2026-11-07",
+        "time": "22:47"
+      },
+      "displayed_end": {
+        "date": "2026-11-07",
+        "time": "23:22"
+      },
+      "timezone": null,
+      "timezone_verified": false,
+      "channel_start_seen": false,
+      "channel_end_seen": false,
+      "threads_inspected": false,
+      "snapshot_id": "revs-reread-20261108",
+      "label": "Rev sample reread · Nov 8",
+      "observed_on_local": "2026-11-08",
+      "observation_timezone": "America/Chicago",
+      "coverage_note": "The same ten-message visible sample was read again. Two message reaction counts were inspected. Navigation to the other challenge contents was blocked by the UI tool; no additional channel messages were acquired. Exact capture time was not recorded."
     }
   ]
 }
