@@ -5,17 +5,24 @@ const seen = new WeakSet();
 const active = new Set();
 const magnetic = new Set();
 const wordBlocks = new Set();
+const scrollLinks = new WeakSet();
 let scrollFrame = 0;
 const enabled = () => !reduced.matches && !document.documentElement.classList.contains('motion-paused');
 const selectors = '.metric,.theme-card,.challenge-card,.discord-card,.pulse-story-card,.pulse-composition,.pulse-editorial,.page-intro,.timeline-card';
 function reveal(element) {
   if (!enabled() || !element.animate) return;
+  const story=element.classList.contains('pulse-story-card');
+  const siblings=story?[...element.parentElement.children]:[];
   const animation = element.animate([
-    {opacity:.55, transform:'translateY(22px)'},
-    {opacity:1, transform:'translateY(0)'}
-  ], {duration:650, easing:'cubic-bezier(.16,1,.3,1)'});
+    {opacity:.2, transform:story?'perspective(1000px) translateY(70px) rotateX(12deg) scale(.94)':'translateY(40px)',filter:'blur(4px)'},
+    {opacity:1, transform:story?'perspective(1000px) translateY(0) rotateX(0deg) scale(1)':'translateY(0)',filter:'blur(0px)'}
+  ], {duration:story?1050:850,delay:story?siblings.indexOf(element)*110:0,fill:'backwards',easing:'cubic-bezier(.16,1,.3,1)'});
   active.add(animation);
   animation.finished.catch(()=>{}).finally(()=>active.delete(animation));
+  if(element.classList.contains('pulse-composition')){
+    const bar=element.querySelector('.pulse-composition-bar');
+    if(bar){const sweep=bar.animate([{clipPath:'inset(0 100% 0 0 round 6px)'},{clipPath:'inset(0 0 0 0 round 6px)'}],{duration:1300,easing:'cubic-bezier(.16,1,.3,1)'});active.add(sweep);sweep.finished.catch(()=>{}).finally(()=>active.delete(sweep));}
+  }
 }
 const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries=>{
   entries.forEach(({target,isIntersecting})=>{
@@ -25,6 +32,17 @@ const observer = 'IntersectionObserver' in window ? new IntersectionObserver(ent
   });
 }, {threshold:.1}) : null;
 export function refreshMotion() {
+  document.querySelectorAll('[data-scroll-target]').forEach(element=>{
+    if(scrollLinks.has(element))return;
+    scrollLinks.add(element);
+    element.addEventListener('click',()=>{
+      const target=document.getElementById(element.dataset.scrollTarget);
+      if(!target)return;
+      target.scrollIntoView({behavior:enabled()?'smooth':'auto',block:'start'});
+      const heading=target.querySelector('h2');
+      if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}
+    });
+  });
   document.querySelectorAll(selectors).forEach(element=>{
     if(seen.has(element)) return;
     seen.add(element);

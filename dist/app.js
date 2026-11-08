@@ -1,8 +1,8 @@
-import {CHALLENGE_IDS,CATEGORY_LABELS,safeUrl,parseImport,mergeMessages,summarize,csv,equalChanceTopThree} from './model.js?v=5';
-import {LENSES,THEMES,labelForCategory,themeSummaries,sampledDisplaySpan,participationSummary,displayTimeBuckets,filterMessages,buildCoverage} from './pulse-model.js?v=5';
-import {renderPulseStories} from './stories.js?v=5';
-import {refreshMotion,syncMotion} from './motion.js?v=5';
-import {mountSignalReel} from './reel.js?v=5';
+import {CHALLENGE_IDS,CATEGORY_LABELS,safeUrl,parseImport,mergeMessages,summarize,csv,equalChanceTopThree} from './model.js?v=6';
+import {LENSES,THEMES,labelForCategory,themeSummaries,sampledDisplaySpan,participationSummary,displayTimeBuckets,filterMessages,buildCoverage} from './pulse-model.js?v=6';
+import {renderPulseStories} from './stories.js?v=6';
+import {refreshMotion,syncMotion} from './motion.js?v=6';
+import {mountSignalReel} from './reel.js?v=6';
 
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

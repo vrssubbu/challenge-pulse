@@ -32,3 +32,11 @@ Official references checked November 8, 2026:
 - [Scroll-animation tutorial](https://motionsites.ai/lesson/build-scroll-animated-website-with-ai) demonstrates cinematic typography and scroll-led narrative.
 
 The supplied prompts and third-party prompt text are not redistributed in this repository. All challenge visuals are implemented locally, with actual analytical values kept as selectable HTML text.
+
+## Reelmark transformation
+
+The follow-up uses the Reelmark prompt as the primary layout and motion reference: centered oversized headline, badge, a dominant curved gallery within the hero, handwritten annotations and a dashed call-to-action ring. The burgundy background remains. The prior constellation moves below the findings so it no longer competes with the hero gallery.
+
+Each of the eight cards contains an original animated SVG scene associated with its challenge. These are illustrations, not observed activity, result charts or participant footage. The carousel computes rounded quadrilaterals from position, making the outer edges taller and the track bow outward. It drifts at 50 desktop pixels per second, supports drag momentum, and pauses its offscreen artwork. Reduced-motion and the global pause control provide a static scrollable list.
+
+Findings enter with a staggered tilt and rise; the composition bar reveals on scroll. Selecting another sample replaces the values synchronously and animates the newly visible cards without interpolating the analytical values. The primary button scrolls to the findings and focuses their heading. The implementation uses local SVG, CSS and browser animation APIs; no external product-video assets, paid libraries or prompt text are bundled.

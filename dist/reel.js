@@ -1,10 +1,36 @@
 // The reel moves recorded challenge cards; motion is never a live-activity signal.
+import {createReelArt} from './reel-art.js?v=6';
 const symbols = ['♠','▥','✦','♦','♣','↗','♥','◈'];
 const accents = ['#e6b97b','#a1b9ba','#c9a0b4','#b6b7d3','#a7c4a5','#d4a48e','#cead72','#9dbacb'];
 
 export function wrapReelDistance(distance, span) {
   if (!Number.isFinite(distance) || !Number.isFinite(span) || span <= 0) return 0;
   return ((distance + span / 2) % span + span) % span - span / 2;
+}
+
+function roundedQuad(points, radius) {
+  const along = (origin, destination) => {
+    const distance = Math.hypot(destination[0]-origin[0],destination[1]-origin[1]);
+    const fraction = Math.min(radius / distance,.25);
+    return [origin[0]+(destination[0]-origin[0])*fraction,origin[1]+(destination[1]-origin[1])*fraction];
+  };
+  const format = point => point.map(value=>value.toFixed(2)).join(' ');
+  const corners=points.map((point,index)=>({point,before:along(point,points[(index+3)%4]),after:along(point,points[(index+1)%4])}));
+  return `M ${format(corners[0].before)} `+corners.map((corner,index)=>`${index?'L '+format(corner.before)+' ':''}Q ${format(corner.point)} ${format(corner.after)}`).join(' ')+' Z';
+}
+
+/** A rounded cylindrical quad. Card size depends on position, never its message count. */
+export function reelCardGeometry(distance, viewportWidth, scale = 1) {
+  const radius=Math.max(160,viewportWidth/2-14);
+  const d=Math.min(Math.abs(distance)/radius,1.5);
+  const width=(180+42*d*d)*scale;
+  const x=distance*(1+.083*d*d);
+  const edgeHeight=edge=>(285+80*Math.pow(Math.min(Math.abs(edge)/radius,1.65),2.6))*scale;
+  const leftHeight=edgeHeight(x-width/2),rightHeight=edgeHeight(x+width/2);
+  const height=Math.max(leftHeight,rightHeight);
+  const topLeft=(height-leftHeight)/2,topRight=(height-rightHeight)/2;
+  const polygon=[[0,topLeft],[width,topRight],[width,topRight+rightHeight],[0,topLeft+leftHeight]];
+  return {x,y:-12*d*d*scale,width,height,leftHeight,rightHeight,clipPath:`path("${roundedQuad(polygon,14*scale)}")`};
 }
 
 export function signalReelItems(catalog = [], records = []) {
@@ -29,12 +55,13 @@ export function mountSignalReel({catalog = [], records = [], onSelect = () => {}
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const abort = new AbortController();
   const listen = (target, type, handler, options = {}) => target?.addEventListener(type, handler, {...options, signal:abort.signal});
-  let items = [], cards = [], position = 0, step = 234, width = 1;
+  let items = [], cards = [], position = 0, step = 205, width = 1, scale = 1;
   let frame = 0, lastTime = 0, velocity = 0, target = null, drag = null;
   let visible = !('IntersectionObserver' in window), hovered = false, focusWithin = false;
   let staticMode = false, destroyed = false, suppressUntil = 0, selectedId = selected;
   let sourceCatalog = catalog, sourceRecords = records;
   const motionAllowed = () => !reduced.matches && !document.documentElement.classList.contains('motion-paused');
+  const syncArtMotion = () => stage.classList.toggle('reel-motion-frozen',!visible || document.hidden);
   const canAnimate = () => !destroyed && !staticMode && visible && !document.hidden && items.length > 1;
   const shouldTick = () => canAnimate() && !drag && (target !== null || Math.abs(velocity) > .5 || (!hovered && !focusWithin));
   const announce = index => {
@@ -45,12 +72,14 @@ export function mountSignalReel({catalog = [], records = [], onSelect = () => {}
     if (staticMode) return;
     const span = step * items.length;
     cards.forEach((card,index) => {
-      const x = wrapReelDistance(index * step - position, span);
-      const normalized = Math.max(-1.25,Math.min(1.25,x / Math.max(220,width / 2)));
-      const y = -18 * normalized * normalized;
-      const z = -38 * Math.abs(normalized);
-      card.style.transform = `translate(-50%,-50%) translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,${z.toFixed(2)}px) rotateY(${(-normalized*19).toFixed(2)}deg) rotateZ(${(normalized*5).toFixed(2)}deg)`;
-      card.style.zIndex = String(100 - Math.round(Math.abs(normalized)*20));
+      const distance = wrapReelDistance(index * step - position, span);
+      const geometry = reelCardGeometry(distance,width,scale);
+      card.style.width=`${geometry.width.toFixed(2)}px`;
+      card.style.height=`${geometry.height.toFixed(2)}px`;
+      card.style.clipPath=geometry.clipPath;
+      card.style.setProperty('--reel-copy-safe',`${((geometry.height-Math.min(geometry.leftHeight,geometry.rightHeight))/2).toFixed(2)}px`);
+      card.style.transform = `translate(-50%,-50%) translate3d(${geometry.x.toFixed(2)}px,${geometry.y.toFixed(2)}px,0)`;
+      card.style.zIndex = String(100-Math.round(Math.min(1.5,Math.abs(distance)/(width/2))*20));
     });
   };
   const tick = time => {
@@ -64,9 +93,9 @@ export function mountSignalReel({catalog = [], records = [], onSelect = () => {}
       if (Math.abs(delta)<.3) {position=target;target=null;}
     } else if (Math.abs(velocity)>.5) {
       position += velocity*dt;
-      velocity *= Math.exp(-4.5*dt);
+      velocity *= Math.exp(-3*dt);
     } else if (!hovered && !focusWithin) {
-      position += 18*dt;
+      position += 50*scale*dt;
     }
     if (target === null && items.length) position = ((position%(step*items.length))+step*items.length)%(step*items.length);
     draw();
@@ -100,7 +129,9 @@ export function mountSignalReel({catalog = [], records = [], onSelect = () => {}
   const measure = () => {
     const oldStep=step;
     width=stage.clientWidth || 1;
-    step=(cards[0]?.offsetWidth || (width<600?165:210))+26;
+    // Geometry writes card width every frame, so measurement uses a stable pitch.
+    scale=width<=820?5/6:1;
+    step=205*scale;
     position=position/oldStep*step;
     if(target!==null)target=target/oldStep*step;
     draw();
@@ -114,7 +145,7 @@ export function mountSignalReel({catalog = [], records = [], onSelect = () => {}
       if(!staticMode)stage.scrollLeft=0;
       velocity=0;target=null;drag=null;
       stage.classList.remove('dragging');
-      cards.forEach(card=>{card.style.removeProperty('transform');card.style.removeProperty('z-index');});
+      cards.forEach(clearGeometry);
       measure();
     }
     if(!shouldTick())stop();else request();
@@ -130,11 +161,14 @@ export function mountSignalReel({catalog = [], records = [], onSelect = () => {}
         const card=document.createElement('button');
         card.type='button';card.className='reel-card';card.dataset.reelId=item.id;
         card.style.setProperty('--card-accent',item.accent);
-        const label=(className,tag='span')=>{const element=document.createElement(tag);element.className=className;card.append(element);return element;};
+        card.append(createReelArt(index));
+        const copy=document.createElement('span');copy.className='reel-card-copy';
+        const label=(className,tag='span',parent=card)=>{const element=document.createElement(tag);element.className=className;parent.append(element);return element;};
         label('reel-card-index').textContent=String(index+1).padStart(2,'0');
         const icon=label('reel-card-symbol');icon.textContent=item.symbol;icon.setAttribute('aria-hidden','true');
-        label('reel-card-name','strong');label('reel-card-count');label('reel-card-caption');
-        listen(card,'click',()=>{if(performance.now()<suppressUntil)return;onSelect(item.id);});
+        label('reel-card-name','strong',copy);label('reel-card-count','span',copy);label('reel-card-caption','span',copy);
+        card.append(copy);
+        listen(card,'click',event=>{if(event.detail!==0&&performance.now()<suppressUntil)return;onSelect(item.id);});
         // Pointer focus must not move a card out from under the pending click.
         listen(card,'focus',()=>{if(!drag&&card.matches(':focus-visible'))center(index,false);});
         stage.append(card);return card;
@@ -199,13 +233,17 @@ export function mountSignalReel({catalog = [], records = [], onSelect = () => {}
   listen(document,'pointerup',endDrag);listen(document,'pointercancel',endDrag);
   listen(stage,'lostpointercapture',endDrag);
   listen(stage,'click',event=>{if(event.detail!==0&&performance.now()<suppressUntil){event.preventDefault();event.stopPropagation();}},{capture:true});
-  listen(document,'visibilitychange',()=>{if(document.hidden)stop();else request();});
+  listen(document,'visibilitychange',()=>{syncArtMotion();if(document.hidden)stop();else request();});
   listen(reduced,'change',syncMotion);
-  const intersection='IntersectionObserver' in window?new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){draw();request();}else stop();},{threshold:0}):null;
+  const intersection='IntersectionObserver' in window?new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;syncArtMotion();if(visible){draw();request();}else stop();},{threshold:0}):null;
   intersection?.observe(stage);
   const resize='ResizeObserver' in window?new ResizeObserver(measure):null;
   resize?.observe(stage);
   if(!resize)listen(window,'resize',measure,{passive:true});
+  syncArtMotion();
   update({catalog,records,selected});
-  return {update,syncMotion,destroy(){destroyed=true;stop();abort.abort();intersection?.disconnect();resize?.disconnect();stage.classList.remove('dragging');}};
+  function clearGeometry(card) {
+    for(const property of ['transform','z-index','width','height','clip-path','--reel-copy-safe'])card.style.removeProperty(property);
+  }
+  return {update,syncMotion,destroy(){destroyed=true;stop();abort.abort();intersection?.disconnect();resize?.disconnect();stage.classList.remove('dragging');stage.classList.add('reel-static');cards.forEach(clearGeometry);}};
 }
