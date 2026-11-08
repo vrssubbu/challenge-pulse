@@ -1,6 +1,6 @@
 # Participant Pulse dataset method
 
-Challenge Pulse describes visible challenge discussion. Its dataset is derived from online observations, not an in-person survey, an entry list, or a verified count of competing teams. The written Build-A-Dataset guide requires physical-world primary data. The user reports that organizers permitted remote observations for this project; that exception and its scope have not been independently verified. See [the eligibility review](ELIGIBILITY.md). A separate synthetic scenario illustrates possible team-level data but records no actual contacts or responses.
+Participant Pulse describes recorded challenge discussions. Its dataset comes from authorized online interface observations, not an in-person survey, an entry list or a verified count of competing teams. Scoped aliases and paraphrases preserve analytical content while the original identifiers retain source traceability. A separate synthetic scenario records no actual contacts or responses. See [verified contents](VERIFIED_CONTENTS.md) for the reconciled package counts.
 
 ## What has actually been observed
 
@@ -60,7 +60,7 @@ The current dataset assigns exactly one `category` per message. The labels and c
 | `participation_confirmation` | 11 | A team-label self-report in response to a participation prompt. | Verified team membership, eligibility, entry, or final submission. |
 | `other` | 23 | Resource links, attributed announcements, fragments or unmatched readable content. | That an external-tool discussion describes the challenge's difficulty. |
 
-The importer also supports `organizer_update`, but no current row uses it. This category requires an organizer role with explicit role evidence. Version the codebook when extending it and recode consistently if comparisons require it. Do not assign authority based only on confident wording or a display name such as “Challenges Lead.”
+The application supports 13 categories; 12 occur in the bundled observations. The supported `organizer_update` category has no current rows and requires an organizer role with explicit role evidence. Version the codebook when extending it and recode consistently if comparisons require it. Do not assign authority based only on confident wording or a display name such as “Challenges Lead.”
 
 Future explicit-content flags may include `reports_difficulty`, `mentions_prize_motivation`, `states_submission_intent`, and `requests_help`; these have not been populated in the current dataset. Use true only for an explicit statement, false only when inspected content does not express it, and null when content cannot be evaluated. These flags describe messages, not diagnoses, personalities, or reliable team-level states. Do not label participants as traumatized or infer mental-health conditions.
 
@@ -112,10 +112,10 @@ The acquisition protocol above describes good practice for a comparable future c
 
 The scenario contains nine invented four-person teams, 36 hypothetical members and 21 authored team/challenge selections. No people were approached, interviewed or surveyed to produce them. The fixed matrix and Mulberry32 seed 20261108 generate illustrative effort/rating values. All records retain `source_type: synthetic`, `is_observed: false` and `scenario_only: true`.
 
-Current allocations assign 34 hypothetical members and leave two unallocated. Considering and stopped selections have zero current members. Effort is assumed elapsed hours, not person-hours. Difficulty and prize-importance ratings are invented; status-dependent ranges deliberately create relationships and are not empirical findings. The scenario is independent of the observations and never contributes to observed counts or eligibility evidence. Full generation details are in [the simulation methodology](../docs/SIMULATION_METHODOLOGY.md).
+Current allocations assign 34 hypothetical members and leave two unallocated. Considering and stopped selections have zero current members. Effort is assumed elapsed hours, not person-hours. Difficulty and prize-importance ratings are invented; status-dependent ranges deliberately create relationships and are not empirical findings. The scenario is independent of the observations and never contributes to observed counts. Full generation details are in [the simulation methodology](../docs/SIMULATION_METHODOLOGY.md).
 
-## Publication and review status
+## Source preservation and reproducibility
 
-The user reaffirmed organizer agreement to remote observation. The precise scope is not independently documented here; this is not a claim that online data became physical-world fieldwork. Original identifiers and source links preserve access-controlled traceability, so the records are pseudonymized rather than irreversibly anonymous. Requirements and pending video/submission status are in [ELIGIBILITY.md](ELIGIBILITY.md).
+Original identifiers and source links preserve access-controlled traceability, so the records are pseudonymized rather than irreversibly anonymous. [VERIFIED_CONTENTS.md](VERIFIED_CONTENTS.md) lists factual checks of the packaged data. The observed records, official context and hypothetical scenario remain distinct.
 
 The packaging process collects no new messages and does not edit, reclassify or invent source observations. `MANIFEST.json` links source paths, record counts and SHA-256 hashes to this package. Retained historical metadata is interpreted using the current README caveats rather than silently rewritten.

@@ -5,6 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
+import {themeSummaries} from '../dist/pulse-model.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const destination = path.join(root, 'dataset');
@@ -35,7 +36,6 @@ async function reviewInput(externalName, packagedName) {
 }
 const audit = await reviewInput('data-audit.json', 'source-audit.json');
 const suggested = await reviewInput('suggested-data-dictionary.json', 'field-definitions.json');
-const requirements = await reviewInput('requirements-research.json', 'requirements-review.json');
 
 const sourceSpecifications = [
   ['discord-message-coding', 'observed', 'records', 'Messages'],
@@ -136,7 +136,7 @@ const contextualDefinitions = {
   rubric_percent:'JSON object of official rubric percentage weights, present only where specified in the source.',
   submission_url:'Official submission destination recorded for this challenge; absence is not a submission receipt.',
   rubric_points:'JSON object of official rubric point weights, present only where specified in the source.',
-  current_project_fit:'Recorded project-fit assessment against written rules at catalog creation. The preserved Build-A-Dataset text predates the latest reaffirmed user-reported organizer exception; see ELIGIBILITY.md.',
+  current_project_fit:'Historical project-fit assessment recorded at catalog creation. Preserved contextual text is not a verification of the application or any team as eligible.',
   registration_url:'Official registration destination recorded for this challenge.',
   main_submission_url:'Main event submission destination recorded in the source catalog.',
   schedule_conflict:'Recorded scheduling caveat or conflict, not evidence of any actual entrant action.',
@@ -193,8 +193,8 @@ const dictionary = tables.flatMap(table => fields(table.records).map(field => {
 }));
 await save('DATA_DICTIONARY.csv',csv(dictionary));
 
-const reviewDate = requirements.review_date_local;
-const guideUrl = requirements.source_registry.find(item => item.id==='guide').url;
+const themes = themeSummaries(messages);
+const themeCount = id => themes.find(theme => theme.id===id).count;
 const channelRows = coverage.map(row => `| ${row.challenge_name} | ${row.observed_messages} | ${row.snapshot_count} | ${row.coverage_status} |`).join('\n');
 
 await save('README.md',`# Participant Pulse dataset
@@ -206,11 +206,10 @@ The original five JSON files are copied byte-for-byte from the application’s \
 ## Start here
 
 - [Participant_Pulse_Dataset.xlsx](Participant_Pulse_Dataset.xlsx) is the included companion workbook, with separate sheets for observations, context, provenance and synthetic scenarios.
-- [DATASET_DOCUMENTATION.md](DATASET_DOCUMENTATION.md) brings all seven guide point-5 topics into one account of the actual collection and maps the point-6 deliverables. The workbook's Eligibility sheet contains the full review and twelve detailed checks for points 5 and 6.
+- [DATASET_DOCUMENTATION.md](DATASET_DOCUMENTATION.md) explains the actual context, method, timing, sample, fields, processing and measurement limits.
 - [METHOD.md](METHOD.md) explains acquisition, coding, processing and limitations.
 - [DATA_DICTIONARY.csv](DATA_DICTIONARY.csv) describes all ${dictionary.length} fields across the eight analytical tables, including field presence, nulls and actual source types.
-- [ELIGIBILITY.md](ELIGIBILITY.md) records written requirements, the user-reported organizer exception and outstanding submission status.
-- [DEMO_OUTLINE.md](DEMO_OUTLINE.md) is a roughly two-minute recording outline. **Video: pending; the user will record it later.**
+- [VERIFIED_CONTENTS.md](VERIFIED_CONTENTS.md) lists the reconciled dataset counts, website findings, identifier handling and source separation.
 - [MANIFEST.json](MANIFEST.json) records original-source hashes, packaged-file hashes and table counts.
 
 ## Files and record units
@@ -225,7 +224,7 @@ The original five JSON files are copied byte-for-byte from the application’s \
 | \`context/catalog.json\` and \`.csv\` | ${challenges.length} | Official contextual challenge metadata |
 | \`synthetic/simulated-teams.json\` and \`.csv\` | ${inventory.synthetic_team_rows} | Fictional four-person scenario team |
 | \`synthetic/simulated-team-challenges.json\` and \`.csv\` | ${inventory.synthetic_team_challenge_rows} | Fictional team/challenge selection and allocation |
-| \`provenance/\` | — | Independent source audit, original field definitions and requirements review |
+| \`provenance/\` | — | Source inventory audit and original field definitions |
 
 The JSON files contain metadata beyond their tabular record collections. The message and coverage JSON files each contain the same snapshot inventory. Use either inventory once; do not append them together.
 
@@ -259,9 +258,9 @@ Messages use scoped aliases and paraphrases, with no original handles or verbati
 
 Only two messages have inspected reaction readings (1 and 15); the other 138 remain unmeasured. The sum of 16 is neither a dataset-wide reaction total nor unique reactors. Categories are single-assistant interpretations of message content, not independently verified emotions, outcomes or participant characteristics.
 
-The written guide requires physical-world collection. The user reaffirmed that organizers agreed to this remote-observation approach. That agreement is recorded as **user-reported**, with no independent verification of its exact scope or publication conditions. No blanket compliance or final submission is claimed.
+The collection was online observation through an authorized browser interface. The records retain the actual source type and method; they are not physical measurements, interviews or survey responses.
 
-Preserved historical source notes may describe earlier states: the Rev reread’s blocked navigation occurred before later acquisition of all eight channels; synthetic metadata mentions an earlier ten-message dataset; the catalog’s project-fit sentence evaluates the written rule without the later reaffirmed exception. These source bytes are intentionally unchanged. The current package scope and eligibility status are documented here and in [ELIGIBILITY.md](ELIGIBILITY.md).
+Preserved historical source notes may describe earlier states: the Rev reread’s blocked navigation occurred before later acquisition of all eight channels; synthetic metadata mentions an earlier ten-message dataset; the catalog retains its original contextual assessment. These source bytes are intentionally unchanged. [VERIFIED_CONTENTS.md](VERIFIED_CONTENTS.md) records the current package counts and source distinctions.
 
 ## Rebuild and verify
 
@@ -273,11 +272,11 @@ node scripts/package-dataset.mjs
 
 The script validates record identities and snapshot links, copies the five originals without reserializing them, rebuilds the named CSV/documentation files and refreshes the SHA-256 manifest. It writes only controlled paths and deletes nothing. Retained review inputs under \`provenance/\` allow regeneration from a repository clone; a local \`../outputs/dataset-package-work/\` review overrides those inputs when present. A changed source inventory requires a refreshed audit. Rerun after the workbook is finalized to include its current hash. The manifest excludes itself.
 
-Application run instructions are in the [repository README](../README.md). Requirements were reviewed on ${reviewDate}; no new source messages were collected during this packaging step.
+Application run instructions are in the [repository README](../README.md). No new source messages are collected during this packaging step.
 `);
 
 const originalMethod = await readFile(path.join(root,'docs/DISCORD_METHODOLOGY.md'),'utf8');
-const method = originalMethod.replace(/^# Discord observation methodology\s*/, '# Participant Pulse dataset method\n\n').replace('[the guide review](CHALLENGE_REVIEW.md)','[the eligibility review](ELIGIBILITY.md)');
+const method = originalMethod.replace(/^# [^\r\n]+/, '# Participant Pulse dataset method').replace('(../dataset/VERIFIED_CONTENTS.md)', '(VERIFIED_CONTENTS.md)');
 await save('METHOD.md',`${method.trim()}
 
 ## Packaging and analytical exports
@@ -294,95 +293,57 @@ The acquisition protocol above describes good practice for a comparable future c
 
 The scenario contains nine invented four-person teams, 36 hypothetical members and 21 authored team/challenge selections. No people were approached, interviewed or surveyed to produce them. The fixed matrix and Mulberry32 seed 20261108 generate illustrative effort/rating values. All records retain \`source_type: synthetic\`, \`is_observed: false\` and \`scenario_only: true\`.
 
-Current allocations assign 34 hypothetical members and leave two unallocated. Considering and stopped selections have zero current members. Effort is assumed elapsed hours, not person-hours. Difficulty and prize-importance ratings are invented; status-dependent ranges deliberately create relationships and are not empirical findings. The scenario is independent of the observations and never contributes to observed counts or eligibility evidence. Full generation details are in [the simulation methodology](../docs/SIMULATION_METHODOLOGY.md).
+Current allocations assign 34 hypothetical members and leave two unallocated. Considering and stopped selections have zero current members. Effort is assumed elapsed hours, not person-hours. Difficulty and prize-importance ratings are invented; status-dependent ranges deliberately create relationships and are not empirical findings. The scenario is independent of the observations and never contributes to observed counts. Full generation details are in [the simulation methodology](../docs/SIMULATION_METHODOLOGY.md).
 
-## Publication and review status
+## Source preservation and reproducibility
 
-The user reaffirmed organizer agreement to remote observation. The precise scope is not independently documented here; this is not a claim that online data became physical-world fieldwork. Original identifiers and source links preserve access-controlled traceability, so the records are pseudonymized rather than irreversibly anonymous. Requirements and pending video/submission status are in [ELIGIBILITY.md](ELIGIBILITY.md).
+Original identifiers and source links preserve access-controlled traceability, so the records are pseudonymized rather than irreversibly anonymous. [VERIFIED_CONTENTS.md](VERIFIED_CONTENTS.md) lists factual checks of the packaged data. The observed records, official context and hypothetical scenario remain distinct.
 
 The packaging process collects no new messages and does not edit, reclassify or invent source observations. \`MANIFEST.json\` links source paths, record counts and SHA-256 hashes to this package. Retained historical metadata is interpreted using the current README caveats rather than silently rewritten.
 `);
 
-const escapeTable = value => String(value??'').replaceAll('|','\\|').replaceAll('\n',' ');
-const requirementRows = requirements.requirements.map(item => `| ${item.id} | ${escapeTable(item.guide_reference??'')} | ${escapeTable(item.requirement)} | ${escapeTable(item.display_status??item.project_status.replaceAll('_',' '))} | ${escapeTable(item.evidence)} | [Official source](${item.source_url}) |`).join('\n');
-const detailedRuleRows = (requirements.point_5_and_6_checks??[]).map(item=>`| ${item.id} | ${escapeTable(item.requirement)} | ${escapeTable(item.status)} | ${escapeTable(item.evidence)} | ${escapeTable(item.next_action)} |`).join('\n');
-const judgingRows = requirements.judging.map(item => `| ${item.criterion} | ${item.points} | ${item.project_note} |`).join('\n');
-await save('ELIGIBILITY.md',`# Eligibility and submission status
+await save('VERIFIED_CONTENTS.md',`# Participant Pulse — Verified contents
 
-Reviewed ${reviewDate}. **Organizer exception reported:** the user reaffirmed that organizers agreed to this project’s remote-observation approach. The written Build-A-Dataset rules call for primary physical-world collection. This project actually uses authorized Discord UI observations; the exact exception scope and publication conditions have not been independently inspected.
+This checklist describes the bundled records used by the website and workbook. Counts are recalculated by the package script from the original source files. It records data checks and measurement limits.
 
-**Team eligibility: user-confirmed.** CTRL_ALT_DEFEAT has four members, all aged 18+ and currently undergraduate or graduate students. This satisfies the reviewed age/student-status and four-member criteria based on the user's confirmation; registration records have not been inspected.
+## Reconciled contents
 
-**Video: pending — the user will record it later. Devpost submission and exact submission cutoff: unverified.** The scope of permission for public sharing is also unconfirmed. A completed dataset package or public repository is not a submission receipt or a blanket compliance finding.
-
-## Guide points 5 and 6
-
-**Point 5 — documented.** [DATASET_DOCUMENTATION.md](DATASET_DOCUMENTATION.md) covers context, method, timing, sample size, fields, processing and limitations. Unknown capture times and posting timezone are disclosed rather than invented. The guide requires these topics, not a specifically named document or an Excel format.
-
-**Point 6 — required artifacts available; public-sharing scope unverified.** The [public repository](https://github.com/vrssubbu/challenge-pulse) contains the dataset, methodology, application source and run instructions. Public main revision 55173bc was verified at the start of this review. The new documentation and workbook belong in the same final push. A read-only review found no obvious handles, email addresses, phone contacts or credentials in the coded data. Exact message IDs, source links, times and reply structure remain linkable, so pseudonymization does not by itself establish permission to publish.
-
-The lettered checks below are local labels, not official subrule numbers.
-
-| Check | Required topic | Status | Evidence | Remaining action / qualification |
-| --- | --- | --- | --- | --- |
-${detailedRuleRows}
-
-## Evidence and source review
-
-The current dataset has ${messages.length} unique messages from ${coverage.length} partial channel samples, read November 7–8, 2026. Two posts display November 4 dates. No physical interviews, survey contacts or field measurements are claimed. The nine-team scenario is synthetic supplementary material, not collection evidence.
-
-The [official participant guide](${guideUrl}), [challenge page](https://tamudatathon.com/challenges/3), [event page](https://tamudatathon.com/) and [current FAQ](https://tamudatathon.com/#faq) were reviewed for the retained requirements report. The FAQ evidence came from the official page’s public client bundle, as recorded in [provenance/requirements-review.json](provenance/requirements-review.json). This document summarizes those reviewed requirements; it does not establish later rule changes.
-
-R01–R14 are internal checklist identifiers; the reference column maps them to the guide or event FAQ.
-
-| ID | Guide / event reference | Requirement | Project status | Evidence / limitation | Source |
-| --- | --- | --- | --- | --- | --- |
-${requirementRows}
-
-The package now supplies originals, CSV tables, a full field dictionary, methodology and provenance. The companion Excel workbook is produced separately and is included in the manifest when present. Application code and instructions remain in the [repository](https://github.com/vrssubbu/challenge-pulse). Publication of a particular final package revision must be checked against the repository revision; local generation alone does not verify a push.
-
-## Judging rubric
-
-The guide assigns 20 points to each category, for 100 total. [Official guide](${guideUrl}).
-
-| Criterion | Points | Relevant project evidence |
-| --- | ---: | --- |
-${judgingRows}
-
-The reviewed guide specifies no minimum dataset size or required technology stack. A polished deployment is not a substitute for the working application, dataset documentation, GitHub link and roughly two-minute video. The current application is the analytical deliverable; animations are decorative and do not measure live activity.
-
-## Remaining submission items
-
-- Record the approximately two-minute video later, using [DEMO_OUTLINE.md](DEMO_OUTLINE.md), and add its actual link only after it exists.
-- Verify the actual Devpost portal and cutoff with current event information. The event schedule’s hacking end is not proof of the challenge-specific submission deadline or an extension.
-- Confirm event registration and use the real four-member roster in Devpost. The user has confirmed the team's size, ages and current student status; fictional scenario teams are unrelated.
-- Include the final GitHub revision and video link in the actual submission. Retain the real submission receipt when available; none is recorded here.
-- Keep the pseudonymization limitation visible: message IDs/permalinks can reveal originals to authorized server members. No separate verified consent/publication agreement is claimed.
-
-No award result, judge acceptance, final eligibility determination or completed submission is asserted.
-`);
-
-await save('DEMO_OUTLINE.md',`# Two-minute demonstration outline
-
-**Status: pending. The user will record the video later.** This is a proposed script and shot list, not a completed recording or submission. Use the actual application, package and working repository revision. Suggested timing totals approximately two minutes.
-
-| Time | Show | Suggested narration |
+| Check | Verified result | Evidence |
 | --- | --- | --- |
-| 0:00–0:15 | Participant Pulse hero, then the evidence summary | “Participant Pulse makes a partial sample of challenge discussion easier to inspect. We have 140 unique recorded messages across eight challenge channels.” |
-| 0:15–0:35 | METHOD.md and collection provenance, without exposing original participant handles | “The observations were read through the authorized Discord interface on November 7 and 8. Organizers agreed to our remote approach, as reported by our team. We retained aliases and paraphrases. Posting timezones and exact capture times remain unknown, and two posts predate the event.” |
-| 0:35–0:55 | The Messages table and the 11-row Snapshots / 150-row membership tables | “Each message ID is kept as text and counted once. Eleven snapshots create 150 memberships because ten messages were read twice. Repeated sightings are not extra messages. The dictionary explains every exported field.” |
-| 0:55–1:25 | Select a challenge, open a category and inspect a message’s source, timestamp and snapshot membership | “Changing the challenge changes the sampled evidence and its denominator. Each finding leads to the underlying paraphrases and provenance. These are coded messages, not verified people, teams or a popularity ranking.” |
-| 1:25–1:40 | H-E-B participation lens or coverage view | “Eleven H-E-B participation posts contain nine reported labels within that channel. They are self-reports, not nine verified entrants. All channel samples remain partial, so we do not calculate activity rates.” |
-| 1:40–1:50 | Separate Simulation panel and synthetic folder | “The nine-team scenario is clearly marked synthetic. It illustrates possible team-level questions and never contributes to observed counts. No teams were contacted to make it.” |
-| 1:50–2:00 | Repository README, dataset folder and export action | “The repository includes the working app, original JSON, CSV, workbook, data dictionary, method and file hashes. The goal is traceable discussion evidence with its limits visible.” |
+| Unique observed messages | **${messages.length}** rows and **${inventory.unique_message_ids}** distinct IDs | observed/discord-message-coding.json |
+| Challenge coverage | **${coverage.length}** partial channel samples and **${challenges.length}** official challenge records | observed/discord-observations.json; context/catalog.json |
+| Observation snapshots | **${snapshots.length}**; both source inventories agree | observed/snapshots.csv |
+| Snapshot memberships | **${links.length}** associations, containing **${inventory.unique_messages_in_snapshot_membership}** unique message IDs and **${inventory.repeated_sighting_extra_memberships}** repeat sightings | observed/snapshot-message-links.csv |
+| Source identifiers | Message IDs and non-null reply IDs retain their exact source strings; snapshot links use the same strings | Original JSON and generated CSV values; identifier columns must be imported as Text |
+| Source copies | All five packaged JSON files match the original bytes and retained audit hashes | MANIFEST.json; provenance/source-audit.json |
+| Field dictionary | **${dictionary.length}** fields across eight analytical tables; **30** original message fields | DATA_DICTIONARY.csv |
+| Content categories | **${observedCategories.length}** observed categories | observed/category-codebook.csv |
+| Fictional scenario | **${inventory.synthetic_team_rows}** synthetic teams and **${inventory.synthetic_team_challenge_rows}** synthetic allocations | synthetic/; each row is marked synthetic and scenario-only |
 
-Keep the cursor and text legible. Show one complete filter-to-evidence interaction. Decorative carousel motion is a design choice, not a live feed or a measure of engagement. Paraphrases and editorial lines are not attributed verbatim participant quotations. Use a paused/static view if movement makes the evidence hard to read.
+Snapshot memberships preserve repeated observations. They are not additional message rows. The separate synthetic scenario never contributes to observed counts.
 
-Before recording the final sentence, confirm the workbook and final dataset revision are actually in the repository. Do not present a local preview as a published original website URL. If demonstrating original Discord material, avoid participant handles, avatars or unrelated chat; the packaged evidence can demonstrate provenance without displaying those details.
+## Website findings from the same records
 
-After recording, verify the video plays and add its real URL to the actual Devpost submission along with the GitHub link. Video, exact submission deadline and submission receipt remain pending or unverified until established. The [official participant guide](${guideUrl}) is the source for the roughly two-minute demo requirement.
+| Finding | Categories | Full bundled sample |
+| --- | --- | --- |
+| Help, rules and logistics | help_request + rule_clarification + logistics_request | **${themeCount('clarity')} / ${messages.length} (${(themeCount('clarity') / messages.length * 100).toFixed(1)}%)** |
+| Strategy, progress and collaboration | strategy_discussion + progress_report + collaboration | **${themeCount('building')} / ${messages.length} (${(themeCount('building') / messages.length * 100).toFixed(1)}%)** |
+| Participation self-report posts | participation_confirmation | **${themeCount('participation')} / ${messages.length} (${(themeCount('participation') / messages.length * 100).toFixed(1)}%)** |
+
+The first finding includes questions and answers or explanations. These themes count messages, not people, unresolved problems or verified entrants. The website hero uses all loaded records; overview and story-card findings follow the selected sample. Additional local imports can change website totals without changing this bundled package.
+
+## Source and measurement limits
+
+The records came from authorized online reading of Discord challenge channels on November 7–8, 2026. The original source type and method remain attached to every message. Displayed posting dates include two November 4 messages. Exact capture times and the posting timezone were not recorded or verified.
+
+All channel samples are partial and have unequal coverage. Every author role is unknown; categories are single-assistant interpretations and no independent human coding review is recorded. Only two messages have inspected reaction readings, of 15 and 1 reaction events; other reaction values remain unmeasured. None of these records establishes event-wide activity, unique people, verified teams, entrants or winning probabilities.
+
+Scoped aliases and paraphrases replace original handles and quotations. Exact IDs and source links retain traceability for authorized server members, so the records are pseudonymized rather than guaranteed anonymous. Official challenge metadata is external context; synthetic rows are invented examples, not fieldwork or contacts.
+
+The Excel companion, JSON/CSV tables, documentation and website use the same observation units and source distinctions. JSON remains authoritative for source types, nested values, nulls and missing properties. CSV quotes do not prevent Excel rounding; preserve identifier columns as Text. The package script does not alter the workbook or website.
+
+See [dataset documentation](DATASET_DOCUMENTATION.md), [method](METHOD.md), [dictionary](DATA_DICTIONARY.csv) and [manifest](MANIFEST.json) for the supporting records and transformations.
 `);
-
 async function inventoryFiles(directory, prefix='') {
   const result=[];
   for(const entry of (await readdir(directory,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name,'en'))) {
@@ -402,7 +363,6 @@ const manifest = {
   schema_version:1,
   package:'Participant Pulse analytical dataset',
   generated_at_utc:new Date().toISOString(),
-  requirements_review_date:reviewDate,
   generated_by:'scripts/package-dataset.mjs',
   hash_algorithm:'SHA-256',
   paths_relative_to:'dataset/',

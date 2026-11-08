@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "package": "Participant Pulse analytical dataset",
+  "generated_at_utc": "2026-11-08T09:27:09.937Z",
+  "generated_by": "scripts/package-dataset.mjs",
+  "hash_algorithm": "SHA-256",
+  "paths_relative_to": "dataset/",
+  "manifest_excludes_itself": true,
+  "source_json_copies": "Byte-for-byte copies; originals are relative to the repository root.",
+  "inventory": {
+    "observed_message_rows": 140,
+    "unique_message_ids": 140,
+    "channel_coverage_rows": 8,
+    "catalog_rows": 8,
+    "snapshots": 11,
+    "snapshot_membership_rows": 150,
+    "unique_messages_in_snapshot_membership": 140,
+    "repeated_sighting_extra_memberships": 10,
+    "synthetic_team_rows": 9,
+    "synthetic_team_challenge_rows": 21
+  },
+  "source_files": [
+    {
+      "original_path": "dist/data/discord-message-coding.json",
+      "packaged_path": "observed/discord-message-coding.json",
+      "collection": "records",
+      "record_count": 140,
+      "bytes": 231574,
+      "sha256": "3a4954b2d6cc68d4aaba2978bf8b1ee0e12a387d4074485a73876f3cd28f027a",
+      "copy_sha256": "3a4954b2d6cc68d4aaba2978bf8b1ee0e12a387d4074485a73876f3cd28f027a"
+    },
+    {
+      "original_path": "dist/data/discord-observations.json",
+      "packaged_path": "observed/discord-observations.json",
+      "collection": "records",
+      "record_count": 8,
+      "bytes": 39468,
+      "sha256": "eb7e664e401289288c1141c6f1d1c11ffaaaf2f1e03f36e235f0f1c34193e2ed",
+      "copy_sha256": "eb7e664e401289288c1141c6f1d1c11ffaaaf2f1e03f36e235f0f1c34193e2ed"
+    },
+    {
+      "original_path": "dist/data/catalog.json",
+      "packaged_path": "context/catalog.json",
+      "collection": "challenges",
+      "record_count": 8,
+      "bytes": 14463,
+      "sha256": "c10d8292fbe2608d8b620866736b4b585d6a94f189c7246378a206cfc3225de7",
+      "copy_sha256": "c10d8292fbe2608d8b620866736b4b585d6a94f189c7246378a206cfc3225de7"
+    },
+    {
+      "original_path": "dist/data/simulated-teams.json",
+      "packaged_path": "synthetic/simulated-teams.json",
+      "collection": "records",
+      "record_count": 9,
+      "bytes": 7502,
+      "sha256": "10e4879f63ee2017be27b71cd7f05e25aef7db95340952b07bc2f5275c83dcbf",
+      "copy_sha256": "10e4879f63ee2017be27b71cd7f05e25aef7db95340952b07bc2f5275c83dcbf"
+    },
+    {
+      "original_path": "dist/data/simulated-team-challenges.json",
+      "packaged_path": "synthetic/simulated-team-challenges.json",
+      "collection": "records",
+      "record_count": 21,
+      "bytes": 16442,
+      "sha256": "81e791f3c6ec7e2a8e082e0e937e63e7b71234bf6a65b55a3870ec30b26dda8b",
+      "copy_sha256": "81e791f3c6ec7e2a8e082e0e937e63e7b71234bf6a65b55a3870ec30b26dda8b"
+    }
+  ],
+  "tables": [
+    {
+      "name": "Messages",
+      "path": "observed/discord-message-coding.csv",
+      "classification": "observed",
+      "source_path": "observed/discord-message-coding.json",
+      "source_collection": "records",
+      "record_count": 140,
+      "field_count": 30
+    },
+    {
+      "name": "Coverage",
+      "path": "observed/discord-observations.csv",
+      "classification": "observed",
+      "source_path": "observed/discord-observations.json",
+      "source_collection": "records",
+      "record_count": 8,
+      "field_count": 35
+    },
+    {
+      "name": "Challenges",
+      "path": "context/catalog.csv",
+      "classification": "context",
+      "source_path": "context/catalog.json",
+      "source_collection": "challenges",
+      "record_count": 8,
+      "field_count": 23
+    },
+    {
+      "name": "SyntheticTeams",
+      "path": "synthetic/simulated-teams.csv",
+      "classification": "synthetic",
+      "source_path": "synthetic/simulated-teams.json",
+      "source_collection": "records",
+      "record_count": 9,
+      "field_count": 11
+    },
+    {
+      "name": "SyntheticAllocations",
+      "path": "synthetic/simulated-team-challenges.csv",
+      "classification": "synthetic",
+      "source_path": "synthetic/simulated-team-challenges.json",
+      "source_collection": "records",
+      "record_count": 21,
+      "field_count": 12
+    },
+    {
+      "name": "Snapshots",
+      "path": "observed/snapshots.csv",
+      "classification": "observed",
+      "source_path": "observed/discord-message-coding.json",
+      "source_collection": "snapshots",
+      "record_count": 11,
+      "field_count": 18
+    },
+    {
+      "name": "SnapshotMessageLinks",
+      "path": "observed/snapshot-message-links.csv",
+      "classification": "observed",
+      "source_path": "observed/discord-message-coding.json",
+      "source_collection": "snapshots[].message_ids",
+      "record_count": 150,
+      "field_count": 3
+    },
+    {
+      "name": "CategoryCodebook",
+      "path": "observed/category-codebook.csv",
+      "classification": "observed",
+      "source_path": "observed/discord-message-coding.json",
+      "source_collection": "coding_scheme.definitions and records[].category",
+      "record_count": 12,
+      "field_count": 3
+    }
+  ],
+  "dictionary_field_count": 135,
+  "workbook": {
+    "path": "Participant_Pulse_Dataset.xlsx",
+    "included": true,
+    "note": "Built separately; rerun packaging after workbook changes to refresh its hash."
+  },
+  "files": [
+    {
+      "path": "context/catalog.csv",
+      "bytes": 9690,
+      "sha256": "a996316b73d4f5b9df7cdcd635da157d1062d3c72895b661c8517713dfc25f68",
+      "table": "Challenges",
+      "record_count": 8
+    },
+    {
+      "path": "context/catalog.json",
+      "bytes": 14463,
+      "sha256": "c10d8292fbe2608d8b620866736b4b585d6a94f189c7246378a206cfc3225de7"
+    },
+    {
+      "path": "DATA_DICTIONARY.csv",
+      "bytes": 50943,
+      "sha256": "2c85473290cb8902c692a242fb1766f9a5b473491bd99bbccc6865ce7b4e9bc9",
+      "record_count": 135
+    },
+    {
+      "path": "DATASET_DOCUMENTATION.md",
+      "bytes": 10290,
+      "sha256": "61d37ceeac39717fedb40155abf55c12504793336ceedffd222eb12a760ec320"
+    },
+    {
+      "path": "METHOD.md",
+      "bytes": 17913,
+      "sha256": "f544446f1ef000ac5695ac05408fe84d1ee2a5e25f3bdc9268872ff59d30e901"
+    },
+    {
+      "path": "observed/category-codebook.csv",
+      "bytes": 1705,
+      "sha256": "f8ae6c9d21d0216969695c8935c90d7edf9ad44f490fdfc6d2261841d5ff1903",
+      "table": "CategoryCodebook",
+      "record_count": 12
+    },
+    {
+      "path": "observed/discord-message-coding.csv",
+      "bytes": 93365,
+      "sha256": "e85ad452f32cf69d8a1b5b55b8180578a00eaaf64022c718329a7a84c56f9fbc",
+      "table": "Messages",
+      "record_count": 140
+    },
+    {
+      "path": "observed/discord-message-coding.json",
+      "bytes": 231574,
+      "sha256": "3a4954b2d6cc68d4aaba2978bf8b1ee0e12a387d4074485a73876f3cd28f027a"
+    },
+    {
+      "path": "observed/discord-observations.csv",
+      "bytes": 10791,
+      "sha256": "5d7b232ee0bd27ef999280378b85fc287ebc5e981586c060e12ca92d946f9150",
+      "table": "Coverage",
+      "record_count": 8
+    },
+    {
+      "path": "observed/discord-observations.json",
+      "bytes": 39468,
+      "sha256": "eb7e664e401289288c1141c6f1d1c11ffaaaf2f1e03f36e235f0f1c34193e2ed"
+    },
+    {
+      "path": "observed/snapshot-message-links.csv",
+      "bytes": 8881,
+      "sha256": "c6127f11369e25f47235c22c6209b60c453fd4e13b6c6f3f84785284394d1276",
+      "table": "SnapshotMessageLinks",
+      "record_count": 150
+    },
+    {
+      "path": "observed/snapshots.csv",
+      "bytes": 10445,
+      "sha256": "b3e59a36d780910186025f10956451840d28e77e47725f67fc4a4f4fc7f76715",
+      "table": "Snapshots",
+      "record_count": 11
+    },
+    {
+      "path": "Participant_Pulse_Dataset.xlsx",
+      "bytes": 75286,
+      "sha256": "fcd18e455be3e00352a60a121f7c5a603f1989148633446f273fbcf7a5dacdf2"
+    },
+    {
+      "path": "provenance/field-definitions.json",
+      "bytes": 33883,
+      "sha256": "2e3929cc8cdf0ad88580112079269bdc07713b428b7b877cbc9a74f77ecedb29"
+    },
+    {
+      "path": "provenance/source-audit.json",
+      "bytes": 101107,
+      "sha256": "4ba16f671522f37ed3b362b3a619cd2df7381579711e22fc7a9f6af4afb1578e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7668,
+      "sha256": "926e27173214784fa54248187b3aed7167cae5127a71aef473869d40e2f92979"
+    },
+    {
+      "path": "synthetic/simulated-team-challenges.csv",
+      "bytes": 4412,
+      "sha256": "3c37d37453378577567bac54416ddb032e8d6f837a4a53ced0588865ade65b9a",
+      "table": "SyntheticAllocations",
+      "record_count": 21
+    },
+    {
+      "path": "synthetic/simulated-team-challenges.json",
+      "bytes": 16442,
+      "sha256": "81e791f3c6ec7e2a8e082e0e937e63e7b71234bf6a65b55a3870ec30b26dda8b"
+    },
+    {
+      "path": "synthetic/simulated-teams.csv",
+      "bytes": 1973,
+      "sha256": "34ce063e381a3e462640e8f27eb0fe930afdd656360c503fe946a21526b287a0",
+      "table": "SyntheticTeams",
+      "record_count": 9
+    },
+    {
+      "path": "synthetic/simulated-teams.json",
+      "bytes": 7502,
+      "sha256": "10e4879f63ee2017be27b71cd7f05e25aef7db95340952b07bc2f5275c83dcbf"
+    },
+    {
+      "path": "VERIFIED_CONTENTS.md",
+      "bytes": 4122,
+      "sha256": "186380fd3603af041603510bc227f986a8e779b6655bcd2fbead39870bd7d8cb"
+    }
+  ]
+}

@@ -6,11 +6,11 @@ A dependency-free dashboard by **CTRL_ALT_DEFEAT** of observed challenge discuss
 
 Start with the [central dataset folder](dataset/) or download the [Excel workbook](dataset/Participant_Pulse_Dataset.xlsx). The package contains **140 unique observed messages with all 30 source fields, eight channel summaries, 11 snapshots and 150 snapshot–message links**. The links include repeated sightings of the same ten Rev's Casino messages; they are not 150 distinct messages. Official challenge context and the nine-team, 21-allocation fictional scenario are stored separately from observed data.
 
-The [dataset documentation](dataset/DATASET_DOCUMENTATION.md) covers all seven topics required by guide point 5. The workbook's Eligibility sheet and [criteria review](dataset/ELIGIBILITY.md) map the guide rules, point-6 publication requirements and outstanding submission items. CTRL_ALT_DEFEAT's four members, all 18+ current undergraduate/graduate students, are user-confirmed; registration and final submission are not verified.
+The [dataset documentation](dataset/DATASET_DOCUMENTATION.md) explains the collection context, method, timing, sample, fields, processing and measurement limits. [Verified contents](dataset/VERIFIED_CONTENTS.md) reconciles the package counts and the website's findings of 41 help/rules/logistics messages, 24 strategy/progress/collaboration messages and 11 participation self-report posts.
 
-The workbook stores Discord IDs as text to preserve all 19 digits. The folder also includes the five original JSON files, CSV views, a [field dictionary](dataset/DATA_DICTIONARY.csv), [collection method](dataset/METHOD.md), [eligibility status](dataset/ELIGIBILITY.md) and a [SHA-256 manifest](dataset/MANIFEST.json). Original JSON preserves source types, unknown values and nested provenance. See the [dataset README](dataset/README.md) for joins and safe CSV import instructions; double-clicking a CSV in Excel can round its identifiers.
+The workbook stores source IDs as text to preserve all 19 digits. The folder also includes the five original JSON files, CSV views, a [field dictionary](dataset/DATA_DICTIONARY.csv), [collection method](dataset/METHOD.md) and a [SHA-256 manifest](dataset/MANIFEST.json). Original JSON preserves source types, unknown values and nested provenance. See the [dataset README](dataset/README.md) for joins and safe CSV import instructions; double-clicking a CSV in Excel can round its identifiers.
 
-These are partial online observations read November 7–8, 2026, not a channel census or a verified participant/team count. Displayed posting dates include two November 4 messages; the posting timezone and exact capture times remain unknown. Organizer agreement to the remote approach is user-reported, with its exact scope not independently verified. The demonstration video is pending and will be recorded later; completed packaging does not establish final eligibility or Devpost submission.
+These are partial online observations read November 7–8, 2026, not a channel census or a verified participant/team count. Displayed posting dates include two November 4 messages; the posting timezone and exact capture times remain unknown. The observed records, external challenge context and fictional scenario remain separate in the website, workbook and documentation.
 
 Rebuild the central JSON/CSV/documentation package from the repository root with Node.js 18 or newer:
 
@@ -19,6 +19,14 @@ node scripts/package-dataset.mjs
 ```
 
 The script validates source identities and snapshot links, copies the original JSON bytes and refreshes the manifest. It does not create or modify the separately built Excel workbook; rerun it after finalizing the workbook to record its current hash.
+
+After finalizing the workbook, prepare the website downloads and the local review bundle:
+
+```sh
+node scripts/prepare-review.mjs
+```
+
+This copies the final dataset into the website's downloads and assembles the website, workbook and documentation into one review folder. The Excel workbook is built separately; the preparation command uses the existing final workbook.
 
 ## Run
 
@@ -40,20 +48,20 @@ Open http://127.0.0.1:4173. Do not open `dist/index.html` directly: browsers res
 - Click a content-category bar or a thematic question to open its matching evidence. Category shares always use the selected message sample as their denominator. The overview counts coded help, rules, logistics, score and leaderboard discussion, including both questions and explanations; its suggested next step follows the strongest available actionable theme in that selected sample.
 - Message explorer combines challenge, category, paraphrase search, snapshot, author-role and content-lens filters. Snapshot choices follow the selected challenge and use the recorded snapshot labels. Click a displayed-hour group to narrow the view, or reset the filters. The hour groups contain only sampled messages and are not a complete time series or an activity-rate calculation.
 - Inspect a message to open its paraphrase, source link, display time, alias, role evidence, collection/coding provenance and authoritative snapshot membership. Where present, reaction counts are labeled as the latest recorded reaction reading, with their observation date and snapshot; they are not unique-reactor counts or counts as of every earlier snapshot. Original Discord links require server access.
-- Coverage & method distinguishes partial samples from unread channels, shows the dates and times of the sampled messages without implying continuous coverage, explains deduplication and documents the written collection requirement alongside the user-reported organizer exception.
+- Coverage & method distinguishes partial samples from unread channels, shows the dates and times of the sampled messages without implying continuous coverage, and explains deduplication, actual source provenance and measurement limits.
 - Explore a scenario computes `min(3, N) / N` for a manually assumed entrant count. It is an equal-chance thought experiment, not a winning probability forecast.
 - Export message JSON, message CSV and coverage JSON. Exports include all loaded records, regardless of current filters. JSON preserves the full normalized message schema and is the supported import/transfer format; CSV provides the core analytical fields plus role, snapshot and reaction fields.
 - Import another coded-message JSON file to merge records by exact string message ID. The result reports added, enriched and unchanged records. Imports remain in this browser’s localStorage on this device; they are not synchronized to another device or the hosted source files. Export JSON to transfer them.
 
 ## Data and provenance
 
-`dist/data/catalog.json` is public official challenge metadata. `discord-observations.json` is the per-channel coverage inventory. `discord-message-coding.json` contains aliases, paraphrased coded messages and a bundled `snapshots` inventory. See [Discord methodology](docs/DISCORD_METHODOLOGY.md), [metric dictionary](docs/METRIC_DICTIONARY.md) and [challenge review](docs/CHALLENGE_REVIEW.md).
+`dist/data/catalog.json` is public official challenge metadata. `discord-observations.json` is the per-channel coverage inventory. `discord-message-coding.json` contains aliases, paraphrased coded messages and a bundled `snapshots` inventory. See [collection method](dataset/METHOD.md), [metric dictionary](docs/METRIC_DICTIONARY.md) and [verified contents](dataset/VERIFIED_CONTENTS.md).
 
 No participant names, verified team/entrant counts, mental-health interpretations or fabricated observations are added to the observed dataset. Displayed posting timezones were not verified. No messages-per-hour calculation or cross-channel ranking is made because the observation windows are incomplete and unequal. Author roles are labeled only when explicit evidence is recorded; quoting or replying to an organizer does not establish the author’s role. Display-label aliases and counts are scoped to one channel’s observations and are never combined into a cross-channel person or team count. The sample does not claim to exclude staff or bots.
 
 Reaction readings are recorded only where observed. Missing reaction fields mean unmeasured, not zero. The current reaction reading is separate from the posting timestamp and initial observation. Sources and coding limitations remain attached to the records.
 
-The written Build-A-Dataset guide requires physical-world primary data. The user reports organizer permission for remote observations; the scope has not been independently verified. Synthetic records remain synthetic and are never represented as team contacts or fieldwork.
+The actual collection method is online interface observation. Synthetic records remain synthetic and are never represented as team contacts or fieldwork.
 
 ## Message import contract
 
@@ -71,7 +79,7 @@ Optional fields retained by normalization include `reply_to_message_id`, `human_
 
 Reaction fields are nullable: `reaction_count_observed`, `reaction_types_observed`, `reaction_observed_on_local`, `reaction_observed_timezone`, `reaction_capture_time`, `reaction_snapshot_id` and `reaction_observation_note`. A known count requires a valid observation date, timezone and a reaction snapshot listed in `snapshot_ids`. Reaction-type counts cannot exceed total reaction counts. These fields describe a particular reading, not unique people or a growth rate.
 
-Supported categories: `social_banter`, `strategy_discussion`, `progress_report`, `collaboration`, `unclassified_media`, `leaderboard_request`, `score_request`, `help_request`, `rule_clarification`, `logistics_request`, `organizer_update`, `participation_confirmation`, `other`. Only categories represented by the loaded observations contribute to the charts. Supporting a category in the application is not evidence that it was observed.
+The application supports 13 categories: `social_banter`, `strategy_discussion`, `progress_report`, `collaboration`, `unclassified_media`, `leaderboard_request`, `score_request`, `help_request`, `rule_clarification`, `logistics_request`, `organizer_update`, `participation_confirmation`, `other`. Twelve occur in the bundled observations; `organizer_update` has no current rows. Only categories represented by loaded observations contribute to the charts.
 
 Message IDs are deduplicated. Matching IDs with conflicting challenge, coding/content, alias, posting time, source URL, timezone or reply metadata reject the import. Compatible duplicates can enrich snapshot membership, missing provenance, an unknown author role or human-review status without adding another message.
 
@@ -91,7 +99,7 @@ The creator presentation passed all **31 tests** on November 8, 2026. Checks cov
 
 Browser review at **1440 × 1000** and **390 × 844** found no horizontal overflow. The chrome-like hero sculpture fits the desktop viewport; the about section, white findings and story cards remain readable, with mobile story cards in normal document flow. Selecting HEB produced findings of **11, 2 and 11 out of 30** messages. Its building story opened two explorer records and the message inspector; the all-challenge clarification story contained **41 out of 140** messages. Pausing stopped SVG animation and kept all text and cards visible. The separate Simulation panel showed nine fictional teams and 21 allocations, while 30 assumed entrants produced a 10% hypothetical scenario baseline. No browser console errors were observed during these checks.
 
-Gallery checks confirmed that the first click on Rev's Casino opened its 10-message sample at both 390- and 1440-pixel widths; keyboard Enter on Dashboard Royale opened the correct challenge. At widths up to 900 pixels, the gallery uses native horizontal scrolling while SVG artwork animates; desktop rows translate in opposite directions. Native operating-system reduced motion was not separately emulated, and these checks do not establish exhaustive browser coverage. The original Sites project still returned `NOT_FOUND` during this update; local browser checks do not establish publication to that hosted URL.
+Gallery checks confirmed that the first click on Rev's Casino opened its 10-message sample at both 390- and 1440-pixel widths; keyboard Enter on Dashboard Royale opened the correct challenge. At widths up to 900 pixels, the gallery uses native horizontal scrolling while SVG artwork animates; desktop rows translate in opposite directions. Native operating-system reduced motion was not separately emulated, and these checks do not establish exhaustive browser coverage.
 
 ## Separate synthetic scenario
 

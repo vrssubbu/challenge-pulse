@@ -1,5 +1,6 @@
 {
   "audit_scope": "Independent source-file inventory; no source records edited and no new source collection performed.",
+  "documentation_refresh_note": "Methodology documentation hash refreshed on 2026-11-08 after removing the eligibility audit introduction. Source data bytes and inventory are unchanged.",
   "files": [
     {
       "relative_path": "dist/data/discord-message-coding.json",
@@ -23,7 +24,7 @@
     },
     {
       "relative_path": "docs/DISCORD_METHODOLOGY.md",
-      "sha256": "aa94c447df1d7f16b103f9a13c7e49a5c74ea1a5559909a53d4d1f2e88a338e7"
+      "sha256": "b86d041ecf9bc887a540e2fe2c71b734efe6c8be1479e00949a16c9c36ebd668"
     },
     {
       "relative_path": "docs/METRIC_DICTIONARY.md",

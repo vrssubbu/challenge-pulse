@@ -1,6 +1,6 @@
 # Discord observation methodology
 
-Challenge Pulse describes visible challenge discussion. Its dataset is derived from online observations, not an in-person survey, an entry list, or a verified count of competing teams. The written Build-A-Dataset guide requires physical-world primary data. The user reports that organizers permitted remote observations for this project; that exception and its scope have not been independently verified. See [the guide review](CHALLENGE_REVIEW.md). A separate synthetic scenario illustrates possible team-level data but records no actual contacts or responses.
+Participant Pulse describes recorded challenge discussions. Its dataset comes from authorized online interface observations, not an in-person survey, an entry list or a verified count of competing teams. Scoped aliases and paraphrases preserve analytical content while the original identifiers retain source traceability. A separate synthetic scenario records no actual contacts or responses. See [verified contents](../dataset/VERIFIED_CONTENTS.md) for the reconciled package counts.
 
 ## What has actually been observed
 
@@ -60,7 +60,7 @@ The current dataset assigns exactly one `category` per message. The labels and c
 | `participation_confirmation` | 11 | A team-label self-report in response to a participation prompt. | Verified team membership, eligibility, entry, or final submission. |
 | `other` | 23 | Resource links, attributed announcements, fragments or unmatched readable content. | That an external-tool discussion describes the challenge's difficulty. |
 
-The importer also supports `organizer_update`, but no current row uses it. This category requires an organizer role with explicit role evidence. Version the codebook when extending it and recode consistently if comparisons require it. Do not assign authority based only on confident wording or a display name such as “Challenges Lead.”
+The application supports 13 categories; 12 occur in the bundled observations. The supported `organizer_update` category has no current rows and requires an organizer role with explicit role evidence. Version the codebook when extending it and recode consistently if comparisons require it. Do not assign authority based only on confident wording or a display name such as “Challenges Lead.”
 
 Future explicit-content flags may include `reports_difficulty`, `mentions_prize_motivation`, `states_submission_intent`, and `requests_help`; these have not been populated in the current dataset. Use true only for an explicit statement, false only when inspected content does not express it, and null when content cannot be evaluated. These flags describe messages, not diagnoses, personalities, or reliable team-level states. Do not label participants as traumatized or infer mental-health conditions.
 

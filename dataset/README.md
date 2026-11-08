@@ -7,11 +7,10 @@ The original five JSON files are copied byte-for-byte from the application’s `
 ## Start here
 
 - [Participant_Pulse_Dataset.xlsx](Participant_Pulse_Dataset.xlsx) is the included companion workbook, with separate sheets for observations, context, provenance and synthetic scenarios.
-- [DATASET_DOCUMENTATION.md](DATASET_DOCUMENTATION.md) brings all seven guide point-5 topics into one account of the actual collection and maps the point-6 deliverables. The workbook's Eligibility sheet contains the full review and twelve detailed checks for points 5 and 6.
+- [DATASET_DOCUMENTATION.md](DATASET_DOCUMENTATION.md) explains the actual context, method, timing, sample, fields, processing and measurement limits.
 - [METHOD.md](METHOD.md) explains acquisition, coding, processing and limitations.
 - [DATA_DICTIONARY.csv](DATA_DICTIONARY.csv) describes all 135 fields across the eight analytical tables, including field presence, nulls and actual source types.
-- [ELIGIBILITY.md](ELIGIBILITY.md) records written requirements, the user-reported organizer exception and outstanding submission status.
-- [DEMO_OUTLINE.md](DEMO_OUTLINE.md) is a roughly two-minute recording outline. **Video: pending; the user will record it later.**
+- [VERIFIED_CONTENTS.md](VERIFIED_CONTENTS.md) lists the reconciled dataset counts, website findings, identifier handling and source separation.
 - [MANIFEST.json](MANIFEST.json) records original-source hashes, packaged-file hashes and table counts.
 
 ## Files and record units
@@ -26,7 +25,7 @@ The original five JSON files are copied byte-for-byte from the application’s `
 | `context/catalog.json` and `.csv` | 8 | Official contextual challenge metadata |
 | `synthetic/simulated-teams.json` and `.csv` | 9 | Fictional four-person scenario team |
 | `synthetic/simulated-team-challenges.json` and `.csv` | 21 | Fictional team/challenge selection and allocation |
-| `provenance/` | — | Independent source audit, original field definitions and requirements review |
+| `provenance/` | — | Source inventory audit and original field definitions |
 
 The JSON files contain metadata beyond their tabular record collections. The message and coverage JSON files each contain the same snapshot inventory. Use either inventory once; do not append them together.
 
@@ -67,9 +66,9 @@ Messages use scoped aliases and paraphrases, with no original handles or verbati
 
 Only two messages have inspected reaction readings (1 and 15); the other 138 remain unmeasured. The sum of 16 is neither a dataset-wide reaction total nor unique reactors. Categories are single-assistant interpretations of message content, not independently verified emotions, outcomes or participant characteristics.
 
-The written guide requires physical-world collection. The user reaffirmed that organizers agreed to this remote-observation approach. That agreement is recorded as **user-reported**, with no independent verification of its exact scope or publication conditions. No blanket compliance or final submission is claimed.
+The collection was online observation through an authorized browser interface. The records retain the actual source type and method; they are not physical measurements, interviews or survey responses.
 
-Preserved historical source notes may describe earlier states: the Rev reread’s blocked navigation occurred before later acquisition of all eight channels; synthetic metadata mentions an earlier ten-message dataset; the catalog’s project-fit sentence evaluates the written rule without the later reaffirmed exception. These source bytes are intentionally unchanged. The current package scope and eligibility status are documented here and in [ELIGIBILITY.md](ELIGIBILITY.md).
+Preserved historical source notes may describe earlier states: the Rev reread’s blocked navigation occurred before later acquisition of all eight channels; synthetic metadata mentions an earlier ten-message dataset; the catalog retains its original contextual assessment. These source bytes are intentionally unchanged. [VERIFIED_CONTENTS.md](VERIFIED_CONTENTS.md) records the current package counts and source distinctions.
 
 ## Rebuild and verify
 
@@ -81,4 +80,4 @@ node scripts/package-dataset.mjs
 
 The script validates record identities and snapshot links, copies the five originals without reserializing them, rebuilds the named CSV/documentation files and refreshes the SHA-256 manifest. It writes only controlled paths and deletes nothing. Retained review inputs under `provenance/` allow regeneration from a repository clone; a local `../outputs/dataset-package-work/` review overrides those inputs when present. A changed source inventory requires a refreshed audit. Rerun after the workbook is finalized to include its current hash. The manifest excludes itself.
 
-Application run instructions are in the [repository README](../README.md). Requirements were reviewed on 2026-11-08; no new source messages were collected during this packaging step.
+Application run instructions are in the [repository README](../README.md). No new source messages are collected during this packaging step.

@@ -1,0 +1,308 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "title": "TAMU Datathon 2026 official challenge catalog",
+    "source_type": "official_challenge_metadata",
+    "catalog_url": "https://tamudatathon.com/challenges",
+    "retrieved_at_utc": "2026-11-08T05:57:58Z",
+    "provenance": "Official challenge pages and linked public participant guides read by the assistant; Build-A-Dataset guide reviewed in full by the main assistant.",
+    "note": "Official metadata is separate from Discord observations. Prize values and per-person allocation are not inferred.",
+    "event_schedule": {
+      "source_url": "https://tamudatathon.com/",
+      "hacking_begins": "2026-11-07T11:00:00-06:00",
+      "hacking_ends": "2026-11-08T12:00:00-06:00",
+      "judging_begins": "2026-11-08T12:30:00-06:00",
+      "note": "Event times do not override challenge-specific submission deadlines."
+    },
+    "general_eligibility": {
+      "source_url": "https://tamudatathon.com/#faq",
+      "source_bundle_url": "https://tamudatathon.com/_next/static/chunks/0-3nlfvc3ovct.js",
+      "source_note": "Verified in the current 2026 homepage's public client bundle because the text-only web extractor omits the interactive FAQ answers.",
+      "admission": "Enrolled undergraduate or graduate students at least 18 years old, and people who graduated within one year of the event; all majors and students worldwide welcomed.",
+      "maximum_team_size": 4,
+      "experience_required": false,
+      "attendance_cost": "Free",
+      "cross_challenge_general_rule": null
+    }
+  },
+  "challenges": [
+    {
+      "challenge_id": "revs-casino",
+      "name": "Rev's Casino",
+      "page_url": "https://tamudatathon.com/challenges/1",
+      "guide_url": "https://td-revs.vercel.app/",
+      "objective": "Complete increasingly difficult LLM prompt challenges while minimizing tokens.",
+      "scoring": "Fewest tokens to beat all levels, according to the public challenge page. Detailed tie-breaking and leaderboard rules were not available without app sign-in.",
+      "submission": "Play in the linked app; Google sign-in is required to save progress and tokens.",
+      "deadline": null,
+      "eligibility_constraints": [],
+      "prizes": {
+        "1": "Echo Dots",
+        "2": "Pickleball Set",
+        "3": "Amazon Gift Card"
+      },
+      "unknowns": [
+        "Deadline",
+        "Team aggregation",
+        "Detailed scoring and tie-breaks",
+        "Number of eligible competing teams"
+      ],
+      "participant_count": null,
+      "id": "revs-casino",
+      "source_type": "official_challenge_metadata",
+      "source_url": "https://tamudatathon.com/challenges/1"
+    },
+    {
+      "challenge_id": "dashboard-royale",
+      "name": "Dashboard Royale",
+      "page_url": "https://tamudatathon.com/challenges/2",
+      "guide_url": "https://github.com/tamu-datathon-org/dashboard-royale/blob/main/GUIDE.md",
+      "objective": "Investigate a fictional casino's machine performance, demand, downtime, players, comps and a $100,000 action plan using an interactive dashboard.",
+      "rubric_percent": {
+        "analytical_validity": 30,
+        "dashboard_and_communication": 25,
+        "modeling_and_validation": 20,
+        "recommendations_and_tradeoffs": 15,
+        "originality": 10
+      },
+      "submission": [
+        "Public dashboard link or file",
+        "Video at most 2 minutes",
+        "Main write-up at most 400 words",
+        "Reproducible code or transformations",
+        "Decision-relevant model versus baseline on time holdout",
+        "Up to three priced action types",
+        "Claims/evidence appendix",
+        "AI-use disclosure"
+      ],
+      "submission_url": "https://tamu-datathon-26-casino-royale.devpost.com/",
+      "deadline": null,
+      "eligibility_constraints": [
+        "Use fictional-casino claims accurately",
+        "Public outside data allowed with citations",
+        "AI allowed with disclosure",
+        "Follow action-catalog budgets, limits and incompatibilities"
+      ],
+      "prizes": {
+        "1": "Keychron V1 Mechanical Keyboard",
+        "2": "Logitech G703 Lightspeed Wireless Gaming Mouse",
+        "3": "Owalas"
+      },
+      "unknowns": [
+        "Challenge deadline: guide delegates to Devpost, which was inaccessible in this research",
+        "Number of eligible competing teams"
+      ],
+      "participant_count": null,
+      "id": "dashboard-royale",
+      "source_type": "official_challenge_metadata",
+      "source_url": "https://tamudatathon.com/challenges/2"
+    },
+    {
+      "challenge_id": "build-a-dataset",
+      "name": "Build-A-Dataset",
+      "page_url": "https://tamudatathon.com/challenges/3",
+      "guide_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit?tab=t.0",
+      "objective": "Collect original real-world observations during the event and use that dataset to power an interactive app, map, game or tool.",
+      "scoring": "Five categories worth 20 points each; 100 total.",
+      "submission": [
+        "GitHub repository with application code, shareable dataset, collection methodology, data dictionary, limitations and run instructions",
+        "Approximately two-minute video showing collection, dataset and working app",
+        "Submit through event Devpost before its deadline"
+      ],
+      "deadline": null,
+      "eligibility_constraints": [
+        "Team must collect new primary data during the event through physical real-world engagement",
+        "Collected data must be central to a functioning interactive application",
+        "Scraping, APIs and existing datasets may supplement but cannot replace primary collection",
+        "Document collection and processing honestly",
+        "Consent and venue-compliant collection; shareable data without identifying or sensitive details",
+        "No fabricated observations or misrepresented collection"
+      ],
+      "prizes": {
+        "1": "Amazon Fire TV Soundbars",
+        "2": "Amazon Fire TV Sticks 4K",
+        "3": "MSY Voucher + Tray of Mac and Cheese"
+      },
+      "participant_count": null,
+      "id": "build-a-dataset",
+      "source_type": "official_challenge_metadata",
+      "source_url": "https://tamudatathon.com/challenges/3",
+      "rubric_points": {
+        "data_collection_and_quality": 20,
+        "application_functionality_and_data_integration": 20,
+        "creativity_and_originality": 20,
+        "usefulness_and_impact": 20,
+        "communication_and_presentation": 20
+      },
+      "current_project_fit": "Discord-only observations do not satisfy the guide requirement for new primary data collected through physical real-world engagement. This project contains no field survey data.",
+      "unknowns": [
+        "Exact challenge-specific submission timestamp",
+        "General rule about entering the same project in multiple tracks"
+      ]
+    },
+    {
+      "challenge_id": "house-edge",
+      "name": "House Edge",
+      "page_url": "https://tamudatathon.com/challenges/4",
+      "guide_url": "https://docs.google.com/document/d/1CqNLjCiojRxKkZopoxBeilkke6Y4yCuz7FYSuefvCMo/edit?tab=t.0",
+      "objective": "Predict five next-payout probabilities from simulated slot-machine histories.",
+      "scoring": "Main 80 points plus adaptation 20. Squared probability errors are averaged within episodes and four equally weighted conditions, normalized against frozen reference errors. Round points = round maximum / (1 + mean normalized error).",
+      "submission": "Per round: UTF-8 prediction CSV plus code ZIP that reproduces probabilities. Mandatory team registration; latest accepted entry counts, including later reproduction failure.",
+      "registration_url": "https://docs.google.com/forms/d/e/1FAIpQLSfFI3_new12AA2qpamG_fqRz6RnhdRHqnsoWAenEsNqB8VOJw/viewform",
+      "main_submission_url": "https://docs.google.com/forms/d/e/1FAIpQLSfv2WV_Fz7NHstRPN2TGi3pvMAFrcQuvs2SkQL1DqpdLebhFg/viewform",
+      "deadline": "Guide repeatedly states main closes Sunday Nov 8 at 10:30 AM Central and adaptation closes noon.",
+      "schedule_conflict": "Public card says adaptation opens Saturday 9 PM. Guide now repeatedly says Sunday 10:30 AM, but retains contradictory Saturday/date, overnight and 14-hour wording. Verify current organizer announcement/submission page.",
+      "eligibility_constraints": [
+        "No individual registered on multiple teams",
+        "Organizer-released data only",
+        "No hidden test answers",
+        "Code reproduction and data-use checks required",
+        "No future-tick inputs",
+        "Valid main entry required for overall ranking"
+      ],
+      "prizes": {
+        "1": "Meta Ray-Bans",
+        "2": "AirPods 4",
+        "3": "Mini Projector"
+      },
+      "participant_count": null,
+      "id": "house-edge",
+      "source_type": "official_challenge_metadata",
+      "source_url": "https://tamudatathon.com/challenges/4"
+    },
+    {
+      "challenge_id": "heads-up",
+      "name": "Heads Up – Poker Bot Tournament",
+      "page_url": "https://tamudatathon.com/challenges/5",
+      "guide_url": "https://docs.google.com/document/d/1D1ruabeQ25scYg97ehBMnzA9fqaEWWsnFDfOmrLme4E/edit?tab=t.0",
+      "objective": "Build a Python bot for heads-up Short Deck 5-Card Pot-Limit Omaha.",
+      "scoring": "Round robin; each match replays 1,000 deals with seats swapped (2,000 hands). A 95% confidence interval above zero earns a win (1), touching zero a draw (0.5), below zero a loss (0). Total points rank teams; mean big blinds per deal breaks ties.",
+      "submission": "Public GitHub repository and full pushed 40-character commit SHA. Latest successful build before deadline plays.",
+      "registration_url": "https://docs.google.com/forms/d/e/1FAIpQLSeVRUzERWDfrri24U6kA2tUbjT0530IwudYokp3ZpoxfXVAwA/viewform",
+      "submission_url": "https://forms.gle/a6Nr9VxXD9RYvi9x7",
+      "deadline": null,
+      "eligibility_constraints": [
+        "Mandatory registration",
+        "No person registered on multiple teams",
+        "1 CPU, 4 GB RAM, no network",
+        "8-second time bank per half, 1-second request limit",
+        "Five errors in a half causes match forfeit",
+        "Runtime settings may change; updated game.py is source of truth"
+      ],
+      "prizes": {
+        "1": "MacBook Neos in Silver",
+        "2": "Gaming Monitor",
+        "3": "Digital Cameras"
+      },
+      "unknowns": [
+        "Guide deadline is still a placeholder",
+        "Number of eligible competing teams"
+      ],
+      "participant_count": null,
+      "id": "heads-up",
+      "source_type": "official_challenge_metadata",
+      "source_url": "https://tamudatathon.com/challenges/5"
+    },
+    {
+      "challenge_id": "hitachi",
+      "name": "Hitachi: Hack the Highway",
+      "page_url": "https://tamudatathon.com/challenges/6",
+      "guide_url": "https://tamudatathon.com/downloads/hack_the_highway_student_package.zip",
+      "objective": "Use an LLM coordinator and three specialist agents, a knowledge graph, and enterprise tools to handle simulated automaker operational events.",
+      "rubric_percent": {
+        "event_handling_accuracy": 50,
+        "knowledge_graph_and_reasoning": 20,
+        "agent_architecture_and_guardrails": 10,
+        "efficiency": 10,
+        "user_experience_and_explainability": 10
+      },
+      "submission": [
+        "action_log.jsonl for all 15 provided events",
+        "Source code",
+        "Ontology export or diagram",
+        "Per-event trace and explanation",
+        "Short demo video or screenshots",
+        "One-page design card",
+        "Model citations"
+      ],
+      "deadline": null,
+      "eligibility_constraints": [
+        "Teams of 3–4",
+        "24 hours stated in brief",
+        "No hard-coded answers or hidden files",
+        "Operate from event text and supplied tables",
+        "Noise requires no writes; unconfirmed reports require escalation",
+        "At least three action types per real incident, following handbook"
+      ],
+      "prizes": {
+        "1": "$50 Amazon Gift Card",
+        "2": "$30 Amazon Gift Card",
+        "3": "$20 Amazon Gift Card"
+      },
+      "unknowns": [
+        "Exact portal URL and challenge deadline absent in downloaded brief",
+        "Number of eligible competing teams"
+      ],
+      "participant_count": null,
+      "id": "hitachi",
+      "source_type": "official_challenge_metadata",
+      "source_url": "https://tamudatathon.com/challenges/6"
+    },
+    {
+      "challenge_id": "heb",
+      "name": "HEB Challenge",
+      "page_url": "https://tamudatathon.com/challenges/7",
+      "guide_url": null,
+      "objective": null,
+      "scoring": null,
+      "submission": null,
+      "deadline": null,
+      "access_instruction": "Official page directs participants to HEB's table in the MSC Ballroom for details.",
+      "eligibility_constraints": [],
+      "prizes": {
+        "1": "Nintendo Switch Lite",
+        "2": "Powerbeats Pro 2",
+        "3": "H-E-B Gift Package"
+      },
+      "unknowns": [
+        "Objective",
+        "Scoring",
+        "Eligibility",
+        "Submission",
+        "Deadline",
+        "Number of eligible competing teams"
+      ],
+      "participant_count": null,
+      "id": "heb",
+      "source_type": "official_challenge_metadata",
+      "source_url": "https://tamudatathon.com/challenges/7"
+    },
+    {
+      "challenge_id": "databricks",
+      "name": "Best Use of Databricks",
+      "page_url": "https://tamudatathon.com/challenges/8",
+      "guide_url": null,
+      "objective": "Use Databricks creatively for data engineering, analytics, ML or AI, alone or within another Datathon challenge.",
+      "scoring": "Creativity, technical implementation and meaningful improvement from Databricks. Numerical weights not supplied.",
+      "submission": null,
+      "deadline": null,
+      "eligibility_constraints": [
+        "Databricks must meaningfully improve the solution; standalone and cross-challenge projects allowed"
+      ],
+      "prizes": {
+        "1": "Databricks Lululemon Backpack + Owala Water Bottle",
+        "2": "Databricks Lululemon Backpack",
+        "3": "Owala Water Bottle"
+      },
+      "unknowns": [
+        "Detailed submission requirements",
+        "Deadline",
+        "Number of eligible competing teams"
+      ],
+      "participant_count": null,
+      "id": "databricks",
+      "source_type": "official_challenge_metadata",
+      "source_url": "https://tamudatathon.com/challenges/8"
+    }
+  ]
+}

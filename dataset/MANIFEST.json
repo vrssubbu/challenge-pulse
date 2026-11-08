@@ -1,8 +1,7 @@
 {
   "schema_version": 1,
   "package": "Participant Pulse analytical dataset",
-  "generated_at_utc": "2026-11-08T09:16:28.767Z",
-  "requirements_review_date": "2026-11-08",
+  "generated_at_utc": "2026-11-08T09:27:09.937Z",
   "generated_by": "scripts/package-dataset.mjs",
   "hash_algorithm": "SHA-256",
   "paths_relative_to": "dataset/",
@@ -162,29 +161,19 @@
     },
     {
       "path": "DATA_DICTIONARY.csv",
-      "bytes": 50983,
-      "sha256": "d847d67833aa0849f0eb6b9ae792f89fcb205ce11f54270fc7eac50f2179bbd3",
+      "bytes": 50943,
+      "sha256": "2c85473290cb8902c692a242fb1766f9a5b473491bd99bbccc6865ce7b4e9bc9",
       "record_count": 135
     },
     {
       "path": "DATASET_DOCUMENTATION.md",
-      "bytes": 23676,
-      "sha256": "27d6933f4301857e0d3a678f11aa0dfae10d5b97d1ca15075eff654715b9622b"
-    },
-    {
-      "path": "DEMO_OUTLINE.md",
-      "bytes": 3524,
-      "sha256": "eae9ac9db3023cccfc5b835c597a0d51082697872b474667d9fc5f499ae66c31"
-    },
-    {
-      "path": "ELIGIBILITY.md",
-      "bytes": 14427,
-      "sha256": "0dd769e6f501699bc594e1d14d67c506bb23ec2d38f0802f15b0bd957378d401"
+      "bytes": 10290,
+      "sha256": "61d37ceeac39717fedb40155abf55c12504793336ceedffd222eb12a760ec320"
     },
     {
       "path": "METHOD.md",
-      "bytes": 18070,
-      "sha256": "d432a6b9405d12fcb997116d4cda3880b4b2df66ee6bcf4b16d3084d04ece870"
+      "bytes": 17913,
+      "sha256": "f544446f1ef000ac5695ac05408fe84d1ee2a5e25f3bdc9268872ff59d30e901"
     },
     {
       "path": "observed/category-codebook.csv",
@@ -233,8 +222,8 @@
     },
     {
       "path": "Participant_Pulse_Dataset.xlsx",
-      "bytes": 78872,
-      "sha256": "9ba8bd19516118e453a3a3b2ae70f47f7d0fc26b2313af91424add2b90d431f5"
+      "bytes": 75286,
+      "sha256": "fcd18e455be3e00352a60a121f7c5a603f1989148633446f273fbcf7a5dacdf2"
     },
     {
       "path": "provenance/field-definitions.json",
@@ -242,19 +231,14 @@
       "sha256": "2e3929cc8cdf0ad88580112079269bdc07713b428b7b877cbc9a74f77ecedb29"
     },
     {
-      "path": "provenance/requirements-review.json",
-      "bytes": 28426,
-      "sha256": "983197fea7b5e5dad9145a0915f877f419b7a233b2fc3952b398ee9e5f6e56fa"
-    },
-    {
       "path": "provenance/source-audit.json",
-      "bytes": 100919,
-      "sha256": "ac5fc755b6e68fd5845b715765cb5bfea4a721f954f8e36793cf45d942ce0ede"
+      "bytes": 101107,
+      "sha256": "4ba16f671522f37ed3b362b3a619cd2df7381579711e22fc7a9f6af4afb1578e"
     },
     {
       "path": "README.md",
-      "bytes": 8150,
-      "sha256": "ab1a820ef345235621276f7f0909fa87c53cfdebc1455c2cda7e5a6347fa8eb3"
+      "bytes": 7668,
+      "sha256": "926e27173214784fa54248187b3aed7167cae5127a71aef473869d40e2f92979"
     },
     {
       "path": "synthetic/simulated-team-challenges.csv",
@@ -279,6 +263,11 @@
       "path": "synthetic/simulated-teams.json",
       "bytes": 7502,
       "sha256": "10e4879f63ee2017be27b71cd7f05e25aef7db95340952b07bc2f5275c83dcbf"
+    },
+    {
+      "path": "VERIFIED_CONTENTS.md",
+      "bytes": 4122,
+      "sha256": "186380fd3603af041603510bc227f986a8e779b6655bcd2fbead39870bd7d8cb"
     }
   ]
 }
