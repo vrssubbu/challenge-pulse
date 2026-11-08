@@ -1,8 +1,9 @@
 import {CHALLENGE_IDS,CATEGORY_LABELS,safeUrl,parseImport,mergeMessages,summarize,csv,equalChanceTopThree} from './model.js?v=6';
 import {LENSES,THEMES,labelForCategory,themeSummaries,sampledDisplaySpan,participationSummary,displayTimeBuckets,filterMessages,buildCoverage} from './pulse-model.js?v=6';
-import {renderPulseStories} from './stories.js?v=6';
+import {renderPulseStories} from './stories.js?v=7';
 import {refreshMotion,syncMotion} from './motion.js?v=6';
-import {mountSignalReel} from './reel.js?v=6';
+import {renderCreatorData} from './creator-data.js?v=7';
+import {initCreatorMotion,syncCreatorMotion} from './creator-motion.js?v=7';
 
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -13,7 +14,6 @@ const symbols=['♠','▥','✦','♦','♣','↗','♥','◈'];
 let catalog=CHALLENGE_IDS.map((id,i)=>({id,name:names[i]}));
 let messages=[],observationData={metadata:{},records:[]},messageData={metadata:{}},localMessages=[];
 let toastTimer,activeLens='all',activeHour='',activeTheme=null;
-let signalReel=null;
 const storageKey='challenge-pulse-discord-v1';
 const motionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
 let motionPreferencePaused=false;
@@ -25,7 +25,7 @@ function toast(text){$('toast').textContent=text;$('toast').hidden=false;clearTi
 function applyMotion(){
   document.documentElement.classList.toggle('motion-paused',motionPaused);
   syncMotion();
-  signalReel?.syncMotion();
+  syncCreatorMotion();
   $('motion-toggle').setAttribute('aria-pressed',String(motionPaused));
   $('motion-toggle').disabled=motionQuery.matches;
   $('motion-toggle').innerHTML=motionQuery.matches?'Reduced motion on':motionPaused?'<span aria-hidden="true">▷</span> Play motion':'<span aria-hidden="true">Ⅱ</span> Pause motion';
@@ -40,6 +40,7 @@ function showPanel(id,focusHeading=true){
   document.querySelectorAll('.panel').forEach(p=>{p.hidden=p.id!==id;p.classList.toggle('active',p.id===id);});
   document.querySelectorAll('.tab').forEach(b=>{b.classList.toggle('active',b.dataset.panel===id);if(b.dataset.panel===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
   history.replaceState(null,'','#'+id);
+  syncCreatorMotion();
   refreshMotion();
   window.scrollTo({top:0,behavior:'auto'});
   if(focusHeading){const heading=$(id).querySelector('h1');if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}}
@@ -110,11 +111,8 @@ function renderOverview(){
   document.querySelectorAll('[data-theme]').forEach(b=>b.addEventListener('click',()=>openExplorer({challenge:selected,theme:b.dataset.theme})));
   renderConstellation();
   renderPulseStories(rows,{onExplore:openExplorer,challengeName,selected});
-  if(signalReel)signalReel.update({catalog,records:messages,selected});
-  else signalReel=mountSignalReel({catalog,records:messages,selected,onSelect:id=>{
-    $('challenge-filter').value=id;
-    renderOverview();
-  }});
+  renderCreatorData({catalog,records:messages,rows,selected,onExplore:openExplorer});
+  initCreatorMotion();
   refreshMotion();
 }
 

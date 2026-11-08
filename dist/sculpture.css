@@ -1,0 +1,42 @@
+/* Original chrome keycap sculpture. The artwork never encodes measured activity. */
+.creator-sculpture{--magnet-x:0px;--magnet-y:0px;--magnet-rx:0deg;--magnet-ry:0deg;isolation:isolate;pointer-events:none;aspect-ratio:720/650}
+.sculpture-stage{position:absolute;inset:0;width:100%;height:100%;perspective:1100px}
+.sculpture-entrance,.sculpture-magnet{position:relative;width:100%;height:100%}
+.sculpture-magnet{transform:translate3d(var(--magnet-x),var(--magnet-y),0) rotateX(var(--magnet-rx)) rotateY(var(--magnet-ry));transform-style:preserve-3d;transition:transform .65s cubic-bezier(.16,1,.3,1)}
+.sculpture-svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 24px 36px #0005)}
+.sculpture-aura{position:absolute;pointer-events:none;border-radius:50%;filter:blur(55px);mix-blend-mode:screen;opacity:.22}
+.sculpture-aura-violet{width:52%;height:46%;left:10%;top:21%;background:radial-gradient(ellipse,#7c469e,transparent 70%)}
+.sculpture-aura-amber{width:45%;height:41%;right:6%;bottom:16%;background:radial-gradient(ellipse,#ac703d,transparent 70%);opacity:.17}
+.sculpture-key,.sculpture-satellite,.sculpture-orbit-fine{transform-box:fill-box;transform-origin:center}
+.creator-sculpture.is-motion-active .sculpture-key-control{animation:sculpture-control-float 7s ease-in-out infinite}
+.creator-sculpture.is-motion-active .sculpture-key-alt{animation:sculpture-alt-float 8s ease-in-out -2s infinite}
+.creator-sculpture.is-motion-active .sculpture-key-defeat{animation:sculpture-defeat-float 9s ease-in-out -3s infinite}
+.creator-sculpture.is-motion-active .sculpture-orbit-fine{animation:sculpture-orbit-breathe 12s ease-in-out infinite}
+.creator-sculpture.is-motion-active .sculpture-satellite-a{animation:sculpture-satellite-float 8s ease-in-out -2s infinite}
+.creator-sculpture.is-motion-active .sculpture-satellite-b{animation:sculpture-satellite-float 7s ease-in-out -4s infinite reverse}
+.creator-sculpture.is-motion-active .sculpture-satellite-c{animation:sculpture-satellite-float 6s ease-in-out -1s infinite}
+@keyframes sculpture-control-float{0%,100%{transform:translate(0,0) rotate(-1deg)}50%{transform:translate(-4px,-13px) rotate(1deg)}}
+@keyframes sculpture-alt-float{0%,100%{transform:translate(0,-5px) rotate(1deg)}50%{transform:translate(5px,8px) rotate(-1deg)}}
+@keyframes sculpture-defeat-float{0%,100%{transform:translate(0,0)}50%{transform:translate(2px,-9px)}}
+@keyframes sculpture-orbit-breathe{0%,100%{transform:rotate(-3deg) scale(1)}50%{transform:rotate(3deg) scale(1.025)}}
+@keyframes sculpture-satellite-float{0%,100%{transform:translate(0,0)}50%{transform:translate(6px,-16px)}}
+
+/* These variables supplement creator.css layout; ordinary content stays visible without JavaScript. */
+.creator-marquee-row{transform:translate3d(var(--marquee-shift,0px),0,0);will-change:transform}
+.creator-marquee-lane:focus-visible .creator-marquee-row,.creator-marquee-lane:has(:focus-visible) .creator-marquee-row{transform:none!important}
+.creator-project-card{transform:scale(var(--project-scale,1));transform-origin:center top}
+.creator-char-word{display:inline-block;white-space:nowrap}
+.creator-char{display:inline;transition:opacity .12s linear}
+.creator-readable-copy{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+html.motion-paused .sculpture-stage *,html.motion-paused .creator-char{animation:none!important;transition:none!important}
+html.motion-paused .sculpture-magnet{transform:none}
+html.motion-paused .creator-marquee-row{transform:none!important;will-change:auto}
+html.motion-paused .creator-project-card{transform:none!important}
+html.motion-paused .creator-char{opacity:1!important}
+@media(max-width:700px){.sculpture-aura{filter:blur(34px)}.sculpture-svg{filter:drop-shadow(0 14px 22px #0004)}}
+@media(hover:none){.sculpture-magnet{transform:none!important}}
+@media(prefers-reduced-motion:reduce){
+  .sculpture-stage *,.creator-char{animation:none!important;transition:none!important}
+  .sculpture-magnet,.creator-marquee-row,.creator-project-card{transform:none!important}
+  .creator-marquee-row{will-change:auto}.creator-char{opacity:1!important}
+}

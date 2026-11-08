@@ -1,42 +1,37 @@
-# Animated participant pulse
+# Participant Pulse creator presentation
 
-The November 8 presentation update uses an immersive burgundy hero, decorative pulse paths, interactive challenge nodes, scroll entrances, animated category bars and prominent findings derived from the selected observations. The data remains readable with motion paused or with the operating system's reduced-motion preference.
+The current presentation adapts the user-supplied Jack 3D creator reference to **Ctr_.Alt_Defeat / Participant Pulse**. It presents the actual observation project, without claiming to be Jack, selling creative services, or portraying stock imagery as participant footage.
 
-The story cards and conversation mix recalculate from the same records as the explorer. Selecting a finding opens its evidence. Counts are message counts, not verified participants or teams. Motion never represents a live stream, a measured heartbeat, an emotion score or an activity rate.
+## Current structure
 
-Pulse lines are original editorial interpretations. They are explicitly labeled as such; they are not quotations attributed to participants. Source messages remain paraphrases with their original evidence links.
+1. A near-black hero with oversized silver-gradient team typography, a central kinetic sculpture, recorded sample totals, section navigation and a magnetic call to action.
+2. Two opposing rows of challenge artwork and recorded message counts. Selecting a challenge opens its messages in the explorer. Artwork size and motion do not imply popularity or comparable activity.
+3. An about section with character-by-character scroll emphasis and decorative corner objects. Its copy describes the project and its limited sample.
+4. A rounded light findings section, followed by three dark story cards that stack on scroll. These interpret the selected records as clarification, work in progress and explicit participation posts.
+5. The complete data workbench, with the existing challenge selection, source map, categories, explorer, coverage notes, exports, imports and separate hypothetical scenarios.
 
-## References reviewed
+The three story cards derive counts, denominators, shares and paraphrased examples from the same selected messages as the overview. In the bundled all-challenge sample, their counts are 41, 24 and 11 of 140 messages. Selecting HEB changes them to 11, 2 and 11 of 30 messages. These are message counts, not verified people, teams, completion rates or emotion scores. Inspecting a story opens its exact content theme in the message explorer. Imports and filters must update these values rather than preserve a fixed headline.
 
-- [The Pudding](https://pudding.cool/): visual essays organized around a concrete question and a readable data story.
-- [GSAP showcase](https://gsap.com/showcase/): expressive typography and motion-led transitions.
-- [Awwwards animation gallery](https://www.awwwards.com/websites/animation/): motion, interaction and layout references.
+## Artwork and motion
 
-The implementation is original CSS, SVG and browser Web Animations. No animation library or generated media is required. The Higgsfield catalog and balance calls returned an unavailable-tool error during this update, so a free generation entitlement could not be verified. No Higgsfield generation was submitted and no credits were spent.
+The eight challenge scenes are original local SVG illustrations. The hero sculpture and surrounding objects are decorative; none depicts collected imagery or a real participant. The implementation uses HTML, CSS, SVG and browser animation APIs. It does not require a paid animation library, generated video, a prompt subscription or a media account. The supplied prompt text and its unrelated portfolio imagery are not redistributed in the repository.
 
-## Publication
+Scroll emphasis, opposing gallery rows, magnetic hover, entrance sequences and stacking cards support the visual narrative. They never simulate messages arriving or interpolate analytical values. The global motion control and operating-system reduced-motion preference must keep content readable, controls reachable and evidence available. The gallery must also be usable with keyboard focus and native horizontal scrolling.
 
-Preserve the original Site identity in `.openai/hosting.json`. The Sites connector still returned project-not-found during this update. The local experience and source ZIP can be reviewed immediately, but publishing the update to the original URL requires restored project access and a new archive produced by the Sites source workflow. The older deployment archive must not be reused: it predates the complete dataset.
+Editorial interpretations are identified separately from source evidence. Message examples are labeled as paraphrases; source links and collection details remain in the inspector and methodology. Neutral presentation wording does not change the recorded Discord UI collection method.
 
-## MotionSites-inspired interaction update
+## References and history
 
-The user supplied two reference prompts: a Jack creator portfolio and a Reelmark curved-card hero. The adaptation uses oversized metallic typography, a magnetic call to action, a draw-in annotation, scroll-responsive editorial words and a draggable curved challenge reel. The page remains plain HTML/CSS/JavaScript with no build step. No paid prompt pack, generated video or externally hosted template asset is required.
+The user supplied a Jack creator portfolio prompt and, earlier, a Reelmark curved-gallery prompt. The earlier burgundy Reelmark hero, curved reel and handwritten annotations are historical iterations, not the current primary layout. Reusable challenge artwork remains; the active page now follows the creator reference's section order and contrasting dark/light composition. Older reel geometry utilities may remain in source and tests without mounting a reel in the current page.
 
-The reel contains the eight challenge records in catalog order, with message counts derived from the loaded dataset. It is not a ranking, live feed or measurement of participant emotion. Selecting a card filters the existing observations; drifting or navigating the reel does not change the selected sample. Pausing motion switches the reel to a static horizontally scrollable list. Keyboard controls and native scrolling preserve access without dragging.
+Earlier research included [The Pudding](https://pudding.cool/), [GSAP's showcase](https://gsap.com/showcase/), [Awwwards' animation gallery](https://www.awwwards.com/websites/animation/) and [MotionSites](https://motionsites.ai/mcp). These supplied presentation references, not participant data or evidence. No paid media generation was used for this design.
 
-Official references checked November 8, 2026:
+## Verification and publication
 
-- [MotionSites MCP](https://motionsites.ai/mcp) states that free accounts can open three free prompts, while paid plans unlock the full catalog.
-- [Academy](https://motionsites.ai/academy) offers free video tutorials with prompt examples.
-- [Cursor-tracking tutorial](https://motionsites.ai/lesson/cursor-tracking-website-with-motionsites) demonstrates pointer-responsive presentation.
-- [Scroll-animation tutorial](https://motionsites.ai/lesson/build-scroll-animated-website-with-ai) demonstrates cinematic typography and scroll-led narrative.
+The current creator build passed all 31 model and integration checks on November 8, 2026. These include selected-record counts, empty selections, source-record membership, duplicate imports and rejection of synthetic data from the observed import.
 
-The supplied prompts and third-party prompt text are not redistributed in this repository. All challenge visuals are implemented locally, with actual analytical values kept as selectable HTML text.
+Browser review at 1440 × 1000 and 390 × 844 found no horizontal overflow. The chrome-like hero sculpture fits the desktop viewport, the about section is centered, the white findings and project cards are readable, and mobile cards use normal document flow. HEB selection showed 11 clarification, two building and 11 participation messages out of 30. Its building story opened two explorer records and the source inspector. All-challenge clarification showed 41 of 140 messages. Pause stopped the SVG animation while preserving all text and cards. The separate simulation showed nine fictional teams and 21 allocations; the hypothetical calculator returned 10% for 30 assumed entrants. No console errors were observed during these checks.
 
-## Reelmark transformation
+Gallery checks confirmed that the first click on Rev's Casino opened its 10-message sample at both 390- and 1440-pixel widths. Keyboard Enter on Dashboard Royale opened the correct challenge. At widths up to 900 pixels, the gallery uses native horizontal scrolling with animated SVG artwork; desktop rows translate in opposite directions. Native operating-system reduced motion was not separately emulated; the checks above are not exhaustive browser coverage.
 
-The follow-up uses the Reelmark prompt as the primary layout and motion reference: centered oversized headline, badge, a dominant curved gallery within the hero, handwritten annotations and a dashed call-to-action ring. The burgundy background remains. The prior constellation moves below the findings so it no longer competes with the hero gallery.
-
-Each of the eight cards contains an original animated SVG scene associated with its challenge. These are illustrations, not observed activity, result charts or participant footage. The carousel computes rounded quadrilaterals from position, making the outer edges taller and the track bow outward. It drifts at 50 desktop pixels per second, supports drag momentum, and pauses its offscreen artwork. Reduced-motion and the global pause control provide a static scrollable list.
-
-Findings enter with a staggered tilt and rise; the composition bar reveals on scroll. Selecting another sample replaces the values synchronously and animates the newly visible cards without interpolating the analytical values. The primary button scrolls to the findings and focuses their heading. The implementation uses local SVG, CSS and browser animation APIs; no external product-video assets, paid libraries or prompt text are bundled.
+The original Site identity remains in `.openai/hosting.json`. The Sites connector returned `NOT_FOUND` again during this update. A local preview or GitHub source update is not confirmation that the original hosted URL has been updated. Any later successful publication should report the returned URL and preserve source/data provenance.

@@ -21,7 +21,7 @@ export function renderPulseStories(rows, {onExplore = () => {}, challengeName = 
   const records = Array.isArray(rows) ? rows : [];
   const total = records.length;
   const scope = selected === 'all' ? 'All selected challenges' : typeof challengeName === 'function' ? challengeName(selected) : String(challengeName);
-  const heading = `<div class="pulse-stories-heading"><div><span class="eyebrow">THE HUMAN SIDE OF THE SAMPLE</span><h2 id="pulse-stories-title">A conversation has layers.</h2></div><p>${escapeHtml(scope)} · ${number(total)} selected message${total === 1 ? '' : 's'}<br><small>Recorded observations · partial coverage</small></p></div>`;
+  const heading = `<div class="pulse-stories-heading"><div><span class="eyebrow">03 / THE FINDINGS</span><h2 id="pulse-stories-title">What the sample says.</h2></div><p>${escapeHtml(scope)} · ${number(total)} selected message${total === 1 ? '' : 's'}<br><small>Recorded observations · partial coverage</small></p></div>`;
   root.setAttribute('aria-labelledby', 'pulse-stories-title');
   if (!total) {
     root.innerHTML = `${heading}<div class="pulse-story-empty"><span class="eyebrow">ROOM FOR EVIDENCE</span><h3>No messages in this selection.</h3><p>No category shares can be calculated. An empty sample does not establish that a challenge was quiet.</p></div>`;
@@ -31,7 +31,7 @@ export function renderPulseStories(rows, {onExplore = () => {}, challengeName = 
   const themes = themeSummaries(records);
   const cards = stories.map((story, index) => {
     const count = themes.find(theme => theme.id === story.theme)?.count ?? 0;
-    return `<article class="pulse-story-card" style="--enter-delay:${index * 90}ms"><span class="pulse-story-kicker">${story.kicker}</span><div class="pulse-story-value">${number(count)}<small>${escapeHtml(share(count,total))} of sample</small></div><h3 class="pulse-story-title">${story.title}</h3><p class="pulse-story-copy">${story.copy}</p><button type="button" class="pulse-story-link" data-story-theme="${story.theme}" aria-label="Inspect ${number(count)} messages: ${story.title}"${count ? '' : ' disabled'}>${count ? 'Explore these messages' : 'None in this sample'} <span aria-hidden="true">↗</span></button></article>`;
+    return `<article class="pulse-story-card" style="--enter-delay:${index * 90}ms"><span class="pulse-story-index" aria-hidden="true">0${index+1}</span><span class="pulse-story-kicker">${story.kicker}</span><div class="pulse-story-value">${number(count)}<small>${escapeHtml(share(count,total))} of sample</small></div><h3 class="pulse-story-title">${story.title}</h3><p class="pulse-story-copy">${story.copy}</p><button type="button" class="pulse-story-link" data-story-theme="${story.theme}" aria-label="Inspect ${number(count)} messages: ${story.title}"${count ? '' : ' disabled'}>${count ? 'Explore these messages' : 'None in this sample'} <span aria-hidden="true">↗</span></button></article>`;
   }).join('');
 
   const counts = new Map();

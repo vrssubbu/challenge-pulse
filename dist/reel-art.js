@@ -1,10 +1,10 @@
 // Original procedural illustrations. Their motion is decorative, never observed data.
 let sequence = 0;
 const palettes = [
-  ['#552235','#bf6a79','#f5cd91'], ['#263c42','#79b0ad','#e9d7ab'],
-  ['#40334e','#b39cc7','#f3c6a7'], ['#563025','#c39058','#ffe2a0'],
-  ['#41293e','#b58ca4','#f1c3a2'], ['#263b40','#8bb6b2','#f2cc91'],
-  ['#384334','#99af80','#e6ce91'], ['#473045','#b97d91','#f7c395']
+  ['#16141d','#8c83a5','#e5edf4'], ['#142124','#6f9caa','#d8eced'],
+  ['#21172d','#a281d8','#eee5ff'], ['#292018','#bf8d5e','#f6e3ca'],
+  ['#191c2d','#7f8ec4','#e0e5fa'], ['#142125','#8ea6b8','#e9f0f5'],
+  ['#1d2721','#90ad9b','#e1eee3'], ['#261b29','#ba90c6','#f4e4f9']
 ];
 
 export function createReelArt(index = 0) {
