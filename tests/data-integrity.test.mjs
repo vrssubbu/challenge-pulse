@@ -76,7 +76,7 @@ test('reaction observations retain partial coverage, dates, source snapshots and
   assert.equal(request.reaction_capture_time,null);
   assert.equal(request.reaction_snapshot_id,'revs-reread-20261108');
   assert.match(request.reaction_observation_note,/not 15 unique reactors/);
-  assert.equal(rows.filter(r=>r.reaction_count_observed===null).length,8);
+  assert.equal(rows.filter(r=>r.reaction_count_observed===null).length,rows.length-counted.length);
   assert.throws(()=>validateMessage({...request,reaction_count_observed:-1}),/nonnegative/);
   assert.throws(()=>validateMessage({...request,reaction_types_observed:16}),/must not exceed/);
   assert.throws(()=>validateMessage({...request,reaction_snapshot_id:'not-an-observed-snapshot'}),/listed snapshot/);
@@ -118,4 +118,30 @@ test('organizer-update coding requires explicit organizer role evidence',async()
   assert.equal(coded.category,'organizer_update');
   assert.equal(coded.author_role,'organizer');
   assert.match(coded.role_evidence,/Test fixture/);
+});
+
+test('eight-channel evidence retains scoped participation labels and unverified claims',async()=>{
+  const coding=await load('discord-message-coding');
+  const coverage=await load('discord-observations');
+  const rows=parseImport(coding);
+  assert.equal(rows.length,140);
+  assert.equal(coding.snapshots.length,11);
+  assert.equal(new Set(rows.map(r=>r.challenge_id)).size,8);
+  assert.deepEqual(Object.fromEntries(coverage.records.map(r=>[r.challenge_id,r.observed_messages])),{'revs-casino':10,'dashboard-royale':9,'build-a-dataset':11,'house-edge':30,'heads-up':30,hitachi:10,heb:30,databricks:10});
+  const heb=rows.filter(r=>r.challenge_id==='heb'&&r.category==='participation_confirmation');
+  assert.equal(heb.length,11);
+  assert.equal(new Set(heb.map(r=>r.reported_team_alias)).size,9);
+  assert.deepEqual([...new Set(heb.map(r=>r.reported_team_alias_scope))],['heb-channel-20261108']);
+  assert.ok(heb.every(r=>r.reply_to_message_id===null));
+  const excluded=rows.find(r=>r.message_id==='1568838602387886162');
+  assert.equal(excluded.category,'other');assert.equal(excluded.reported_team_alias,null);
+  const claim=rows.find(r=>r.message_id==='1568726374322274466');
+  assert.match(claim.paraphrase,/unverified/);assert.equal(claim.reported_team_alias,null);
+  assert.ok(coverage.records.every(r=>r.team_count===null&&r.entrant_count===null&&r.participant_count===null&&r.coverage_status==='partial'));
+  assert.throws(()=>validateMessage({...heb[0],reported_team_alias_scope:null}),/explicit scope/);
+  assert.throws(()=>validateMessage({...heb[0],category:'other'}),/only counted/);
+  assert.throws(()=>mergeMessages([heb[0]],[{...heb[0],reported_team_alias:'HEB-T99'}]),/conflicts/);
+  assert.equal(rows.filter(r=>r.display_date==='2026-11-04').length,2,'Pre-event message dates must not be silently moved into event dates');
+  assert.ok(rows.filter(r=>r.challenge_id!=='revs-casino').every(r=>r.display_alias.includes('-')));
+  assert.equal(coverage.metadata.collection_date_local,null,'Aggregate multi-date acquisition must not imply one date');
 });

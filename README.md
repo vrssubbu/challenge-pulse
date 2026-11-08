@@ -1,6 +1,6 @@
 # Challenge Pulse
 
-A dependency-free Discord observation dashboard for TAMU Datathon. It includes official metadata for eight challenges and a traceable, partial Rev’s Casino sample: ten distinct observed messages, five sample-scoped display-label aliases, and six content categories. Two recorded snapshots contain the same ten message IDs, so repeated sightings do not increase the message count. The other seven channels are marked unread, with null counts.
+A dependency-free Discord observation dashboard for TAMU Datathon. It combines official metadata for eight challenges with traceable, partial channel observations. The dashboard derives counts, categories, dates and coverage from the bundled message and snapshot records. Repeated sightings are deduplicated by message ID. Any unread channel remains missing, not zero.
 
 ## Run
 
@@ -14,11 +14,13 @@ Open http://127.0.0.1:4173. Do not open `dist/index.html` directly: browsers res
 
 ## Use
 
+- The animated participant-pulse presentation adds a luminous pulse hero, three data-derived findings, a conversation-mix visualization and editorial pulse lines. Findings and category keys open the existing message explorer. All values follow the selected sample; decorative motion does not indicate live activity. Editorial lines are original interpretations, never attributed participant quotations. See [design notes](docs/DESIGN_NOTES.md) for references and publication status.
+
 - Overview includes eight equal-size challenge nodes. Select a node or use the challenge selector to filter the observed sample. Missing channels display “No sample”; node size does not imply popularity. The pulse animation is decorative, not a live feed. Pause it with the motion control; the app also honors the device’s reduced-motion preference while keeping all content visible.
-- Click a content-category bar or a thematic question to open its matching evidence. Category shares always use the selected message sample as their denominator.
-- Message explorer combines challenge, category, paraphrase search, snapshot, author-role and content-lens filters. Click a displayed-hour group to narrow the view, or reset the filters. The hour groups contain only sampled messages and are not a complete time series or an activity-rate calculation.
+- Click a content-category bar or a thematic question to open its matching evidence. Category shares always use the selected message sample as their denominator. The overview counts coded help, rules, logistics, score and leaderboard discussion, including both questions and explanations; its suggested next step follows the strongest available actionable theme in that selected sample.
+- Message explorer combines challenge, category, paraphrase search, snapshot, author-role and content-lens filters. Snapshot choices follow the selected challenge and use the recorded snapshot labels. Click a displayed-hour group to narrow the view, or reset the filters. The hour groups contain only sampled messages and are not a complete time series or an activity-rate calculation.
 - Inspect a message to open its paraphrase, source link, display time, alias, role evidence, collection/coding provenance and authoritative snapshot membership. Where present, reaction counts are labeled as the latest recorded reaction reading, with their observation date and snapshot; they are not unique-reactor counts or counts as of every earlier snapshot. Original Discord links require server access.
-- Coverage & method distinguishes partial samples from unread channels, explains deduplication and documents the written collection requirement alongside the user-reported organizer exception.
+- Coverage & method distinguishes partial samples from unread channels, shows the dates and times of the sampled messages without implying continuous coverage, explains deduplication and documents the written collection requirement alongside the user-reported organizer exception.
 - Explore a scenario computes `min(3, N) / N` for a manually assumed entrant count. It is an equal-chance thought experiment, not a winning probability forecast.
 - Export message JSON, message CSV and coverage JSON. Exports include all loaded records, regardless of current filters. JSON preserves the full normalized message schema and is the supported import/transfer format; CSV provides the core analytical fields plus role, snapshot and reaction fields.
 - Import another coded-message JSON file to merge records by exact string message ID. The result reports added, enriched and unchanged records. Imports remain in this browser’s localStorage on this device; they are not synchronized to another device or the hosted source files. Export JSON to transfer them.
@@ -27,9 +29,9 @@ Open http://127.0.0.1:4173. Do not open `dist/index.html` directly: browsers res
 
 `dist/data/catalog.json` is public official challenge metadata. `discord-observations.json` is the per-channel coverage inventory. `discord-message-coding.json` contains aliases, paraphrased coded messages and a bundled `snapshots` inventory. See [Discord methodology](docs/DISCORD_METHODOLOGY.md), [metric dictionary](docs/METRIC_DICTIONARY.md) and [challenge review](docs/CHALLENGE_REVIEW.md).
 
-No participant names, measured team/entrant counts, mental-health interpretations or fabricated observations are added to the observed dataset. Displayed posting timezones were not verified. No messages-per-hour calculation or cross-channel ranking is made because the observation windows are incomplete and unequal. Author roles are unknown for all ten current messages; quoting or replying to an organizer does not establish the author’s role. The sample does not claim to exclude staff or bots.
+No participant names, verified team/entrant counts, mental-health interpretations or fabricated observations are added to the observed dataset. Displayed posting timezones were not verified. No messages-per-hour calculation or cross-channel ranking is made because the observation windows are incomplete and unequal. Author roles are labeled only when explicit evidence is recorded; quoting or replying to an organizer does not establish the author’s role. Display-label aliases and counts are scoped to one channel’s observations and are never combined into a cross-channel person or team count. The sample does not claim to exclude staff or bots.
 
-The reread captured reaction counts for two messages only. Missing reaction fields on other messages mean unmeasured, not zero. The current reaction reading is separate from the posting timestamp and initial observation. Sources and coding limitations remain attached to the records.
+Reaction readings are recorded only where observed. Missing reaction fields mean unmeasured, not zero. The current reaction reading is separate from the posting timestamp and initial observation. Sources and coding limitations remain attached to the records.
 
 The written Build-A-Dataset guide requires physical-world primary data. The user reports organizer permission for remote observations; the scope has not been independently verified. Synthetic records remain synthetic and are never represented as team contacts or fieldwork.
 
@@ -49,7 +51,7 @@ Optional fields retained by normalization include `reply_to_message_id`, `human_
 
 Reaction fields are nullable: `reaction_count_observed`, `reaction_types_observed`, `reaction_observed_on_local`, `reaction_observed_timezone`, `reaction_capture_time`, `reaction_snapshot_id` and `reaction_observation_note`. A known count requires a valid observation date, timezone and a reaction snapshot listed in `snapshot_ids`. Reaction-type counts cannot exceed total reaction counts. These fields describe a particular reading, not unique people or a growth rate.
 
-Supported categories: `social_banter`, `strategy_discussion`, `progress_report`, `collaboration`, `unclassified_media`, `leaderboard_request`, `help_request`, `rule_clarification`, `logistics_request`, `organizer_update`, `other`. The initial observed sample uses only the first six. Supporting a category in the application is not evidence that it was observed.
+Supported categories: `social_banter`, `strategy_discussion`, `progress_report`, `collaboration`, `unclassified_media`, `leaderboard_request`, `score_request`, `help_request`, `rule_clarification`, `logistics_request`, `organizer_update`, `participation_confirmation`, `other`. Only categories represented by the loaded observations contribute to the charts. Supporting a category in the application is not evidence that it was observed.
 
 Message IDs are deduplicated. Matching IDs with conflicting challenge, coding/content, alias, posting time, source URL, timezone or reply metadata reject the import. Compatible duplicates can enrich snapshot membership, missing provenance, an unknown author role or human-review status without adding another message.
 
@@ -57,13 +59,15 @@ A known reaction reading can enrich a missing reading. A later observation date 
 
 Imported samples remain partial. The app withholds combined display-label counts, time ranges, concentration measures and reaction aggregates for affected channels rather than reusing stale bundled values. Per-message evidence remains inspectable. Export metadata identifies mixed bundled/imported records and preserves the original bundled metadata separately.
 
+Participation-confirmation records may include `reported_team_alias` and `reported_team_alias_scope`. These preserve anonymous labels explicitly reported in the messages. The participation lens counts posts. Distinct labels are shown only after selecting one channel and only within a consistent reported-label scope; they are not verified teams, entrants, memberships or valid submissions. A missing label does not mean nonparticipation.
+
 ## Validation
 
 ```sh
 npm test
 ```
 
-Model checks cover sample reconciliation, snapshot membership, duplicate enrichment, reaction ordering, role evidence, input validation, removal of unknown identity fields, CSV escaping, scenario bounds, theme/lens filters, displayed-time groups, missing-data handling and DOM target consistency. Browser visual QA was unavailable because the computer-use runtime could not verify the target URL. Local HTTP checks and model tests do not establish visual verification.
+Model checks cover sample reconciliation, snapshot membership, duplicate enrichment, reaction ordering, role evidence, input validation, removal of unknown identity fields, CSV escaping, scenario bounds, theme/lens filters, displayed-time groups, scoped participation labels, missing-data handling and DOM target consistency. The animated 140-message, eight-channel build passed all 24 checks on November 8. Its hero and results were visually checked at desktop (1280 pixels), mobile (390 pixels), and the default app-panel width. Browser checks confirmed challenge-filter recalculation, participation-story navigation to 11 HEB posts, the pause/play control and manual editorial-line cycling; no browser console errors were observed. Reduced-motion behavior is implemented in CSS and JavaScript but was not separately emulated in this browser session. These checks do not establish exhaustive browser coverage.
 
 ## Separate synthetic scenario
 

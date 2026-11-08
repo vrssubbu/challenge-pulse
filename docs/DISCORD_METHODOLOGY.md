@@ -4,11 +4,26 @@ Challenge Pulse describes visible challenge discussion. Its dataset is derived f
 
 ## What has actually been observed
 
-The initial pass observed one Rev's Casino viewport containing 10 message items and five distinct display labels. The same ten-message sample was read again on November 8, 2026. The two snapshots are repeated sightings of the same messages, not 20 unique messages or two independent samples. The visible message timestamps ran from 22:47 to 23:22 on November 7, 2026. The timezone behind Discord's rendered timestamps has not been independently verified. This is a viewport sample, not an exhaustive export of that interval or the full channel. It contains no verified team membership, entrant count, or submission outcomes.
+The dataset contains **140 unique message items across all eight challenge channels**, organized into 11 observation snapshots. Collection occurred through authorized native Chrome UI reading on November 7–8, 2026. Exact capture times were not recorded. The timezone behind Discord's rendered message timestamps has not been independently verified.
 
-During the November 8 reread, reaction counts were inspected on two messages. The 23:22 leaderboard request displayed 12 heavy-plus-sign reactions and three custom-image reactions: 15 reaction events across two emoji types, not 15 unique reactors. The 22:57 collaboration message displayed one custom-image reaction. Reaction counts for the other eight messages remain unknown. The sum of 16 applies only to those two inspected messages; it is not the total reactions on the ten-message sample or channel. No exact capture time was recorded, so no growth or velocity calculation is made.
+| Channel | Observed messages | Within-channel display labels | Displayed message span, timezone unverified |
+| --- | ---: | ---: | --- |
+| Rev's Casino | 10 | 5 | Nov 7, 22:47–23:22 |
+| Dashboard Royale | 9 | 6 | Nov 4, 22:31 to Nov 7, 16:52 |
+| Build-A-Dataset | 11 | 6 | Nov 4, 23:57 to Nov 7, 12:37 |
+| House Edge | 30 | 15 | Nov 7, 19:38–23:31 |
+| Heads Up | 30 | 7 | Nov 7, 21:03 to Nov 8, 00:38 |
+| Hitachi | 10 | 5 | Nov 7, 10:41 to Nov 8, 00:36 |
+| H-E-B | 30 | 19 | Nov 7, 14:58–23:49 |
+| Databricks | 10 | 4 | Nov 7, 09:03–20:54 |
 
-The other seven challenge channels have not been observed in this pass. Navigation attempts were blocked by the UI tool before their message contents could be read. Their sidebar links are known, but their activity metrics remain null or “not observed.” Do not treat missing channels as quiet, compute their activity as zero, or rank all eight channels from this one viewport.
+These are bounded loaded samples with unequal spans, not full-channel counts or comparable observation intervals. Display-label counts apply only within a channel; summing them would not yield unique people. Dashboard Royale and Build-A-Dataset include one pre-event November 4 message each. A channel-start marker was seen for those two channels, but complete history and threads were not verified.
+
+The original ten Rev's Casino messages were read twice. Those snapshots are repeated sightings of the same messages, not 20 unique messages or two independent samples. House Edge and H-E-B each have separate earlier and later message batches. No channel has a verified complete observation window, verified team membership, entrant count, or submission outcomes.
+
+During the November 8 Rev reread, reaction counts were inspected on two messages. The 23:22 leaderboard request displayed 12 heavy-plus-sign reactions and three custom-image reactions: 15 reaction events across two emoji types, not 15 unique reactors. The 22:57 collaboration message displayed one custom-image reaction. Reaction counts for the other 138 messages remain unknown. The sum of 16 applies only to those two inspected messages; it is not the total reactions on the dataset or channel. No exact capture time was recorded, so no growth or velocity calculation is made.
+
+Earlier navigation attempts were blocked. A later authorized Chrome session enabled reading the remaining seven channels. Historical snapshot notes preserve the earlier limitation; current channel summaries reflect the new observations. Neither the larger sample sizes nor the successful access establish popularity rankings, activity rates, or complete coverage.
 
 ## Acquisition protocol for a comparable dataset
 
@@ -28,18 +43,24 @@ On import, matching message IDs must agree on their core text coding, source, di
 
 ## Message coding rules
 
-The current dataset assigns exactly one `category` per message. The six current labels and counts are below. They are single-assistant interpretations, with no independent human review or second-coder validation. A reply can have a different category from the message it replies to.
+The current dataset assigns exactly one `category` per message. The labels and counts below are single-assistant interpretations, with no independent human review or second-coder validation. A reply can have a different category from the message it replies to.
 
 | Category | Current sample count | Include | Do not infer |
 | --- | ---: | --- | --- |
-| `social_banter` | 4 | Brief social or conversational content without a specific request, progress claim, or concrete strategy signal in this coding. | Mental state, motivation, or competitive ability. |
-| `strategy_discussion` | 1 | A statement about an approach to trying the challenge. | That the approach works or belongs to a separate team. |
-| `progress_report` | 1 | A self-reported challenge goal or current progress. | Verified completion, a final submission, or project quality. |
-| `collaboration` | 1 | An invitation to collaborate. | Actual team membership or the number of teams. |
-| `unclassified_media` | 1 | A visible image message whose contents were not classified. | Anything about the image's content. |
+| `social_banter` | 32 | Brief social conversation, jokes, exaggerated boasts or other banter. | Mental state, motivation, real scores, or competitive ability. |
+| `strategy_discussion` | 10 | A statement about an approach, technical setup or model choice. | That the approach works or belongs to a separate team. |
+| `progress_report` | 8 | A self-reported goal, result or current resource constraint. | Verified completion, score, final submission, or project quality. |
+| `collaboration` | 6 | An invitation to collaborate or practice. | Actual team membership or the number of teams. |
+| `unclassified_media` | 6 | Media without an assessed analytical claim. | Details of uninspected attachments or media. |
 | `leaderboard_request` | 2 | An explicit request for a leaderboard or leaderboard update. | Actual rank, entrant count, or winning likelihood. |
+| `score_request` | 1 | A request for other posters to share scores. | Verified scores or a request for an official leaderboard. |
+| `rule_clarification` | 32 | Questions, answers, and explanations about rules or deliverables. | That every row is a question or that the author has official authority. |
+| `logistics_request` | 4 | A request about registration, submission location or procedure. | That the request was unresolved after the observation. |
+| `help_request` | 5 | An explicit request for help or resources, or a reported access problem. | Subsequent resolution, event-wide prevalence, or mental health. |
+| `participation_confirmation` | 11 | A team-label self-report in response to a participation prompt. | Verified team membership, eligibility, entry, or final submission. |
+| `other` | 23 | Resource links, attributed announcements, fragments or unmatched readable content. | That an external-tool discussion describes the challenge's difficulty. |
 
-The importer also supports `help_request` for explicit challenge assistance, `rule_clarification` for discussion clarifying rules, `organizer_update` for an update whose organizer source is verified, and `other` for readable unmatched content. These categories are supported for expanded collection, not observed or assigned in the current file. Version the codebook when extending it further and recode consistently if comparisons require it. Do not assign `organizer_update` based only on confident wording or an unverified display name.
+The importer also supports `organizer_update`, but no current row uses it. This category requires an organizer role with explicit role evidence. Version the codebook when extending it and recode consistently if comparisons require it. Do not assign authority based only on confident wording or a display name such as “Challenges Lead.”
 
 Future explicit-content flags may include `reports_difficulty`, `mentions_prize_motivation`, `states_submission_intent`, and `requests_help`; these have not been populated in the current dataset. Use true only for an explicit statement, false only when inspected content does not express it, and null when content cannot be evaluated. These flags describe messages, not diagnoses, personalities, or reliable team-level states. Do not label participants as traumatized or infer mental-health conditions.
 
@@ -49,9 +70,13 @@ For difficulty, record the concrete topic when available, such as setup, rules, 
 
 Use stable pseudonymous author keys only when an underlying author identity is available through the authorized source. Distinct display labels are a weaker observation: labels can change, collide, or represent the same person. The current sample supports a count of distinct displayed labels, not a verified count of unique people.
 
-Classify a message as organizer, staff, or bot only when the relevant role or account type is verified. Otherwise use `unknown`. All ten current message authors remain `unknown`; an organizer's name quoted in a reply is not evidence that the reply's author is an organizer. The current validator permits `organizer` only with an explicit `role_evidence` field and otherwise defaults to unknown. Present all-message activity separately from any participant-only subset. Do not silently discard unknown-role messages or count them as participants.
+Classify a message as organizer, staff, or bot only when the relevant role or account type is verified. Otherwise use `unknown`. All current message authors remain `unknown`; an organizer's name quoted in a reply is not evidence that the reply's author is an organizer. The current validator permits `organizer` only with an explicit `role_evidence` field and otherwise defaults to unknown. Present all-message activity separately from any participant-only subset. Do not silently discard unknown-role messages or count them as participants.
 
 No conversion from authors to teams is valid without an explicit, current, verifiable team mapping. Do not estimate team counts by dividing authors by two, treating each speaker as a team, or applying the user's anecdote about two people per team to the event.
+
+H-E-B has 11 explicit participation self-report posts containing nine distinct reported team labels. Repeated uses of the same label are mapped to the same anonymous alias within scope `heb-channel-20261108`. The quoted participation prompt was visible, but its original message ID was not loaded, so reply-parent IDs remain null. A separate team-name reply to a workspace/credits prompt is excluded. The nine labels are not nine verified entrants or a complete team count. The Dashboard Royale statement about eight other teams remains an unverified claim inside its message paraphrase and contributes no team-count field.
+
+Score claims in House Edge are preserved as self-reports or banter, not measured performance. In Build-A-Dataset, comments criticizing an external learning tool are not coded as challenge frustration. These distinctions prevent topic confusion from becoming false difficulty or competition metrics.
 
 ## Replies and help outcomes
 

@@ -2,7 +2,7 @@
 
 This optional scenario contains **nine invented teams with four hypothetical members each**. No teams were contacted, approached, surveyed, interviewed, or observed to create these rows. The records are generated examples for exploring the dashboard, not event findings or evidence of participation.
 
-The scenario is separate from the ten actually observed Rev's Casino message items. It is not calibrated to those messages, and it must never increase the app's observed-message, observed-author, or verified-team counts.
+The scenario is separate from the observed Discord message dataset. It is not calibrated to those messages, and it must never increase the app's observed-message, observed-author, or verified-team counts.
 
 ## Files and units
 
@@ -36,7 +36,7 @@ The generator source records the concrete seed and parameter choices. Re-running
 
 Use this scenario to test filtering, multi-challenge counting, member-allocation totals, missing ratings, and hypothetical comparisons. It can illustrate questions that richer data might answer. It cannot answer those questions about the actual event.
 
-All scenario charts should visibly say simulation or synthetic. Keep their denominator explicit: nine simulated teams, 36 hypothetical members, or the relevant subset of 21 simulated team–challenge selections. Never combine these denominators with the five display labels or ten observed messages.
+All scenario charts should visibly say simulation or synthetic. Keep their denominator explicit: nine simulated teams, 36 hypothetical members, or the relevant subset of 21 simulated team–challenge selections. Never combine these denominators with observed message counts, channel-scoped display labels, or reported team-label counts.
 
 Any rank, opportunity score, or top-three calculation derived from this scenario is an assumption-driven illustration. In particular, `min(3, N) / N` is only an equal-chance scenario for an assumed entrant count; simulated team selection counts are not measured entrants and do not produce a personal winning probability.
 
