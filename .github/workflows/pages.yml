@@ -1,0 +1,40 @@
+name: Deploy Participant Pulse
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the website
+        uses: actions/checkout@v6
+      - name: Verify application behavior
+        run: node --test
+      - name: Verify the final downloads
+        run: |
+          cmp dataset/Participant_Pulse_Dataset.xlsx dist/downloads/Participant_Pulse_Dataset.xlsx
+          cmp dataset/DATASET_DOCUMENTATION.md dist/downloads/DATASET_DOCUMENTATION.md
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload the complete website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

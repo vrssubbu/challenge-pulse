@@ -28,6 +28,12 @@ node scripts/prepare-review.mjs
 
 This copies the final dataset into the website's downloads and assembles the website, workbook and documentation into one review folder. The Excel workbook is built separately; the preparation command uses the existing final workbook.
 
+## GitHub Pages
+
+The website is configured for [GitHub Pages](https://vrssubbu.github.io/challenge-pulse/). The `Deploy Participant Pulse` workflow publishes the complete `dist/` folder after pushes to `main`, including the data, Excel workbook and documentation downloads. It runs the application tests and checks that the published workbook and documentation match their canonical copies in `dataset/` before deploying.
+
+Repository Settings → Pages → Source must be **GitHub Actions**. No build command, dependency installation, custom domain or runtime secrets are required. The workflow can also be started manually from the Actions tab. Relative assets and download links support the `/challenge-pulse/` project path.
+
 ## Run
 
 Requires Node.js 18 or newer. From this directory:
