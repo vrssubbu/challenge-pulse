@@ -82,6 +82,10 @@ function renderConstellation(){
 function renderOverview(){
   if($('hero-message-count'))$('hero-message-count').textContent=messages.length.toLocaleString();
   if($('hero-channel-count'))$('hero-channel-count').textContent=new Set(messages.map(row=>row.challenge_id)).size.toLocaleString();
+  const heroClarity=themeSummaries(messages).find(theme=>theme.id==='clarity');
+  $('hero-clarity-count').textContent=messages.length?heroClarity.count.toLocaleString():'—';
+  $('hero-clarity-context').textContent=messages.length?`${(heroClarity.count/messages.length*100).toFixed(1)}% of ${messages.length.toLocaleString()} recorded messages · includes questions and explanations.`:'No recorded sample available.';
+  $('hero-key-finding').disabled=!heroClarity.count;
   const rows=selectedMessages(),stats=summarize(rows),selected=$('challenge-filter').value;
   const coverage=coverageRecords().filter(r=>selected==='all'||r.challenge_id===selected);
   const read=coverage.filter(r=>r.observed_messages!==null).length;
@@ -216,6 +220,7 @@ $('import-file').addEventListener('change',async e=>{
 });
 document.querySelector('.import-button').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('import-file').click();}});
 $('challenge-filter').addEventListener('change',renderOverview);
+$('hero-key-finding').addEventListener('click',()=>openExplorer({challenge:'all',theme:'clarity'}));
 for(const id of ['explore-challenge','category-filter','snapshot-filter','role-filter'])$(id).addEventListener('change',()=>{activeHour='';if(id==='category-filter'){activeTheme=null;activeLens='all';}renderExplorer();});
 $('message-search').addEventListener('input',()=>{activeHour='';renderExplorer();});
 $('clear-hour').addEventListener('click',()=>{activeHour='';renderExplorer();(document.querySelector('[data-hour]')??$('reset-explorer')).focus({preventScroll:true});});

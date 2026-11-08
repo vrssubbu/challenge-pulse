@@ -1,20 +1,22 @@
 # Participant Pulse creator presentation
 
-The current presentation adapts the user-supplied Jack 3D creator reference to **CTRL_ALT_DEFEAT / Participant Pulse**. It presents the actual observation project, without claiming to be Jack, selling creative services, or portraying stock imagery as participant footage.
+The current presentation adapts the user-supplied Jack 3D creator reference to **Participant Pulse**, with **CTRL_ALT_DEFEAT** credited as the team. Participant Pulse is the main headline; the team credit is secondary. It presents the actual observation project, without claiming to be Jack, selling creative services, or portraying stock imagery as participant footage.
 
 ## Current structure
 
-1. A near-black hero with oversized silver-gradient team typography, a central kinetic sculpture, recorded sample totals, section navigation and a magnetic call to action.
+1. A near-black hero with an oversized silver-gradient Participant Pulse headline, a smaller CTRL_ALT_DEFEAT team credit, the existing central kinetic sculpture, prominent full-sample totals and a clickable clarification finding. Section navigation and a magnetic call to action remain available.
 2. Two opposing rows of challenge artwork and recorded message counts. Selecting a challenge opens its messages in the explorer. Artwork size and motion do not imply popularity or comparable activity.
 3. An about section with character-by-character scroll emphasis and decorative corner objects. Its copy describes the project and its limited sample.
 4. A rounded light findings section, followed by three dark story cards that stack on scroll. These interpret the selected records as clarification, work in progress and explicit participation posts.
 5. The complete data workbench, with the existing challenge selection, source map, categories, explorer, coverage notes, exports, imports and separate hypothetical scenarios.
 
-The three story cards derive counts, denominators, shares and paraphrased examples from the same selected messages as the overview. In the bundled all-challenge sample, their counts are 41, 24 and 11 of 140 messages. Selecting HEB changes them to 11, 2 and 11 of 30 messages. These are message counts, not verified people, teams, completion rates or emotion scores. Inspecting a story opens its exact content theme in the message explorer. Imports and filters must update these values rather than preserve a fixed headline.
+The hero uses all loaded observation records, independently of the overview's challenge selection. The bundled sample has 140 observed messages across eight challenge channels. Its key finding counts 41 messages (29.3%) coded as help requests, rule clarification or logistics requests, including questions and answers or explanations. Selecting that finding opens the full-sample clarification theme in the explorer even when the overview is filtered to one challenge. Imports update these totals and the share; empty samples do not receive an invented denominator.
+
+The three story cards derive counts, denominators, shares and paraphrased examples from the same selected messages as the overview. In the bundled all-challenge sample, their counts are 41, 24 and 11 of 140 messages. Selecting HEB changes them to 11, 2 and 11 of 30 messages while the hero retains its all-records scope. These are message counts, not verified people, teams, completion rates or emotion scores. Inspecting a story opens its exact content theme in the message explorer. Imports and filters update the selected findings rather than preserve fixed values.
 
 ## Artwork and motion
 
-The eight challenge scenes are original local SVG illustrations. The hero sculpture and surrounding objects are decorative; none depicts collected imagery or a real participant. The implementation uses HTML, CSS, SVG and browser animation APIs. It does not require a paid animation library, generated video, a prompt subscription or a media account. The supplied prompt text and its unrelated portfolio imagery are not redistributed in the repository.
+The eight challenge scenes are original local SVG illustrations. The hero sculpture's blocks and animation remain unchanged by the headline and evidence update. The sculpture and surrounding objects are decorative; none depicts collected imagery or a real participant. The implementation uses HTML, CSS, SVG and browser animation APIs. It does not require a paid animation library, generated video, a prompt subscription or a media account. The supplied prompt text and its unrelated portfolio imagery are not redistributed in the repository.
 
 Scroll emphasis, opposing gallery rows, magnetic hover, entrance sequences and stacking cards support the visual narrative. They never simulate messages arriving or interpolate analytical values. The global motion control and operating-system reduced-motion preference must keep content readable, controls reachable and evidence available. The gallery must also be usable with keyboard focus and native horizontal scrolling.
 
