@@ -48,7 +48,7 @@ function mountSculpture(host) {
     <path d="M118 204 244 158Q251 155 260 161L326 213Q337 221 326 227L199 279Q189 283 180 276L115 223Q106 215 118 204Z" fill="${paint('top')}" stroke="${paint('edge')}" stroke-width="1.7"/>
     <path d="M133 212 250 169 311 218 192 265Z" fill="${paint('inset')}" stroke="#626d7a" stroke-width="1.2" stroke-linejoin="round"/>
     <path d="M133 212 250 169 311 218" stroke="#fff" stroke-opacity=".65" stroke-width="1.8"/>
-    <g transform="matrix(.93 -.36 .73 .59 161 224)"><text font-family="Kanit,Arial,sans-serif" font-size="43" font-weight="800" letter-spacing="-1.5" fill="#252932">CTR_</text><path d="M1 14H89" stroke="#475260" stroke-opacity=".45"/></g>
+    <g transform="matrix(.93 -.36 .73 .59 161 224)"><text font-family="Kanit,Arial,sans-serif" font-size="43" font-weight="800" letter-spacing="-1.5" fill="#252932">CTRL_</text><path d="M1 14H89" stroke="#475260" stroke-opacity=".45"/></g>
     <path d="M210 299 315 254" stroke="#b2bdc9" stroke-opacity=".3" stroke-width="2"/>
   </g>
   <g class="sculpture-key sculpture-key-defeat" filter="${paint('shadow')}">

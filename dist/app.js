@@ -3,7 +3,7 @@ import {LENSES,THEMES,labelForCategory,themeSummaries,sampledDisplaySpan,partici
 import {renderPulseStories} from './stories.js?v=7';
 import {refreshMotion,syncMotion} from './motion.js?v=6';
 import {renderCreatorData} from './creator-data.js?v=7';
-import {initCreatorMotion,syncCreatorMotion} from './creator-motion.js?v=7';
+import {initCreatorMotion,syncCreatorMotion} from './creator-motion.js?v=8';
 
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

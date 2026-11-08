@@ -1,6 +1,6 @@
 # Participant Pulse creator presentation
 
-The current presentation adapts the user-supplied Jack 3D creator reference to **Ctr_.Alt_Defeat / Participant Pulse**. It presents the actual observation project, without claiming to be Jack, selling creative services, or portraying stock imagery as participant footage.
+The current presentation adapts the user-supplied Jack 3D creator reference to **CTRL_ALT_DEFEAT / Participant Pulse**. It presents the actual observation project, without claiming to be Jack, selling creative services, or portraying stock imagery as participant footage.
 
 ## Current structure
 
