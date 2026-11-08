@@ -1,12 +1,13 @@
 # Participant Pulse dataset
 
-This is the central data package for the Challenge Pulse application: **140 unique observed Discord messages, 8 challenge-channel samples, 11 observation snapshots and 150 snapshot–message links**. It also contains official challenge context and a **separate synthetic scenario of 9 fictional teams and 21 fictional team–challenge allocations**. No teams were contacted to create the scenario.
+This is the central data package for Participant Pulse by CTRL_ALT_DEFEAT: **140 unique observed discussion messages, 8 challenge-channel samples, 11 observation snapshots and 150 snapshot–message links**. It also contains official challenge context and a **separate synthetic scenario of 9 fictional teams and 21 fictional team–challenge allocations**. No teams were contacted to create the scenario.
 
 The original five JSON files are copied byte-for-byte from the application’s `dist/data/` directory. CSV files are derived analytical views. Original JSON remains authoritative for exact types, null versus missing properties, metadata and nested structures.
 
 ## Start here
 
 - [Participant_Pulse_Dataset.xlsx](Participant_Pulse_Dataset.xlsx) is the included companion workbook, with separate sheets for observations, context, provenance and synthetic scenarios.
+- [DATASET_DOCUMENTATION.md](DATASET_DOCUMENTATION.md) brings all seven guide point-5 topics into one account of the actual collection and maps the point-6 deliverables. The workbook's Eligibility sheet contains the full review and twelve detailed checks for points 5 and 6.
 - [METHOD.md](METHOD.md) explains acquisition, coding, processing and limitations.
 - [DATA_DICTIONARY.csv](DATA_DICTIONARY.csv) describes all 135 fields across the eight analytical tables, including field presence, nulls and actual source types.
 - [ELIGIBILITY.md](ELIGIBILITY.md) records written requirements, the user-reported organizer exception and outstanding submission status.

@@ -2,9 +2,9 @@
   "schema_version": 1,
   "review_date_local": "2026-11-08",
   "review_timezone": "America/Chicago",
-  "project": "Challenge Pulse",
-  "overall_status": "Organizer exception reported: the user reaffirmed that organizers agreed to this remote-observation project. The written guide requires physical-world collection; the exception is user-reported and its exact scope has not been independently verified.",
-  "verification_method": "Read local methodology and challenge review, then freshly fetched the official Google Docs plain-text export, challenge page, homepage and current public homepage JavaScript FAQ. The web extractor could open the homepage but returned Internal Error for the guide/challenge; public HTTP reads succeeded with sandbox network escalation. No third-party or past-year rules were substituted.",
+  "project": "Participant Pulse",
+  "overall_status": "Rule 5 is documented across all seven topics. Rule 6 artifacts are available in a verified public repository, with publication/privacy scope still unverified. Four members, all 18+ current students, are user-confirmed. Collection relies on the reported organizer exception. Video, deadline and completed Devpost submission remain pending or unverified.",
+  "verification_method": "The web extractor failed for the guide and challenge. Fresh public HTTP reads succeeded for the official Google Docs text export, challenge page, event homepage and the homepage's current public FAQ JavaScript bundle. Public GitHub API verified visibility and main revision. The source-verification pass was read-only. This subsequent package update adds the point-5 account, workbook checklist and confirmed team facts.",
   "source_registry": [
     {
       "id": "guide",
@@ -35,11 +35,22 @@
       "title": "Current homepage FAQ answers in official public client bundle",
       "verification": "fresh_official_read",
       "verified_on": "2026-11-08"
+    },
+    {
+      "id": "github",
+      "title": "Public project repository",
+      "url": "https://github.com/vrssubbu/challenge-pulse",
+      "retrieval_urls": [
+        "https://api.github.com/repos/vrssubbu/challenge-pulse",
+        "https://api.github.com/repos/vrssubbu/challenge-pulse/commits/main"
+      ],
+      "status": "fresh_public_read",
+      "verified_on": "2026-11-08"
     }
   ],
   "project_evidence": {
     "repository_remote": "https://github.com/vrssubbu/challenge-pulse",
-    "local_commit": "3944f7bdeb4b05f51aec73fcc71199e1ba1386ff",
+    "local_commit": "55173bc955bc347510305f7ae3261f2108911f99",
     "working_tree": "clean_at_review",
     "observed_messages": 140,
     "challenge_channels": 8,
@@ -58,7 +69,19 @@
       "challenge-pulse/README.md",
       "challenge-pulse/dist/data/discord-message-coding.json",
       "challenge-pulse/dist/data/discord-observations.json"
-    ]
+    ],
+    "public_repository_verified": true,
+    "team": {
+      "name": "CTRL_ALT_DEFEAT",
+      "members": 4,
+      "all_18_or_older": true,
+      "current_undergraduate_or_graduate_students": true,
+      "verification": "User confirmed in this conversation on 2026-11-08; registration not inspected."
+    },
+    "privacy_review": {
+      "scope": "Read-only inspection of all 140 paraphrases and five source JSON files; no source links followed.",
+      "finding": "No obvious handles, email addresses, phone contacts or credentials found. Exact message IDs, permalinks, times, replies and snapshot memberships remain linkable. This is pseudonymized data, not verified anonymity or publication clearance."
+    }
   },
   "requirements": [
     {
@@ -71,7 +94,9 @@
       "rule_verification": "verified_current",
       "project_status": "organizer_exception_reported",
       "evidence": "Collection is documented on November 7–8, but it observes existing online messages, including two November 4 posts. Exact acquisition timestamps are absent.",
-      "remaining_action": "Describe actual collection and posting dates separately, preserve pre-event records as such, and label the organizer exception as user-reported."
+      "remaining_action": "Describe actual collection and posting dates separately, preserve pre-event records as such, and label the organizer exception as user-reported.",
+      "guide_reference": "Guide rule 1",
+      "display_status": "Organizer exception reported"
     },
     {
       "id": "R02",
@@ -84,7 +109,9 @@
       "rule_verification": "verified_current",
       "project_status": "organizer_exception_reported",
       "evidence": "Current data is Discord UI observation, not field measurements. The user reaffirmed organizer agreement to this approach; exact scope is not independently verified.",
-      "remaining_action": "State the written rule and the user-reported exception accurately. Do not relabel online or synthetic data as physical fieldwork."
+      "remaining_action": "State the written rule and the user-reported exception accurately. Do not relabel online or synthetic data as physical fieldwork.",
+      "guide_reference": "Guide rule 2",
+      "display_status": "Organizer exception reported"
     },
     {
       "id": "R03",
@@ -95,8 +122,10 @@
       "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
       "rule_verification": "verified_current",
       "project_status": "implemented",
-      "evidence": "Dashboard supports challenge/category filters, message inspection, snapshots, exports and imports. Documented application checks verified these interactions.",
-      "remaining_action": "Include a usable repository link and working demonstration in submission; an Excel workbook alone does not replace the application."
+      "evidence": "Participant Pulse provides working filters, message inspection, snapshots, imports and exports. All 31 application checks passed for the current source revision; prior desktop/mobile interaction checks are documented.",
+      "remaining_action": "Include a usable repository link and working demonstration in submission; an Excel workbook alone does not replace the application.",
+      "guide_reference": "Guide rule 3",
+      "display_status": "Implemented"
     },
     {
       "id": "R04",
@@ -108,7 +137,9 @@
       "rule_verification": "verified_current",
       "project_status": "implemented_organizer_exception_reported",
       "evidence": "Message rows drive counts, themes and explorer results. Official metadata and synthetic scenarios are separate. Collection relies on the user-reported organizer exception described in R02.",
-      "remaining_action": "Show data-dependent interactions in the video and keep official metadata and simulation separate from observations."
+      "remaining_action": "Show data-dependent interactions in the video and keep official metadata and simulation separate from observations.",
+      "guide_reference": "Guide rule 4",
+      "display_status": "Implemented; exception reported"
     },
     {
       "id": "R05",
@@ -119,8 +150,10 @@
       "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
       "rule_verification": "verified_current",
       "project_status": "documented_with_known_gaps",
-      "evidence": "DISCORD_METHODOLOGY.md, METRIC_DICTIONARY.md and bundled snapshots document the process. Exact capture times, timestamp timezone and full-history coverage are unknown.",
-      "remaining_action": "Carry these limitations into Excel and the central package; do not invent missing capture timestamps, continuous windows or independent coding review."
+      "evidence": "DATASET_DOCUMENTATION.md maps all seven required topics to the actual collection. METHOD.md, DATA_DICTIONARY.csv, coverage and snapshots supply detail. Exact capture times and posting timezone remain explicitly unknown.",
+      "remaining_action": "Use DATASET_DOCUMENTATION.md as the point-5 account. Retain disclosed gaps rather than inventing timestamps or physical fieldwork.",
+      "guide_reference": "Guide rule 5",
+      "display_status": "Documented"
     },
     {
       "id": "R06",
@@ -130,9 +163,11 @@
       ],
       "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
       "rule_verification": "verified_current",
-      "project_status": "repository_present",
-      "evidence": "The repository remote is https://github.com/vrssubbu/challenge-pulse; the checked-out revision contains dist/data, methodology, application code, tests and run instructions. Verify that the final packaged revision is pushed before submission.",
-      "remaining_action": "Include the repository URL in Devpost; ensure the final workbook/package and any changes are actually pushed before submission."
+      "project_status": "public_repository_verified_privacy_scope_unverified",
+      "evidence": "Public GitHub main 55173bc was verified before this review update. Code, workbook, JSON/CSV dataset, methodology, dictionary and run instructions are present. Source IDs and links remain reidentifiable to authorized readers.",
+      "remaining_action": "Include the GitHub URL in Devpost. Confirm public-sharing scope for retained source references. The revised workbook and documentation must be pushed together.",
+      "guide_reference": "Guide rule 6",
+      "display_status": "Public; privacy scope unverified"
     },
     {
       "id": "R07",
@@ -143,8 +178,10 @@
       "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
       "rule_verification": "verified_current",
       "project_status": "documented",
-      "evidence": "Metric dictionary, separate simulation methodology, source_type fields and explicit source labels exist.",
-      "remaining_action": "Preserve these distinctions in every Excel sheet and exported table, especially fictional teams versus HEB self-reported labels."
+      "evidence": "DATA_DICTIONARY.csv covers 135 fields across eight analytical tables. The workbook includes the observed data dictionary and codebook. Context and synthetic supplements are labeled separately.",
+      "remaining_action": "Preserve these distinctions in every Excel sheet and exported table, especially fictional teams versus HEB self-reported labels.",
+      "guide_reference": "Rule 5 / submission checklist",
+      "display_status": "Documented"
     },
     {
       "id": "R08",
@@ -156,7 +193,9 @@
       "rule_verification": "verified_current",
       "project_status": "pending_user_will_record_later",
       "evidence": "The user explicitly said they will make the video later. No completed video or Devpost receipt is verified.",
-      "remaining_action": "User will record the roughly two-minute collection/data/app video later; keep the workbook and package deliverables moving now. Final submission will need the video and GitHub links."
+      "remaining_action": "User will record the roughly two-minute collection/data/app video later; keep the workbook and package deliverables moving now. Final submission will need the video and GitHub links.",
+      "guide_reference": "Submission checklist",
+      "display_status": "Video pending"
     },
     {
       "id": "R09",
@@ -169,7 +208,9 @@
       "rule_verification": "deadline_not_established",
       "project_status": "not_verified",
       "evidence": "Guide delegates to the event deadline without a timestamp or portal URL. Official schedule lists hacking ending Sunday November 8 at noon and judging at 12:30 PM; these are not proof of a challenge-specific submission cutoff.",
-      "remaining_action": "Verify the actual Devpost deadline and current organizer announcements. Do not assume the schedule equals a submission receipt or deadline extension."
+      "remaining_action": "Verify the actual Devpost deadline and current organizer announcements. Do not assume the schedule equals a submission receipt or deadline extension.",
+      "guide_reference": "Submission deadline",
+      "display_status": "Deadline/submission unverified"
     },
     {
       "id": "R10",
@@ -180,8 +221,10 @@
       "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
       "rule_verification": "verified_current",
       "project_status": "partially_documented_not_independently_verified",
-      "evidence": "Methodology describes authorized Discord UI access; the user reaffirmed organizer agreement. No raw interviews or field collection occurred. Exact exception scope and publication conditions were not independently inspected.",
-      "remaining_action": "Accurately describe the authorized remote process and retain privacy measures. Do not imply a separately verified consent or publication agreement."
+      "evidence": "Authorized interface access and organizer approval of the remote approach are user-reported. Approval to publish the coded records and retained source references has not been separately confirmed.",
+      "remaining_action": "Keep the actual method and reported exception accurate. Confirm any publication conditions with the organizers.",
+      "guide_reference": "Rule 2 / responsibility guidance",
+      "display_status": "Reported; scope unverified"
     },
     {
       "id": "R11",
@@ -192,8 +235,10 @@
       "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
       "rule_verification": "verified_current",
       "project_status": "aliases_and_paraphrases_present_source_links_remain",
-      "evidence": "Dataset has scoped aliases and paraphrases rather than handles or raw quotes. Message IDs and Discord permalinks retain traceability and can identify originals to authorized server members; this is pseudonymization, not guaranteed anonymity.",
-      "remaining_action": "Review the shareable derivative and video for identifying details; consider excluding direct message URLs from a broadly shareable edition while retaining a separately controlled provenance table if needed."
+      "evidence": "Scoped aliases and paraphrases replace original handles and quotations. Message IDs and source permalinks remain, so authorized readers can locate originals. This is not guaranteed anonymity.",
+      "remaining_action": "Confirm that the public derivative and source links are permitted. Review the final video for identifying details; do not treat access as blanket public-sharing permission.",
+      "guide_reference": "Rule 6 / responsibility guidance",
+      "display_status": "Pseudonymized; review needed"
     },
     {
       "id": "R12",
@@ -205,7 +250,9 @@
       "rule_verification": "verified_current",
       "project_status": "explicitly_separated",
       "evidence": "Nine-team scenario is labeled synthetic and stored separately; actual coded messages retain observation provenance. No team contacts are claimed.",
-      "remaining_action": "Retain synthetic markers and separate sheets/folders; narrate the real online observation process without claiming interviews or physical fieldwork."
+      "remaining_action": "Retain synthetic markers and separate sheets/folders; narrate the real online observation process without claiming interviews or physical fieldwork.",
+      "guide_reference": "Rules 1, 2 and 4 / exclusions",
+      "display_status": "Separated and labeled"
     },
     {
       "id": "R13",
@@ -215,9 +262,11 @@
       ],
       "source_url": "https://tamudatathon.com/#faq",
       "rule_verification": "verified_current_official_bundle",
-      "project_status": "personal_eligibility_unknown",
-      "evidence": "Current official FAQ was freshly read; user/team eligibility facts were not supplied or verified.",
-      "remaining_action": "Team members must confirm their actual eligibility and event registration; do not infer eligibility from the dataset."
+      "project_status": "age_and_student_status_user_confirmed",
+      "evidence": "The user confirms all four real team members are 18+ and are current undergraduate or graduate students. Individual registration records have not been inspected.",
+      "remaining_action": "Use the actual registered roster and confirm event registration. No new personal identifiers need to be added to this public workbook.",
+      "guide_reference": "Event FAQ",
+      "display_status": "User-confirmed eligible"
     },
     {
       "id": "R14",
@@ -227,9 +276,11 @@
       ],
       "source_url": "https://tamudatathon.com/#faq",
       "rule_verification": "verified_current_official_bundle",
-      "project_status": "actual_roster_unknown",
-      "evidence": "Current official FAQ confirms four-person cap. Fictional four-person teams are simulation, not the entrant roster.",
-      "remaining_action": "Check the actual project team roster and registration."
+      "project_status": "team_size_user_confirmed",
+      "evidence": "The user confirms CTRL_ALT_DEFEAT has four members, meeting the FAQ maximum of four. The nine fictional scenario teams are unrelated.",
+      "remaining_action": "Keep the actual Devpost/event roster consistent with the confirmed four-member team.",
+      "guide_reference": "Event FAQ",
+      "display_status": "User-confirmed: 4 members"
     }
   ],
   "judging": [
@@ -270,9 +321,169 @@
     "No general cross-challenge reuse rule was established; rules from 2020, 2021, 2025 or Datathon Lite were not applied to this event."
   ],
   "required_next_actions": [
-    "Complete the dataset workbook and central package now, with the user-reported organizer exception clearly labeled.",
-    "Preserve observations, provenance, dictionary, methodology and limitations consistently.",
-    "Video remains pending: the user will record it later.",
-    "Keep exact deadline, actual roster eligibility and Devpost submission receipt marked unverified until established."
-  ]
+    "Use the point-5 documentation, workbook and central package together; preserve actual collection provenance and the reported organizer exception.",
+    "Confirm public-sharing conditions for the pseudonymized derivative and retained source references.",
+    "Record the approximately two-minute video later and include its actual link with the GitHub URL in Devpost.",
+    "Confirm event registration, the exact cutoff and the completed Devpost receipt. Team size, age and current student status are already user-confirmed."
+  ],
+  "team_credit": "CTRL_ALT_DEFEAT",
+  "numbering_note": "R01-R14 are internal checklist IDs. Guide rule numbers and locally lettered point-5/point-6 checks are identified separately.",
+  "official_numbered_rules": [
+    {
+      "number": 1,
+      "summary": "Team acquires its primary dataset during the event rather than reusing an earlier project.",
+      "source_id": "guide",
+      "status": "Organizer exception reported; timing documented with limits",
+      "evidence": "Authorized online reading is dated November 7–8. Source posts include two November 4 messages and other pre-opening posts. These are existing online discussions, not newly generated field measurements.",
+      "remaining_action": "Keep acquisition dates distinct from posting dates and describe the user-reported exception accurately.",
+      "exact_heading": "Collect new primary data during the hackathon."
+    },
+    {
+      "number": 2,
+      "summary": "Collect through lawful, safe engagement with real-world places, objects, conditions or consenting people.",
+      "source_ids": [
+        "guide",
+        "challenge"
+      ],
+      "status": "Organizer exception reported",
+      "evidence": "The actual method is remote Discord UI observation. The user reaffirmed that organizers agreed; exact scope was not independently documented.",
+      "remaining_action": "Retain the written-rule distinction and reported approval; do not describe the observations as physical fieldwork.",
+      "exact_heading": "Engage with the physical world."
+    },
+    {
+      "number": 3,
+      "summary": "Provide a usable interactive app rather than only static analysis, screenshots or an interface-free model.",
+      "source_id": "guide",
+      "status": "Implemented; prior application verification documented",
+      "evidence": "Dashboard has filters, full-sample and selected-sample findings, explorer, source inspector, imports and exports. README records 31 tests and prior browser checks.",
+      "remaining_action": "Show a complete data-dependent interaction in the forthcoming video; no new application QA claimed in this audit.",
+      "exact_heading": "Build a functioning, interactive application."
+    },
+    {
+      "number": 4,
+      "summary": "The team's own collection must power the main application; third-party data may only supplement it.",
+      "source_id": "guide",
+      "status": "Data integration implemented; collection exception reported",
+      "evidence": "Observed message rows drive metrics and evidence. Catalog metadata and fictional scenario records are separated. The observed main dataset is online-derived, so the physical-world aspect still depends on the reported exception.",
+      "remaining_action": "Preserve observed/context/synthetic separation and explain actual collection.",
+      "exact_heading": "Make your own data central."
+    },
+    {
+      "number": 5,
+      "summary": "Explain collection context, method, timing, sample size, field meanings, transformations and limits.",
+      "source_id": "guide",
+      "status": "Documented with disclosed unknowns",
+      "evidence": "DATASET_DOCUMENTATION.md covers all seven topics and links to METHOD.md, dictionary, coverage and snapshots. Eligibility in the workbook includes seven point-5 checks.",
+      "remaining_action": "Retain the actual collection account and disclosed unknowns in the video.",
+      "exact_heading": "Document how you gathered the data."
+    },
+    {
+      "number": 6,
+      "summary": "Put the dataset, collection account, app code and run directions in GitHub; publish only safely shareable information.",
+      "source_id": "guide",
+      "status": "Required artifacts available; public-sharing scope unverified",
+      "evidence": "Public repository and its code, dataset, method and run instructions were verified. The revised workbook and DATASET_DOCUMENTATION.md are packaged together. IDs and source links remain pseudonymized and linkable.",
+      "remaining_action": "Push the revised package, include the repository URL in Devpost and confirm public-sharing conditions for the retained source references.",
+      "exact_heading": "Publish your work."
+    }
+  ],
+  "point_5_and_6_checks": [
+    {
+      "id": "5a",
+      "requirement": "Location / context",
+      "status": "Documented",
+      "evidence": "DATASET_DOCUMENTATION.md §5.1; Coverage. Eight challenge discussion channels; actual remote setting identified.",
+      "next_action": "Keep the actual source context.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "5b",
+      "requirement": "Collection method",
+      "status": "Documented",
+      "evidence": "DATASET_DOCUMENTATION.md §5.2; METHOD.md. Authorized UI reading, aliases, paraphrases and assistant content coding.",
+      "next_action": "No physical interviews or automated scraping claimed.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "5c",
+      "requirement": "Timing",
+      "status": "Documented; unknowns explicit",
+      "evidence": "DATASET_DOCUMENTATION.md §5.3; Snapshots. Read Nov 7–8, 2026; source posts Nov 4–8. Exact capture times and posting timezone unknown.",
+      "next_action": "Do not invent exact times or continuous coverage.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "5d",
+      "requirement": "Sample size / unit",
+      "status": "Documented",
+      "evidence": "DATASET_DOCUMENTATION.md §5.4. 140 distinct messages, eight channels, 11 snapshots, 150 links; ten repeated sightings.",
+      "next_action": "Counts describe messages, not people or entrants.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "5e",
+      "requirement": "Field meanings",
+      "status": "Documented",
+      "evidence": "DATASET_DOCUMENTATION.md §5.5; Dictionary/Codebook sheets; DATA_DICTIONARY.csv. All 30 message fields explained.",
+      "next_action": "Preserve text IDs, nullable values and source labels.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "5f",
+      "requirement": "Processing / cleaning",
+      "status": "Documented",
+      "evidence": "DATASET_DOCUMENTATION.md §5.6. Exact-ID deduplication, category coding, snapshot joins, reaction provenance and export transformations.",
+      "next_action": "Original JSON remains unchanged; do not double count repeated sightings.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "5g",
+      "requirement": "Limitations / bias",
+      "status": "Documented",
+      "evidence": "DATASET_DOCUMENTATION.md §5.7. Partial unequal samples, unknown roles/timezones, no independent coding review, source-link privacy and no team-count inference.",
+      "next_action": "Carry material limits into the demonstration.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "6a",
+      "requirement": "Dataset on GitHub",
+      "status": "Available in public repo",
+      "evidence": "dataset/ contains Excel, observed JSON/CSV, snapshots and source metadata. https://github.com/vrssubbu/challenge-pulse/tree/main/dataset",
+      "next_action": "Include the repository URL in the actual submission.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "6b",
+      "requirement": "Methodology on GitHub",
+      "status": "Documented",
+      "evidence": "DATASET_DOCUMENTATION.md and METHOD.md describe the actual collection; dictionary and limits are included.",
+      "next_action": "Publish the revised documentation with this workbook.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "6c",
+      "requirement": "Application source code",
+      "status": "Available in public repo",
+      "evidence": "dist/, serve.mjs and tests/ are in the public repository. The source uses the observed records for findings and filters.",
+      "next_action": "Keep code and dataset in the same final revision.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "6d",
+      "requirement": "Run instructions",
+      "status": "Documented",
+      "evidence": "Repository README: Node.js 18+, node serve.mjs, then http://127.0.0.1:4173. No package installation is required for the static application.",
+      "next_action": "Use the README instructions for reviewer setup.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    },
+    {
+      "id": "6e",
+      "requirement": "No private / sensitive publication",
+      "status": "Publication scope unverified",
+      "evidence": "Aliases and paraphrases are used, but source message IDs and permalinks retain linkability. Remote observation approval is reported; separate public-sharing scope is not confirmed.",
+      "next_action": "Confirm that sharing this derivative and its source references is permitted.",
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit"
+    }
+  ],
+  "review_update": "Fresh guide/FAQ/repository review plus user-confirmed team facts, 2026-11-08. Video still pending; no completed Devpost submission is asserted."
 }

@@ -199,13 +199,14 @@ const channelRows = coverage.map(row => `| ${row.challenge_name} | ${row.observe
 
 await save('README.md',`# Participant Pulse dataset
 
-This is the central data package for the Challenge Pulse application: **${messages.length} unique observed Discord messages, ${coverage.length} challenge-channel samples, ${snapshots.length} observation snapshots and ${links.length} snapshot–message links**. It also contains official challenge context and a **separate synthetic scenario of ${inventory.synthetic_team_rows} fictional teams and ${inventory.synthetic_team_challenge_rows} fictional team–challenge allocations**. No teams were contacted to create the scenario.
+This is the central data package for Participant Pulse by CTRL_ALT_DEFEAT: **${messages.length} unique observed discussion messages, ${coverage.length} challenge-channel samples, ${snapshots.length} observation snapshots and ${links.length} snapshot–message links**. It also contains official challenge context and a **separate synthetic scenario of ${inventory.synthetic_team_rows} fictional teams and ${inventory.synthetic_team_challenge_rows} fictional team–challenge allocations**. No teams were contacted to create the scenario.
 
 The original five JSON files are copied byte-for-byte from the application’s \`dist/data/\` directory. CSV files are derived analytical views. Original JSON remains authoritative for exact types, null versus missing properties, metadata and nested structures.
 
 ## Start here
 
 - [Participant_Pulse_Dataset.xlsx](Participant_Pulse_Dataset.xlsx) is the included companion workbook, with separate sheets for observations, context, provenance and synthetic scenarios.
+- [DATASET_DOCUMENTATION.md](DATASET_DOCUMENTATION.md) brings all seven guide point-5 topics into one account of the actual collection and maps the point-6 deliverables. The workbook's Eligibility sheet contains the full review and twelve detailed checks for points 5 and 6.
 - [METHOD.md](METHOD.md) explains acquisition, coding, processing and limitations.
 - [DATA_DICTIONARY.csv](DATA_DICTIONARY.csv) describes all ${dictionary.length} fields across the eight analytical tables, including field presence, nulls and actual source types.
 - [ELIGIBILITY.md](ELIGIBILITY.md) records written requirements, the user-reported organizer exception and outstanding submission status.
@@ -303,13 +304,28 @@ The packaging process collects no new messages and does not edit, reclassify or 
 `);
 
 const escapeTable = value => String(value??'').replaceAll('|','\\|').replaceAll('\n',' ');
-const requirementRows = requirements.requirements.map(item => `| ${item.id} | ${escapeTable(item.requirement)} | ${escapeTable(item.project_status.replaceAll('_',' '))} | ${escapeTable(item.evidence)} | [Official source](${item.source_url}) |`).join('\n');
+const requirementRows = requirements.requirements.map(item => `| ${item.id} | ${escapeTable(item.guide_reference??'')} | ${escapeTable(item.requirement)} | ${escapeTable(item.display_status??item.project_status.replaceAll('_',' '))} | ${escapeTable(item.evidence)} | [Official source](${item.source_url}) |`).join('\n');
+const detailedRuleRows = (requirements.point_5_and_6_checks??[]).map(item=>`| ${item.id} | ${escapeTable(item.requirement)} | ${escapeTable(item.status)} | ${escapeTable(item.evidence)} | ${escapeTable(item.next_action)} |`).join('\n');
 const judgingRows = requirements.judging.map(item => `| ${item.criterion} | ${item.points} | ${item.project_note} |`).join('\n');
 await save('ELIGIBILITY.md',`# Eligibility and submission status
 
 Reviewed ${reviewDate}. **Organizer exception reported:** the user reaffirmed that organizers agreed to this project’s remote-observation approach. The written Build-A-Dataset rules call for primary physical-world collection. This project actually uses authorized Discord UI observations; the exact exception scope and publication conditions have not been independently inspected.
 
-**Video: pending — the user will record it later. Devpost submission: unverified. Exact submission deadline, actual team roster and personal eligibility: unverified.** A completed dataset package or public repository is not a submission receipt or a blanket compliance finding.
+**Team eligibility: user-confirmed.** CTRL_ALT_DEFEAT has four members, all aged 18+ and currently undergraduate or graduate students. This satisfies the reviewed age/student-status and four-member criteria based on the user's confirmation; registration records have not been inspected.
+
+**Video: pending — the user will record it later. Devpost submission and exact submission cutoff: unverified.** The scope of permission for public sharing is also unconfirmed. A completed dataset package or public repository is not a submission receipt or a blanket compliance finding.
+
+## Guide points 5 and 6
+
+**Point 5 — documented.** [DATASET_DOCUMENTATION.md](DATASET_DOCUMENTATION.md) covers context, method, timing, sample size, fields, processing and limitations. Unknown capture times and posting timezone are disclosed rather than invented. The guide requires these topics, not a specifically named document or an Excel format.
+
+**Point 6 — required artifacts available; public-sharing scope unverified.** The [public repository](https://github.com/vrssubbu/challenge-pulse) contains the dataset, methodology, application source and run instructions. Public main revision 55173bc was verified at the start of this review. The new documentation and workbook belong in the same final push. A read-only review found no obvious handles, email addresses, phone contacts or credentials in the coded data. Exact message IDs, source links, times and reply structure remain linkable, so pseudonymization does not by itself establish permission to publish.
+
+The lettered checks below are local labels, not official subrule numbers.
+
+| Check | Required topic | Status | Evidence | Remaining action / qualification |
+| --- | --- | --- | --- | --- |
+${detailedRuleRows}
 
 ## Evidence and source review
 
@@ -317,8 +333,10 @@ The current dataset has ${messages.length} unique messages from ${coverage.lengt
 
 The [official participant guide](${guideUrl}), [challenge page](https://tamudatathon.com/challenges/3), [event page](https://tamudatathon.com/) and [current FAQ](https://tamudatathon.com/#faq) were reviewed for the retained requirements report. The FAQ evidence came from the official page’s public client bundle, as recorded in [provenance/requirements-review.json](provenance/requirements-review.json). This document summarizes those reviewed requirements; it does not establish later rule changes.
 
-| ID | Requirement | Project status | Evidence / limitation | Source |
-| --- | --- | --- | --- | --- |
+R01–R14 are internal checklist identifiers; the reference column maps them to the guide or event FAQ.
+
+| ID | Guide / event reference | Requirement | Project status | Evidence / limitation | Source |
+| --- | --- | --- | --- | --- | --- |
 ${requirementRows}
 
 The package now supplies originals, CSV tables, a full field dictionary, methodology and provenance. The companion Excel workbook is produced separately and is included in the manifest when present. Application code and instructions remain in the [repository](https://github.com/vrssubbu/challenge-pulse). Publication of a particular final package revision must be checked against the repository revision; local generation alone does not verify a push.
@@ -337,7 +355,7 @@ The reviewed guide specifies no minimum dataset size or required technology stac
 
 - Record the approximately two-minute video later, using [DEMO_OUTLINE.md](DEMO_OUTLINE.md), and add its actual link only after it exists.
 - Verify the actual Devpost portal and cutoff with current event information. The event schedule’s hacking end is not proof of the challenge-specific submission deadline or an extension.
-- Confirm the real team’s registration and eligibility; the fictional four-person simulation teams are unrelated to the entrant roster.
+- Confirm event registration and use the real four-member roster in Devpost. The user has confirmed the team's size, ages and current student status; fictional scenario teams are unrelated.
 - Include the final GitHub revision and video link in the actual submission. Retain the real submission receipt when available; none is recorded here.
 - Keep the pseudonymization limitation visible: message IDs/permalinks can reveal originals to authorized server members. No separate verified consent/publication agreement is claimed.
 

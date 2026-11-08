@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "package": "Participant Pulse analytical dataset",
-  "generated_at_utc": "2026-11-08T08:33:55.055Z",
+  "generated_at_utc": "2026-11-08T09:16:28.767Z",
   "requirements_review_date": "2026-11-08",
   "generated_by": "scripts/package-dataset.mjs",
   "hash_algorithm": "SHA-256",
@@ -167,14 +167,19 @@
       "record_count": 135
     },
     {
+      "path": "DATASET_DOCUMENTATION.md",
+      "bytes": 23676,
+      "sha256": "27d6933f4301857e0d3a678f11aa0dfae10d5b97d1ca15075eff654715b9622b"
+    },
+    {
       "path": "DEMO_OUTLINE.md",
       "bytes": 3524,
       "sha256": "eae9ac9db3023cccfc5b835c597a0d51082697872b474667d9fc5f499ae66c31"
     },
     {
       "path": "ELIGIBILITY.md",
-      "bytes": 9510,
-      "sha256": "496a07d9a3549f1d4124c6b3fe91a985120f174cec92620c4c276a4a7eedd0e6"
+      "bytes": 14427,
+      "sha256": "0dd769e6f501699bc594e1d14d67c506bb23ec2d38f0802f15b0bd957378d401"
     },
     {
       "path": "METHOD.md",
@@ -228,8 +233,8 @@
     },
     {
       "path": "Participant_Pulse_Dataset.xlsx",
-      "bytes": 76487,
-      "sha256": "12794abecdeecedb99139357faddd5bcfb0e23b28d9bb8e5b335ac69f4b389ad"
+      "bytes": 78872,
+      "sha256": "9ba8bd19516118e453a3a3b2ae70f47f7d0fc26b2313af91424add2b90d431f5"
     },
     {
       "path": "provenance/field-definitions.json",
@@ -238,8 +243,8 @@
     },
     {
       "path": "provenance/requirements-review.json",
-      "bytes": 16002,
-      "sha256": "5f254df0e93bd2c27435ab239c378c47b7ee15994b4bd357591656d5dc0a236f"
+      "bytes": 28426,
+      "sha256": "983197fea7b5e5dad9145a0915f877f419b7a233b2fc3952b398ee9e5f6e56fa"
     },
     {
       "path": "provenance/source-audit.json",
@@ -248,8 +253,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7867,
-      "sha256": "b4435192cb4e99d7b1556fc4571e7f42fe4c16a921f3306d3523245a55d87e2e"
+      "bytes": 8150,
+      "sha256": "ab1a820ef345235621276f7f0909fa87c53cfdebc1455c2cda7e5a6347fa8eb3"
     },
     {
       "path": "synthetic/simulated-team-challenges.csv",
