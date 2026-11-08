@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "review_date_local": "2026-11-08",
+  "review_timezone": "America/Chicago",
+  "project": "Challenge Pulse",
+  "overall_status": "Organizer exception reported: the user reaffirmed that organizers agreed to this remote-observation project. The written guide requires physical-world collection; the exception is user-reported and its exact scope has not been independently verified.",
+  "verification_method": "Read local methodology and challenge review, then freshly fetched the official Google Docs plain-text export, challenge page, homepage and current public homepage JavaScript FAQ. The web extractor could open the homepage but returned Internal Error for the guide/challenge; public HTTP reads succeeded with sandbox network escalation. No third-party or past-year rules were substituted.",
+  "source_registry": [
+    {
+      "id": "guide",
+      "url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "retrieval_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/export?format=txt",
+      "title": "Build Your Own Dataset — TAMU Datathon Participant Challenge Guide",
+      "verification": "fresh_official_read",
+      "verified_on": "2026-11-08"
+    },
+    {
+      "id": "challenge",
+      "url": "https://tamudatathon.com/challenges/3",
+      "title": "Build-A-Dataset",
+      "verification": "fresh_official_read",
+      "verified_on": "2026-11-08"
+    },
+    {
+      "id": "event",
+      "url": "https://tamudatathon.com/",
+      "title": "TAMU Datathon event and schedule",
+      "verification": "fresh_official_read",
+      "verified_on": "2026-11-08"
+    },
+    {
+      "id": "faq",
+      "url": "https://tamudatathon.com/#faq",
+      "retrieval_url": "https://tamudatathon.com/_next/static/chunks/0-3nlfvc3ovct.js",
+      "title": "Current homepage FAQ answers in official public client bundle",
+      "verification": "fresh_official_read",
+      "verified_on": "2026-11-08"
+    }
+  ],
+  "project_evidence": {
+    "repository_remote": "https://github.com/vrssubbu/challenge-pulse",
+    "local_commit": "3944f7bdeb4b05f51aec73fcc71199e1ba1386ff",
+    "working_tree": "clean_at_review",
+    "observed_messages": 140,
+    "challenge_channels": 8,
+    "observation_snapshots": 11,
+    "source_type": "discord_ui_observation",
+    "collection_reported": "Authorized native Chrome UI reading on November 7–8, 2026; exact capture times not recorded.",
+    "posting_dates_note": "Two messages are dated November 4, before the event; several November 7 messages also precede the 11:00 opening. Display-time timezone is unverified. Do not present all 140 as newly posted during hacking.",
+    "physical_world_collection": false,
+    "organizer_exception": "User reaffirmed: organizers agreed. Reported permission is accepted as user context; no independent documentation or exact scope was inspected.",
+    "synthetic_data": "Nine fictional teams and separate fictional team-challenge allocations; explicitly synthetic, no teams contacted.",
+    "sources": [
+      "challenge-pulse/docs/DISCORD_METHODOLOGY.md",
+      "challenge-pulse/docs/CHALLENGE_REVIEW.md",
+      "challenge-pulse/docs/METRIC_DICTIONARY.md",
+      "challenge-pulse/docs/SIMULATION_METHODOLOGY.md",
+      "challenge-pulse/README.md",
+      "challenge-pulse/dist/data/discord-message-coding.json",
+      "challenge-pulse/dist/data/discord-observations.json"
+    ]
+  },
+  "requirements": [
+    {
+      "id": "R01",
+      "requirement": "Gather the primary data yourselves during the event.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "organizer_exception_reported",
+      "evidence": "Collection is documented on November 7–8, but it observes existing online messages, including two November 4 posts. Exact acquisition timestamps are absent.",
+      "remaining_action": "Describe actual collection and posting dates separately, preserve pre-event records as such, and label the organizer exception as user-reported."
+    },
+    {
+      "id": "R02",
+      "requirement": "Collect through physical-world engagement.",
+      "source_ids": [
+        "guide",
+        "challenge"
+      ],
+      "source_url": "https://tamudatathon.com/challenges/3",
+      "rule_verification": "verified_current",
+      "project_status": "organizer_exception_reported",
+      "evidence": "Current data is Discord UI observation, not field measurements. The user reaffirmed organizer agreement to this approach; exact scope is not independently verified.",
+      "remaining_action": "State the written rule and the user-reported exception accurately. Do not relabel online or synthetic data as physical fieldwork."
+    },
+    {
+      "id": "R03",
+      "requirement": "Build a working interactive application.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "implemented",
+      "evidence": "Dashboard supports challenge/category filters, message inspection, snapshots, exports and imports. Documented application checks verified these interactions.",
+      "remaining_action": "Include a usable repository link and working demonstration in submission; an Excel workbook alone does not replace the application."
+    },
+    {
+      "id": "R04",
+      "requirement": "Make collected data essential; outside data is supplementary.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "implemented_organizer_exception_reported",
+      "evidence": "Message rows drive counts, themes and explorer results. Official metadata and synthetic scenarios are separate. Collection relies on the user-reported organizer exception described in R02.",
+      "remaining_action": "Show data-dependent interactions in the video and keep official metadata and simulation separate from observations."
+    },
+    {
+      "id": "R05",
+      "requirement": "Document context, method, timing, sample, fields, processing and limitations.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "documented_with_known_gaps",
+      "evidence": "DISCORD_METHODOLOGY.md, METRIC_DICTIONARY.md and bundled snapshots document the process. Exact capture times, timestamp timezone and full-history coverage are unknown.",
+      "remaining_action": "Carry these limitations into Excel and the central package; do not invent missing capture timestamps, continuous windows or independent coding review."
+    },
+    {
+      "id": "R06",
+      "requirement": "Publish code, safe dataset, methodology and run instructions in GitHub.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "repository_present",
+      "evidence": "The repository remote is https://github.com/vrssubbu/challenge-pulse; the checked-out revision contains dist/data, methodology, application code, tests and run instructions. Verify that the final packaged revision is pushed before submission.",
+      "remaining_action": "Include the repository URL in Devpost; ensure the final workbook/package and any changes are actually pushed before submission."
+    },
+    {
+      "id": "R07",
+      "requirement": "Supply field descriptions and limitations; label public and synthetic supplements.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "documented",
+      "evidence": "Metric dictionary, separate simulation methodology, source_type fields and explicit source labels exist.",
+      "remaining_action": "Preserve these distinctions in every Excel sheet and exported table, especially fictional teams versus HEB self-reported labels."
+    },
+    {
+      "id": "R08",
+      "requirement": "Submit the GitHub link and approximately two-minute demo through Devpost.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "pending_user_will_record_later",
+      "evidence": "The user explicitly said they will make the video later. No completed video or Devpost receipt is verified.",
+      "remaining_action": "User will record the roughly two-minute collection/data/app video later; keep the workbook and package deliverables moving now. Final submission will need the video and GitHub links."
+    },
+    {
+      "id": "R09",
+      "requirement": "Meet the event submission deadline.",
+      "source_ids": [
+        "guide",
+        "event"
+      ],
+      "source_url": "https://tamudatathon.com/",
+      "rule_verification": "deadline_not_established",
+      "project_status": "not_verified",
+      "evidence": "Guide delegates to the event deadline without a timestamp or portal URL. Official schedule lists hacking ending Sunday November 8 at noon and judging at 12:30 PM; these are not proof of a challenge-specific submission cutoff.",
+      "remaining_action": "Verify the actual Devpost deadline and current organizer announcements. Do not assume the schedule equals a submission receipt or deadline extension."
+    },
+    {
+      "id": "R10",
+      "requirement": "Respect permission, consent, venue rules and safe collection.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "partially_documented_not_independently_verified",
+      "evidence": "Methodology describes authorized Discord UI access; the user reaffirmed organizer agreement. No raw interviews or field collection occurred. Exact exception scope and publication conditions were not independently inspected.",
+      "remaining_action": "Accurately describe the authorized remote process and retain privacy measures. Do not imply a separately verified consent or publication agreement."
+    },
+    {
+      "id": "R11",
+      "requirement": "Remove sensitive identifiers and restricted information before publication.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "aliases_and_paraphrases_present_source_links_remain",
+      "evidence": "Dataset has scoped aliases and paraphrases rather than handles or raw quotes. Message IDs and Discord permalinks retain traceability and can identify originals to authorized server members; this is pseudonymization, not guaranteed anonymity.",
+      "remaining_action": "Review the shareable derivative and video for identifying details; consider excluding direct message URLs from a broadly shareable edition while retaining a separately controlled provenance table if needed."
+    },
+    {
+      "id": "R12",
+      "requirement": "Never fabricate collection or present generated values as observed.",
+      "source_ids": [
+        "guide"
+      ],
+      "source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+      "rule_verification": "verified_current",
+      "project_status": "explicitly_separated",
+      "evidence": "Nine-team scenario is labeled synthetic and stored separately; actual coded messages retain observation provenance. No team contacts are claimed.",
+      "remaining_action": "Retain synthetic markers and separate sheets/folders; narrate the real online observation process without claiming interviews or physical fieldwork."
+    },
+    {
+      "id": "R13",
+      "requirement": "Eligible attendees: enrolled undergraduates/graduates aged 18+, or graduates within one year.",
+      "source_ids": [
+        "faq"
+      ],
+      "source_url": "https://tamudatathon.com/#faq",
+      "rule_verification": "verified_current_official_bundle",
+      "project_status": "personal_eligibility_unknown",
+      "evidence": "Current official FAQ was freshly read; user/team eligibility facts were not supplied or verified.",
+      "remaining_action": "Team members must confirm their actual eligibility and event registration; do not infer eligibility from the dataset."
+    },
+    {
+      "id": "R14",
+      "requirement": "Teams may have at most four people.",
+      "source_ids": [
+        "faq"
+      ],
+      "source_url": "https://tamudatathon.com/#faq",
+      "rule_verification": "verified_current_official_bundle",
+      "project_status": "actual_roster_unknown",
+      "evidence": "Current official FAQ confirms four-person cap. Fictional four-person teams are simulation, not the entrant roster.",
+      "remaining_action": "Check the actual project team roster and registration."
+    }
+  ],
+  "judging": [
+    {
+      "criterion": "Data Collection and Quality",
+      "points": 20,
+      "project_note": "Organizer exception reported for remote observations; written-rule difference and sampling, timing and coding limitations remain explicit."
+    },
+    {
+      "criterion": "Application Functionality and Data Integration",
+      "points": 20,
+      "project_note": "Filters, evidence inspection and data-derived metrics are implemented."
+    },
+    {
+      "criterion": "Creativity and Originality",
+      "points": 20,
+      "project_note": "Observation question and interactive presentation can be demonstrated without treating motion as data."
+    },
+    {
+      "criterion": "Usefulness and Impact",
+      "points": 20,
+      "project_note": "Can inspect recurring discussion topics; cannot establish entrants, popularity rankings or winning probabilities."
+    },
+    {
+      "criterion": "Communication and Presentation",
+      "points": 20,
+      "project_note": "Repository documentation exists; user will make the video later. Final Devpost submission is unverified."
+    }
+  ],
+  "judging_source_url": "https://docs.google.com/document/d/1LjwC2ZwxrLQzuy14MjoHLTnhe4Wmq6eEUBKs1PHoUjc/edit",
+  "official_nonrequirements": [
+    "No minimum dataset size specified.",
+    "No required technology stack specified.",
+    "A polished live deployment is optional under this guide unless general event rules add a requirement."
+  ],
+  "unresolved_general_rules": [
+    "Exact Devpost portal and submission timestamp were not established by the reviewed current pages.",
+    "No general cross-challenge reuse rule was established; rules from 2020, 2021, 2025 or Datathon Lite were not applied to this event."
+  ],
+  "required_next_actions": [
+    "Complete the dataset workbook and central package now, with the user-reported organizer exception clearly labeled.",
+    "Preserve observations, provenance, dictionary, methodology and limitations consistently.",
+    "Video remains pending: the user will record it later.",
+    "Keep exact deadline, actual roster eligibility and Devpost submission receipt marked unverified until established."
+  ]
+}

@@ -1,0 +1,1271 @@
+[
+  {
+    "table": "Messages",
+    "field": "message_id",
+    "definition": "Exact Discord message identifier. Primary key for one observed message; preserve as text because Excel numeric storage can round long IDs.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 140,
+    "example": "1567758160368902267"
+  },
+  {
+    "table": "Messages",
+    "field": "challenge_id",
+    "definition": "Stable challenge key joining messages to the eight-row challenge catalog and channel coverage table.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 8,
+    "example": "dashboard-royale"
+  },
+  {
+    "table": "Messages",
+    "field": "source_type",
+    "definition": "Acquisition class. All observed-message rows are discord_ui_observation; not a survey or physical-world observation.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 1,
+    "example": "discord_ui_observation"
+  },
+  {
+    "table": "Messages",
+    "field": "source_url",
+    "definition": "Exact Discord message URL retained for provenance. Resolves only for a user with source-server access and may reveal source authors to authorized readers.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 140
+  },
+  {
+    "table": "Messages",
+    "field": "channel_url",
+    "definition": "Discord channel URL for the recorded message; source provenance, not proof of complete coverage.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 8
+  },
+  {
+    "table": "Messages",
+    "field": "display_date",
+    "definition": "Calendar date displayed by Discord, stored YYYY-MM-DD. Posting/display date is distinct from collection date.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 3,
+    "example": "2026-11-04"
+  },
+  {
+    "table": "Messages",
+    "field": "display_time",
+    "definition": "Time displayed by Discord, HH:mm, with no verified timezone. Preserve as displayed text; do not create a UTC timestamp.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 98,
+    "example": "22:31"
+  },
+  {
+    "table": "Messages",
+    "field": "timezone",
+    "definition": "Timezone of displayed posting timestamp; null for every current row because it was not verified.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 140,
+    "non_null_count": 0,
+    "types": {
+      "null": 140
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Messages",
+    "field": "captured_at",
+    "definition": "Exact acquisition timestamp; null because a precise capture time was not recorded.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 140,
+    "non_null_count": 0,
+    "types": {
+      "null": 140
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Messages",
+    "field": "display_alias",
+    "definition": "Pseudonymous rendered display-label alias scoped to its challenge channel. It does not identify a verified account, individual, or team.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 67,
+    "example": "DR-A"
+  },
+  {
+    "table": "Messages",
+    "field": "category",
+    "definition": "One exclusive assistant-assigned content category. Single-assistant interpretation, not independently validated.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 12,
+    "example": "social_banter"
+  },
+  {
+    "table": "Messages",
+    "field": "paraphrase",
+    "definition": "Neutral summary of observed content; not verbatim quotation and not independently verified evidence of claimed scores or outcomes.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 132
+  },
+  {
+    "table": "Messages",
+    "field": "reply_to_message_id",
+    "definition": "Exact linked parent message ID when observed; text or null. Null does not imply no reply relationship exists.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 115,
+    "non_null_count": 25,
+    "types": {
+      "null": 115,
+      "string": 25
+    },
+    "distinct_non_null_values": 19,
+    "example": "1568662835293069374"
+  },
+  {
+    "table": "Messages",
+    "field": "human_reviewed",
+    "definition": "Whether independent human review is recorded; false for all current rows.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "boolean": 140
+    },
+    "distinct_non_null_values": 1,
+    "example": false
+  },
+  {
+    "table": "Messages",
+    "field": "snapshot_ids",
+    "definition": "All known observation snapshots containing this message. These associations do not create additional message records.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "array": 140
+    },
+    "distinct_non_null_values": 10,
+    "example": [
+      "dashboard-royale-20261108-001"
+    ]
+  },
+  {
+    "table": "Messages",
+    "field": "author_role",
+    "definition": "Verified role only where evidence exists. All current rows are unknown; do not assume participant-only data.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 1,
+    "example": "unknown"
+  },
+  {
+    "table": "Messages",
+    "field": "role_evidence",
+    "definition": "Explicit evidence supporting an author role; all current rows null.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 140,
+    "non_null_count": 0,
+    "types": {
+      "null": 140
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Messages",
+    "field": "reported_team_alias",
+    "definition": "Pseudonymous label explicitly self-reported in participation messages; not a verified team identifier.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 129,
+    "non_null_count": 11,
+    "types": {
+      "null": 129,
+      "string": 11
+    },
+    "distinct_non_null_values": 9,
+    "example": "HEB-T05"
+  },
+  {
+    "table": "Messages",
+    "field": "reported_team_alias_scope",
+    "definition": "Scope within which reported labels may be deduplicated; current non-null value is heb-channel-20261108.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 129,
+    "non_null_count": 11,
+    "types": {
+      "null": 129,
+      "string": 11
+    },
+    "distinct_non_null_values": 1,
+    "example": "heb-channel-20261108"
+  },
+  {
+    "table": "Messages",
+    "field": "reaction_count_observed",
+    "definition": "Latest inspected total reaction events across emoji on this message. Known only for two messages (15 and 1); null is unmeasured.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 138,
+    "non_null_count": 2,
+    "types": {
+      "integer": 2,
+      "null": 138
+    },
+    "distinct_non_null_values": 2,
+    "example": 1
+  },
+  {
+    "table": "Messages",
+    "field": "reaction_types_observed",
+    "definition": "Number of distinct emoji reaction types in the latest inspected reading. Integer values are 1 and 2; null means unmeasured. This is not an array or a unique-reactor count.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 138,
+    "non_null_count": 2,
+    "types": {
+      "integer": 2,
+      "null": 138
+    },
+    "distinct_non_null_values": 2,
+    "example": 1
+  },
+  {
+    "table": "Messages",
+    "field": "reaction_observed_on_local",
+    "definition": "Local calendar date of the reaction reading, distinct from message display_date.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 138,
+    "non_null_count": 2,
+    "types": {
+      "null": 138,
+      "string": 2
+    },
+    "distinct_non_null_values": 1,
+    "example": "2026-11-08"
+  },
+  {
+    "table": "Messages",
+    "field": "reaction_observed_timezone",
+    "definition": "Timezone for the reaction observation date, not the posting timestamp.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 138,
+    "non_null_count": 2,
+    "types": {
+      "null": 138,
+      "string": 2
+    },
+    "distinct_non_null_values": 1,
+    "example": "America/Chicago"
+  },
+  {
+    "table": "Messages",
+    "field": "reaction_capture_time",
+    "definition": "Exact reaction-reading capture time if recorded; null for every row.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 140,
+    "non_null_count": 0,
+    "types": {
+      "null": 140
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Messages",
+    "field": "reaction_snapshot_id",
+    "definition": "Snapshot in which the current reaction reading was observed. Do not backdate reaction values to earlier sightings.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 138,
+    "non_null_count": 2,
+    "types": {
+      "null": 138,
+      "string": 2
+    },
+    "distinct_non_null_values": 1,
+    "example": "revs-reread-20261108"
+  },
+  {
+    "table": "Messages",
+    "field": "collector",
+    "definition": "Who collected the observation; assistant on all current rows.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 1,
+    "example": "assistant"
+  },
+  {
+    "table": "Messages",
+    "field": "collection_method",
+    "definition": "Actual authorized UI acquisition method for the record.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 2
+  },
+  {
+    "table": "Messages",
+    "field": "coding_method",
+    "definition": "Actual method used to assign the content category.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 1
+  },
+  {
+    "table": "Messages",
+    "field": "identity_unit",
+    "definition": "Scope and limits of the alias identity unit.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 140,
+    "types": {
+      "string": 140
+    },
+    "distinct_non_null_values": 2
+  },
+  {
+    "table": "Messages",
+    "field": "reaction_observation_note",
+    "definition": "Reading-specific explanation of reaction counts and limitations.",
+    "total_rows": 140,
+    "present_count": 140,
+    "missing_property_count": 0,
+    "null_count": 138,
+    "non_null_count": 2,
+    "types": {
+      "null": 138,
+      "string": 2
+    },
+    "distinct_non_null_values": 2
+  },
+  {
+    "table": "Coverage",
+    "field": "challenge_id",
+    "definition": "Stable challenge key joining messages to the eight-row challenge catalog and channel coverage table.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 8,
+    "example": "revs-casino"
+  },
+  {
+    "table": "Coverage",
+    "field": "challenge_name",
+    "definition": "Official challenge display name.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 8,
+    "example": "Rev's Casino"
+  },
+  {
+    "table": "Coverage",
+    "field": "source_type",
+    "definition": "Acquisition class. All observed-message rows are discord_ui_observation; not a survey or physical-world observation.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 1,
+    "example": "discord_ui_observation"
+  },
+  {
+    "table": "Coverage",
+    "field": "source_url",
+    "definition": "Discord channel provenance URL.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 8
+  },
+  {
+    "table": "Coverage",
+    "field": "source_url_verification",
+    "definition": "How the channel source was verified.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 1,
+    "example": "Channel message interface read"
+  },
+  {
+    "table": "Coverage",
+    "field": "coverage_status",
+    "definition": "All current channels partial; not a census or verified full interval.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 1,
+    "example": "partial"
+  },
+  {
+    "table": "Coverage",
+    "field": "coverage_note",
+    "definition": "What was inspected and relevant acquisition limitations. Some text preserves historical access limitations.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 8
+  },
+  {
+    "table": "Coverage",
+    "field": "captured_at",
+    "definition": "Exact acquisition timestamp; null because a precise capture time was not recorded.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 8,
+    "non_null_count": 0,
+    "types": {
+      "null": 8
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Coverage",
+    "field": "displayed_date",
+    "definition": "Readable single displayed date or date span, not an acquisition interval.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 3,
+    "example": "2026-11-07"
+  },
+  {
+    "table": "Coverage",
+    "field": "first_displayed_time",
+    "definition": "Earliest displayed message time, paired with first_displayed_date.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 8,
+    "example": "22:47"
+  },
+  {
+    "table": "Coverage",
+    "field": "last_displayed_time",
+    "definition": "Latest displayed message time, paired with last_displayed_date.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 8,
+    "example": "23:22"
+  },
+  {
+    "table": "Coverage",
+    "field": "window_start",
+    "definition": "Start of a complete continuous observation window; null because no such window is established.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 8,
+    "non_null_count": 0,
+    "types": {
+      "null": 8
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Coverage",
+    "field": "window_end",
+    "definition": "End of a complete continuous observation window; null because no such window is established.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 8,
+    "non_null_count": 0,
+    "types": {
+      "null": 8
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Coverage",
+    "field": "timezone",
+    "definition": "Timezone of displayed posting timestamp; null for every current row because it was not verified.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 8,
+    "non_null_count": 0,
+    "types": {
+      "null": 8
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Coverage",
+    "field": "observed_messages",
+    "definition": "Distinct message IDs in this channel sample, deduplicated across snapshots.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "integer": 8
+    },
+    "distinct_non_null_values": 4,
+    "example": 10
+  },
+  {
+    "table": "Coverage",
+    "field": "distinct_display_labels",
+    "definition": "Number of distinct within-channel display aliases; not verified people or teams.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "integer": 8
+    },
+    "distinct_non_null_values": 6,
+    "example": 5
+  },
+  {
+    "table": "Coverage",
+    "field": "display_label_message_counts",
+    "definition": "Object mapping within-channel alias to message count.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "object": 8
+    },
+    "distinct_non_null_values": 8,
+    "example": {
+      "A": 6,
+      "B": 1,
+      "C": 1,
+      "D": 1,
+      "E": 1
+    }
+  },
+  {
+    "table": "Coverage",
+    "field": "largest_display_label_message_share",
+    "definition": "Largest within-channel alias message count divided by observed_messages; not people/team concentration.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "number": 8
+    },
+    "distinct_non_null_values": 7,
+    "example": 0.6
+  },
+  {
+    "table": "Coverage",
+    "field": "concentration_note",
+    "definition": "Scope limitation for the alias concentration value.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 1,
+    "example": "Largest within-channel display-label share of the inspected messages; not verified account or team concentration."
+  },
+  {
+    "table": "Coverage",
+    "field": "category_counts",
+    "definition": "Object of category counts reconciled with the channel message rows.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "object": 8
+    },
+    "distinct_non_null_values": 8,
+    "example": {
+      "social_banter": 4,
+      "strategy_discussion": 1,
+      "progress_report": 1,
+      "collaboration": 1,
+      "unclassified_media": 1,
+      "leaderboard_request": 2
+    }
+  },
+  {
+    "table": "Coverage",
+    "field": "participant_count",
+    "definition": "Null; participant population not measured.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 8,
+    "non_null_count": 0,
+    "types": {
+      "null": 8
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Coverage",
+    "field": "team_count",
+    "definition": "Null; verified team population not measured.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 8,
+    "non_null_count": 0,
+    "types": {
+      "null": 8
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Coverage",
+    "field": "entrant_count",
+    "definition": "Null; eligible entrant population not measured.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 8,
+    "non_null_count": 0,
+    "types": {
+      "null": 8
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Coverage",
+    "field": "messages_per_hour",
+    "definition": "Null; no comparable complete observation interval.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 8,
+    "non_null_count": 0,
+    "types": {
+      "null": 8
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Coverage",
+    "field": "snapshot_ids",
+    "definition": "Observation-session keys associated with this channel.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "array": 8
+    },
+    "distinct_non_null_values": 8,
+    "example": [
+      "revs-initial-001",
+      "revs-reread-20261108"
+    ]
+  },
+  {
+    "table": "Coverage",
+    "field": "snapshot_count",
+    "definition": "Number of snapshots, including repeated sightings.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "integer": 8
+    },
+    "distinct_non_null_values": 2,
+    "example": 2
+  },
+  {
+    "table": "Coverage",
+    "field": "reaction_counted_messages",
+    "definition": "Count of messages with inspected reactions; null in channels without reaction inspection.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 7,
+    "non_null_count": 1,
+    "types": {
+      "integer": 1,
+      "null": 7
+    },
+    "distinct_non_null_values": 1,
+    "example": 2
+  },
+  {
+    "table": "Coverage",
+    "field": "reaction_count_sum_observed",
+    "definition": "Sum of known latest reaction readings only; neither complete reactions nor unique reactors.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 7,
+    "non_null_count": 1,
+    "types": {
+      "integer": 1,
+      "null": 7
+    },
+    "distinct_non_null_values": 1,
+    "example": 16
+  },
+  {
+    "table": "Coverage",
+    "field": "reaction_coverage_note",
+    "definition": "Scope of reaction inspection.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 7,
+    "non_null_count": 1,
+    "types": {
+      "null": 7,
+      "string": 1
+    },
+    "distinct_non_null_values": 1,
+    "example": "Reaction counts were inspected for 2 of 10 messages. The sum covers only these readings and is not a unique-reactor or whole-sample count."
+  },
+  {
+    "table": "Coverage",
+    "field": "first_displayed_date",
+    "definition": "Earliest displayed message date, paired with first_displayed_time.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 2,
+    "example": "2026-11-07"
+  },
+  {
+    "table": "Coverage",
+    "field": "last_displayed_date",
+    "definition": "Latest displayed message date, paired with last_displayed_time.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 2,
+    "example": "2026-11-07"
+  },
+  {
+    "table": "Coverage",
+    "field": "participation_report_messages",
+    "definition": "Count of participation_confirmation message posts within the sample; a zero is not absence of participation.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "integer": 8
+    },
+    "distinct_non_null_values": 2,
+    "example": 0
+  },
+  {
+    "table": "Coverage",
+    "field": "reported_team_label_count",
+    "definition": "Distinct self-reported labels within an explicit channel scope; not verified teams.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 7,
+    "non_null_count": 1,
+    "types": {
+      "integer": 1,
+      "null": 7
+    },
+    "distinct_non_null_values": 1,
+    "example": 9
+  },
+  {
+    "table": "Coverage",
+    "field": "reported_team_alias_scope",
+    "definition": "Scope within which reported labels may be deduplicated; current non-null value is heb-channel-20261108.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 7,
+    "non_null_count": 1,
+    "types": {
+      "null": 7,
+      "string": 1
+    },
+    "distinct_non_null_values": 1,
+    "example": "heb-channel-20261108"
+  },
+  {
+    "table": "Coverage",
+    "field": "participation_coverage_note",
+    "definition": "Limitations of reported labels and participation-post interpretation.",
+    "total_rows": 8,
+    "present_count": 8,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 8,
+    "types": {
+      "string": 8
+    },
+    "distinct_non_null_values": 2,
+    "example": "No explicit participation-confirmation category was assigned in the inspected sample; this is not evidence of nonparticipation."
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Stable challenge key joining messages to the eight-row challenge catalog and channel coverage table.",
+    "field": "challenge_id",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "string": 11
+    },
+    "distinct_non_null_values": 8,
+    "example": "revs-casino"
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Exact acquisition timestamp; null because a precise capture time was not recorded.",
+    "field": "captured_at",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 11,
+    "non_null_count": 0,
+    "types": {
+      "null": 11
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Partial for all snapshots.",
+    "field": "coverage_status",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "string": 11
+    },
+    "distinct_non_null_values": 1,
+    "example": "partial"
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Acquisition surface/method recorded for this observation session.",
+    "field": "collection_method",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "string": 11
+    },
+    "distinct_non_null_values": 1
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Exact observed message IDs within this snapshot. Normalize to a bridge table without duplicating the main Messages rows.",
+    "field": "message_ids",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "array": 11
+    },
+    "distinct_non_null_values": 10,
+    "example": [
+      "1568849443195723827",
+      "1568849455917170861",
+      "1568849475039141971",
+      "1568849498506006660",
+      "1568849589912608809",
+      "1568851951876051077",
+      "1568854568819757108",
+      "1568857244618199172",
+      "1568857372397408398",
+      "1568858133911175270"
+    ]
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Number of message IDs within this snapshot. Summing across snapshots double-counts repeated sightings.",
+    "field": "observed_messages",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "integer": 11
+    },
+    "distinct_non_null_values": 5,
+    "example": 10
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Nested date/time of first rendered message in this snapshot; timezone unverified.",
+    "field": "displayed_start",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "object": 11
+    },
+    "distinct_non_null_values": 10,
+    "example": {
+      "date": "2026-11-07",
+      "time": "22:47"
+    }
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Nested date/time of last rendered message in this snapshot; timezone unverified.",
+    "field": "displayed_end",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "object": 11
+    },
+    "distinct_non_null_values": 10,
+    "example": {
+      "date": "2026-11-07",
+      "time": "23:22"
+    }
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Timezone of displayed posting timestamp; null for every current row because it was not verified.",
+    "field": "timezone",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 11,
+    "non_null_count": 0,
+    "types": {
+      "null": 11
+    },
+    "distinct_non_null_values": 0
+  },
+  {
+    "table": "Snapshots",
+    "definition": "False; displayed timezone was not independently verified.",
+    "field": "timezone_verified",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "boolean": 11
+    },
+    "distinct_non_null_values": 1,
+    "example": false
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Whether a channel-start marker was seen; does not establish complete history or thread coverage.",
+    "field": "channel_start_seen",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "boolean": 11
+    },
+    "distinct_non_null_values": 2,
+    "example": false
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Whether the end of channel content was seen; not by itself complete history.",
+    "field": "channel_end_seen",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "boolean": 11
+    },
+    "distinct_non_null_values": 1,
+    "example": false
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Whether thread content was inspected in the snapshot.",
+    "field": "threads_inspected",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "boolean": 11
+    },
+    "distinct_non_null_values": 1,
+    "example": false
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Unique observation-session identifier. Primary key for snapshots.",
+    "field": "snapshot_id",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "string": 11
+    },
+    "distinct_non_null_values": 11,
+    "example": "revs-initial-001"
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Human-readable observation-session label.",
+    "field": "label",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "string": 11
+    },
+    "distinct_non_null_values": 11,
+    "example": "Initial Rev sample · Nov 7"
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Calendar date on which source material was read.",
+    "field": "observed_on_local",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "string": 11
+    },
+    "distinct_non_null_values": 2,
+    "example": "2026-11-07"
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Timezone for observed_on_local; America/Chicago, distinct from unknown displayed timezone.",
+    "field": "observation_timezone",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "string": 11
+    },
+    "distinct_non_null_values": 1,
+    "example": "America/Chicago"
+  },
+  {
+    "table": "Snapshots",
+    "definition": "Actual inspected scope, limitations, and relevant historical access status.",
+    "field": "coverage_note",
+    "total_rows": 11,
+    "present_count": 11,
+    "missing_property_count": 0,
+    "null_count": 0,
+    "non_null_count": 11,
+    "types": {
+      "string": 11
+    },
+    "distinct_non_null_values": 11
+  }
+]

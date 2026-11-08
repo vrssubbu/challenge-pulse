@@ -1,0 +1,4 @@
+# Keep canonical JSON source bytes identical across operating systems.
+dist/data/*.json text eol=lf
+# Preserve packaged copies, CSV, workbook and SHA-256 manifest bytes exactly.
+dataset/** -text whitespace=cr-at-eol

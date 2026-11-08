@@ -22,10 +22,10 @@ The files `discord-observations.json` and `discord-message-coding.json` each con
 | `timezone` | Timezone of displayed timestamps; currently null because it was not verified. Metadata `display_timezone_verified` is false. |
 | `observed_messages` | Distinct visible message items counted in the sample; null when not read. |
 | `distinct_display_labels` | Number of distinct displayed labels, not verified accounts or teams. |
-| `display_label_message_counts` | Sample message counts by aliases A–E; not identity or team membership. |
-| `largest_display_label_message_share` | Largest alias's message count divided by sampled messages: currently 6/10 = 0.6. |
+| `display_label_message_counts` | Sample message counts by aliases scoped to one channel. Aliases include A–E in Rev's Casino and channel-prefixed labels elsewhere; they do not establish identity or team membership. |
+| `largest_display_label_message_share` | Largest within-channel alias's message count divided by that channel's sampled messages. Rev's Casino is an example: 6/10 = 0.6; other channel values use their own counts and denominators. |
 | `concentration_note` | Scope qualification for the concentration metric. |
-| `category_counts` | Counts using the six exclusive categories below. |
+| `category_counts` | Counts for the exclusive message categories present in that channel sample. The combined dataset contains 12 observed categories, defined in the methodology; each message has exactly one category. |
 | `participant_count`, `team_count`, `entrant_count` | All null; these populations have not been measured. |
 | `messages_per_hour` | Null because the viewport does not cover a complete interval. |
 | `snapshot_ids`, `snapshot_count` | IDs/count of observation sessions for this channel. Two sessions of the same ten messages are not twenty unique messages. |
@@ -46,7 +46,7 @@ Future comparable acquisition should add explicit analytical window boundaries, 
 | `message_id` | Source message ID, used for deduplication. |
 | `challenge_id` | Channel's mapped challenge. Cross-channel reposts remain separate source messages, but are not independent participant endorsements. |
 | `source_type`, `source_url`, `channel_url` | Online observation type, exact message reference, and channel reference. |
-| `display_alias` | A–E distinguish displayed labels within this sample. This is not a verified unique-person key. |
+| `display_alias` | Pseudonymous displayed-label alias scoped to one channel, including A–E for Rev's Casino and channel-prefixed aliases elsewhere. This is not a verified unique-person key and must not be combined across channels into a person count. |
 | `display_date`, `display_time` | Date/time rendered by the source. |
 | `timezone`, `captured_at` | Currently null: display timezone and exact capture time were not verified/recorded. |
 | `category` | Exactly one supported content category. The current data uses 12 categories listed in the methodology; `organizer_update` is supported but not assigned. Questions and answers may both be `rule_clarification`. |

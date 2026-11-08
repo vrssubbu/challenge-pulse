@@ -2,6 +2,22 @@
 
 A dependency-free Discord observation dashboard for TAMU Datathon. It combines official metadata for eight challenges with traceable, partial channel observations. The dashboard derives counts, categories, dates and coverage from the bundled message and snapshot records. Repeated sightings are deduplicated by message ID. Any unread channel remains missing, not zero.
 
+## Dataset package
+
+Start with the [central dataset folder](dataset/) or download the [Excel workbook](dataset/Participant_Pulse_Dataset.xlsx). The package contains **140 unique observed messages with all 30 source fields, eight channel summaries, 11 snapshots and 150 snapshot–message links**. The links include repeated sightings of the same ten Rev's Casino messages; they are not 150 distinct messages. Official challenge context and the nine-team, 21-allocation fictional scenario are stored separately from observed data.
+
+The workbook stores Discord IDs as text to preserve all 19 digits. The folder also includes the five original JSON files, CSV views, a [field dictionary](dataset/DATA_DICTIONARY.csv), [collection method](dataset/METHOD.md), [eligibility status](dataset/ELIGIBILITY.md) and a [SHA-256 manifest](dataset/MANIFEST.json). Original JSON preserves source types, unknown values and nested provenance. See the [dataset README](dataset/README.md) for joins and safe CSV import instructions; double-clicking a CSV in Excel can round its identifiers.
+
+These are partial online observations read November 7–8, 2026, not a channel census or a verified participant/team count. Displayed posting dates include two November 4 messages; the posting timezone and exact capture times remain unknown. Organizer agreement to the remote approach is user-reported, with its exact scope not independently verified. The demonstration video is pending and will be recorded later; completed packaging does not establish final eligibility or Devpost submission.
+
+Rebuild the central JSON/CSV/documentation package from the repository root with Node.js 18 or newer:
+
+```sh
+node scripts/package-dataset.mjs
+```
+
+The script validates source identities and snapshot links, copies the original JSON bytes and refreshes the manifest. It does not create or modify the separately built Excel workbook; rerun it after finalizing the workbook to record its current hash.
+
 ## Run
 
 Requires Node.js 18 or newer. From this directory:
