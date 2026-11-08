@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "package": "Participant Pulse analytical dataset",
-  "generated_at_utc": "2026-11-08T08:24:28.792Z",
+  "generated_at_utc": "2026-11-08T08:33:55.055Z",
   "requirements_review_date": "2026-11-08",
   "generated_by": "scripts/package-dataset.mjs",
   "hash_algorithm": "SHA-256",
@@ -228,8 +228,8 @@
     },
     {
       "path": "Participant_Pulse_Dataset.xlsx",
-      "bytes": 76457,
-      "sha256": "2fd785bf461d461528cb21d3203fc6ba240755da71ed35be19e90cc7191f533a"
+      "bytes": 76487,
+      "sha256": "12794abecdeecedb99139357faddd5bcfb0e23b28d9bb8e5b335ac69f4b389ad"
     },
     {
       "path": "provenance/field-definitions.json",
